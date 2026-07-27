@@ -12,6 +12,57 @@
   
   <!-- Archivo de Estilos -->
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Estilos fijos para la alineación precisa de Acorde/Sílaba */
+    .song-chords-container {
+      font-family: 'Poppins', monospace, sans-serif;
+      font-size: 1rem;
+      line-height: 2.4em;
+      color: #fff;
+    }
+    .song-line {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 0.8em;
+    }
+    .syl {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      white-space: pre;
+    }
+    .syl .c {
+      position: absolute;
+      top: -1.3em;
+      font-weight: bold;
+      color: #e5c158; /* Color dorado para los acordes */
+      font-size: 0.9em;
+      line-height: 1em;
+    }
+    .intro-text {
+      color: #aaa;
+      font-style: italic;
+      margin-bottom: 1.2em;
+    }
+    .song-section-title {
+      color: #e5c158;
+      font-weight: bold;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+    .history-text {
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.95em;
+      line-height: 1.6em;
+      color: #ddd;
+    }
+  </style>
 </head>
 <body>
 
@@ -21,7 +72,6 @@
   <!-- NAVEGACIÓN SUPERIOR / CABECERA -->
   <header class="main-header">
     <div class="header-content">
-      <!-- EXTENSIÓN CORREGIDA A .jpeg -->
       <img src="assets/logo-tuna.jpeg" alt="Logo Tuna UNW" class="tuna-logo">
       <div class="header-titles">
         <h1>TUNA DE LA UNIVERSIDAD PRIVADA NORBERT WIENER</h1>
@@ -84,98 +134,145 @@
         </div>
 
         <div class="song-list">
-          <details class="song-accordion">
+          <details class="song-accordion" open>
             <summary class="song-title">
               <span>Clavelitos</span>
               <span class="badge">vals 3/4</span>
             </summary>
             <div class="song-body">
-              <pre class="chords-display">
-<span class="intro">intro: | E (2 compases) - Am (2 compases) - Dm (1 compás) - E7 (1 compás) - Am (2 compases)| x2</span>
+              <div class="song-chords-container">
 
-   <span class="chord">Am</span> <span class="chord">E7</span>      <span class="chord">Am</span>
-Mo<span class="highlight">ci</span>ta <span class="highlight">da</span>me el cla<span class="highlight">vel</span>,
-        <span class="chord">F</span>  <span class="chord">E</span>
-Dame el clavel <span class="highlight">de</span> tu bo<span class="highlight">ca</span>,
+                <div class="intro-text">
+                  intro: | E (2 compases) - Am (2 compases) - Dm (1 compás) - E7 (1 compás) - Am (2 compases)| x2
+                </div>
 
-Que pá <span class="highlight">es</span>o no hay que tener
-            <span class="chord">Am</span>
-Mucha vergüenza ni po<span class="highlight">ca</span>.
-<span class="chord">G7</span>          <span class="chord">C</span>
-Yo te daré el casca<span class="highlight">bel</span>,
-<span class="chord">G7</span>          <span class="chord">C</span>
-Te lo prometo mo<span class="highlight">ci</span>ta,
-<span class="chord">E</span>          <span class="chord">Am</span>
-Si tu me das esa <span class="highlight">mie</span>l
-   <span class="chord">Dm</span> <span class="chord">E7</span>    <span class="chord">A</span>
-Que lle<span class="highlight">vas</span> <span class="highlight">en</span> la boqui<span class="highlight">ta</span>.
+                <!-- Estrofa 1 -->
+                <div class="song-line">
+                  <span class="syl">Mo</span><span class="syl"><span class="c">Am</span>ci</span><span class="syl">ta </span><span class="syl"><span class="c">E7</span>da</span><span class="syl">me el cla</span><span class="syl"><span class="c">Am</span>vel</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Dame el clavel </span><span class="syl"><span class="c">F</span>de</span><span class="syl"> tu </span><span class="syl"><span class="c">E</span>bo</span><span class="syl">ca,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Que p</span><span class="syl"><span class="c">a</span>á</span><span class="syl"> eso no hay que tener</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Mucha vergüenza ni po</span><span class="syl"><span class="c">Am</span>ca</span><span class="syl">.</span>
+                </div>
 
-   <span class="chord">A</span>
-Clave<span class="highlight">li</span>tos, clavelitos,
-             <span class="chord">E</span>
-Clavelitos de mi cora<span class="highlight">zón</span>.
+                <div class="song-line">
+                  <span class="syl"><span class="c">G7</span>Yo</span><span class="syl"> te daré el casca</span><span class="syl"><span class="c">C</span>bel</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl"><span class="c">G7</span>Te</span><span class="syl"> lo prometo mo</span><span class="syl"><span class="c">C</span>ci</span><span class="syl">ta,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl"><span class="c">E</span>Si</span><span class="syl"> tu me das esa </span><span class="syl"><span class="c">Am</span>miel</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Que lle</span><span class="syl"><span class="c">Dm</span>vas</span><span class="syl"> </span><span class="syl"><span class="c">E7</span>en</span><span class="syl"> la boqui</span><span class="syl"><span class="c">A</span>ta</span><span class="syl">.</span>
+                </div>
 
-Hoy te traigo clavelitos
-                   <span class="chord">A</span>
-Colorados igual que un fre<span class="highlight">són</span>.
+                <!-- Coro -->
+                <div class="song-line">
+                  <span class="syl">Clave</span><span class="syl"><span class="c">A</span>li</span><span class="syl">tos, clavelitos,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Clavelitos de mi cora</span><span class="syl"><span class="c">E</span>zón</span><span class="syl">.</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Hoy te traigo clavelitos</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Colorados igual que un fre</span><span class="syl"><span class="c">A</span>són</span><span class="syl">.</span>
+                </div>
 
-Si algún día clavelitos
-   <span class="chord">A7</span>          <span class="chord">D</span>
-No lo<span class="highlight">gra</span>ra poderte tra<span class="highlight">er</span>,
-            <span class="chord">A</span>     <span class="chord">F#</span>
-No te creas que ya <span class="highlight">no</span> te qui<span class="highlight">ero</span>,
-      <span class="chord">Bm</span>    <span class="chord">E</span>     <span class="chord">A</span>    <span class="chord">A7</span>
-Es que <span class="highlight">no</span> te los <span class="highlight">pu</span>de co<span class="highlight">ger</span>.
-<span class="chord">D</span>           <span class="chord">A</span>     <span class="chord">F#</span>
-No te creas que ya <span class="highlight">no</span> te qui<span class="highlight">ero</span>,
-      <span class="chord">Bm</span>    <span class="chord">E</span>     <span class="chord">A</span>    <span class="chord">E7</span> - <span class="chord">A</span>
-Es que <span class="highlight">no</span> te los <span class="highlight">pu</span>de co<span class="highlight">ger</span>.
+                <div class="song-line">
+                  <span class="syl">Si algún día clavelitos</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">No lo</span><span class="syl"><span class="c">A7</span>gra</span><span class="syl">ra poderte tra</span><span class="syl"><span class="c">D</span>er</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">No te creas que ya </span><span class="syl"><span class="c">A</span>no</span><span class="syl"> te qui</span><span class="syl"><span class="c">F#</span>ero</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Es que </span><span class="syl"><span class="c">Bm</span>no</span><span class="syl"> te los </span><span class="syl"><span class="c">E</span>pu</span><span class="syl">de co</span><span class="syl"><span class="c">A</span>ger</span><span class="syl">. </span><span class="syl"><span class="c">A7</span> </span>
+                </div>
+                <div class="song-line">
+                  <span class="syl"><span class="c">D</span>No</span><span class="syl"> te creas que ya </span><span class="syl"><span class="c">A</span>no</span><span class="syl"> te qui</span><span class="syl"><span class="c">F#</span>ero</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Es que </span><span class="syl"><span class="c">Bm</span>no</span><span class="syl"> te los </span><span class="syl"><span class="c">E</span>pu</span><span class="syl">de co</span><span class="syl"><span class="c">A</span>ger</span><span class="syl">. </span><span class="syl"><span class="c">E7</span> </span><span class="syl">- </span><span class="syl"><span class="c">A</span> </span>
+                </div>
 
+                <!-- Estrofa 2 -->
+                <div class="song-line" style="margin-top: 1.5em;">
+                  <span class="syl">La tar</span><span class="syl"><span class="c">Am</span>de</span><span class="syl"> </span><span class="syl"><span class="c">E7</span>que</span><span class="syl"> a media </span><span class="syl"><span class="c">Am</span>luz</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Vi tu boqui</span><span class="syl"><span class="c">F</span>ta</span><span class="syl"> de </span><span class="syl"><span class="c">E</span>guin</span><span class="syl">da,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">te juro que en el perú</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">yo no he visto otra más lin</span><span class="syl"><span class="c">Am</span>da</span><span class="syl">.</span>
+                </div>
 
-   <span class="chord">Am</span> <span class="chord">E7</span>      <span class="chord">Am</span>
-La tar<span class="highlight">de</span> <span class="highlight">que</span> a media <span class="highlight">luz</span>
-        <span class="chord">F</span>  <span class="chord">E</span>
-Vi tu boqui<span class="highlight">ta</span> de <span class="highlight">gui</span>nda,
+                <div class="song-line">
+                  <span class="syl"><span class="c">G7</span>Y</span><span class="syl"> luego al ver el cla</span><span class="syl"><span class="c">C</span>vel</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Que lle</span><span class="syl"><span class="c">G7</span>va</span><span class="syl">bas en el pe</span><span class="syl"><span class="c">C</span>lo</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl"><span class="c">E</span>Mi</span><span class="syl">rán</span><span class="syl"><span class="c">Am</span>do</span><span class="syl">lo creí </span><span class="syl">ver</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Un pe</span><span class="syl"><span class="c">Dm</span>da</span><span class="syl"><span class="c">E7</span>ci</span><span class="syl">to de </span><span class="syl"><span class="c">A</span>cie</span><span class="syl">lo.</span>
+                </div>
 
-te juro que en el perú
-            <span class="chord">Am</span>
-yo no he visto otra más lin<span class="highlight">da</span>.
-<span class="chord">G7</span>          <span class="chord">C</span>
-Y luego al ver el cla<span class="highlight">ve</span>l
-<span class="chord">G7</span>          <span class="chord">C</span>
-Que llevabas en el pe<span class="highlight">lo</span>,
-<span class="chord">E</span>          <span class="chord">Am</span>
-Mi<span class="highlight">rán</span>dolo creí <span class="highlight">ver</span>
-   <span class="chord">Dm</span> <span class="chord">E7</span>    <span class="chord">A</span>
-Un pe<span class="highlight">da</span><span class="highlight">ci</span>to de <span class="highlight">cie</span>lo.
+                <!-- Coro Final -->
+                <div class="song-line" style="margin-top: 1.5em;">
+                  <span class="syl">Clave</span><span class="syl"><span class="c">A</span>li</span><span class="syl">tos, clavelitos,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Clavelitos de mi cora</span><span class="syl"><span class="c">E</span>zón</span><span class="syl">.</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Hoy te traigo clavelitos</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Colorados igual que un fre</span><span class="syl"><span class="c">A</span>són</span><span class="syl">.</span>
+                </div>
 
-   <span class="chord">A</span>
-Clave<span class="highlight">li</span>tos, clavelitos,
-             <span class="chord">E</span>
-Clavelitos de mi cora<span class="highlight">zón</span>.
+                <div class="song-line">
+                  <span class="syl">Si algún día clavelitos</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">No lo</span><span class="syl"><span class="c">A7</span>gra</span><span class="syl">ra poderte tra</span><span class="syl"><span class="c">D</span>er</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">No te creas que ya </span><span class="syl"><span class="c">A</span>no</span><span class="syl"> te qui</span><span class="syl"><span class="c">F#</span>ero</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Es que </span><span class="syl"><span class="c">Bm</span>no</span><span class="syl"> te los </span><span class="syl"><span class="c">E</span>pu</span><span class="syl">de co</span><span class="syl"><span class="c">A</span>ger</span><span class="syl">. </span><span class="syl"><span class="c">A7</span> </span>
+                </div>
+                <div class="song-line">
+                  <span class="syl"><span class="c">D</span>No</span><span class="syl"> te creas que ya </span><span class="syl"><span class="c">A</span>no</span><span class="syl"> te qui</span><span class="syl"><span class="c">F#</span>ero</span><span class="syl">,</span>
+                </div>
+                <div class="song-line">
+                  <span class="syl">Es que </span><span class="syl"><span class="c">Bm</span>no</span><span class="syl"> me </span><span class="syl"><span class="c">E</span>de</span><span class="syl">jo mi mu</span><span class="syl"><span class="c">A</span>jer</span><span class="syl">. </span><span class="syl"><span class="c">E7</span> </span><span class="syl">- </span><span class="syl"><span class="c">A</span> </span>
+                </div>
 
-Hoy te traigo clavelitos
-                   <span class="chord">A</span>
-Colorados igual que un fre<span class="highlight">són</span>.
+                <!-- Reseña Histórica -->
+                <div class="history-text">
+                  <p>La emblemática canción conocida popularmente como «Clavelitos» nació en 1949 bajo el título original de «Dame un clavel», con música compuesta por Genaro Monreal y letra de Federico Galindo, quien la escribió como un sincero gesto de amor para su entonces novia y posterior esposa. Su primera grabación en disco de vinilo tuvo lugar en 1958 a cargo de la Estudiantina de Madrid, figurando aún con su nombre original en la carátula[cite: 1].</p>
+                  <p>En cuanto a su género y estructura, la obra fue concebida dentro del ámbito de las estudiantinas españolas con un carácter de vals / pasacalle. Está construida sobre un alegre compás de 3/4 que se percibe con un balance fluido y elegante («¡UN! - dos - tres»), lo que la convierte en un pasacalle ideal: un ritmo pensado para cantar mientras se camina por las calles y perfecto para ofrecer serenatas bajo los balcones[cite: 1].</p>
+                </div>
 
-Si algún día clavelitos
-   <span class="chord">A7</span>          <span class="chord">D</span>
-No lo<span class="highlight">gra</span>ra poderte tra<span class="highlight">er</span>,
-            <span class="chord">A</span>     <span class="chord">F#</span>
-No te creas que ya <span class="highlight">no</span> te qui<span class="highlight">ero</span>,
-      <span class="chord">Bm</span>    <span class="chord">E</span>     <span class="chord">A</span>    <span class="chord">A7</span>
-Es que <span class="highlight">no</span> te los <span class="highlight">pu</span>de co<span class="highlight">ger</span>.
-<span class="chord">D</span>           <span class="chord">A</span>     <span class="chord">F#</span>
-No te creas que ya <span class="highlight">no</span> te qui<span class="highlight">ero</span>,
-      <span class="chord">Bm</span>    <span class="chord">E</span>     <span class="chord">A</span>    <span class="chord">E7</span> - <span class="chord">A</span>
-Es que <span class="highlight">no</span> me <span class="highlight">de</span>jo mi mu<span class="highlight">jer</span>.
-
-
------------------------------------------------------------
-La emblemática canción conocida popularmente como «Clavelitos» nació en 1949 bajo el título original de «Dame un clavel», con música compuesta por Genaro Monreal y letra de Federico Galindo, quien la escribió como un sincero gesto de amor para su entonces novia y posterior esposa. Su primera grabación en disco de vinilo tuvo lugar en 1958 a cargo de la Estudiantina de Madrid, figurando aún con su nombre original en la carátula[cite: 1].
-
-En cuanto a su género y estructura, la obra fue concebida dentro del ámbito de las estudiantinas españolas con un carácter de vals / pasacalle. Está construida sobre un alegre compás de 3/4 que se percibe con un balance fluido y elegante («¡UN! - dos - tres»), lo que la convierte en un pasacalle ideal: un ritmo pensado para cantar mientras se camina por las calles y perfecto para ofrecer serenatas bajo los balcones[cite: 1].
-              </pre>
+              </div>
             </div>
           </details>
         </div>
@@ -212,7 +309,6 @@ En cuanto a su género y estructura, la obra fue concebida dentro del ámbito de
         <p>Visualiza el documento oficial o descárgalo en alta resolución.</p>
         
         <div class="decalogo-viewer">
-          <!-- EXTENSIÓN CORREGIDA A .png -->
           <img src="assets/decalogo-imagen.png" alt="Decálogo de la Tuna UNW" class="decalogo-img">
         </div>
 
