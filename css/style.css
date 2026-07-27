@@ -62,9 +62,11 @@ body {
 }
 
 .tuna-logo {
-  height: 70px;
+  height: 65px;               /* Ajusta la altura para que no desborde */
   width: auto;
-  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+  mix-blend-mode: multiply;   /* Oculta el fondo blanco del logo */
+  border-radius: 8px;         /* Suaviza los bordes */
+  filter: contrast(110%);     /* Realza los colores para que resalte */
 }
 
 .header-titles h1 {
