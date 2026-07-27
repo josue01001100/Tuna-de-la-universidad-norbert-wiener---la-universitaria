@@ -130,6 +130,12 @@ body {
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1rem;
+  transition: max-width 0.3s ease;
+}
+
+/* Amplía el contenedor automáticamente a un 95% de la pantalla cuando la pestaña ROA esté activa */
+.content-wrapper:has(#ascenso.active) {
+  max-width: 95vw;
 }
 
 /* Control de Visibilidad de Pestañas */
@@ -140,12 +146,6 @@ body {
 
 .tab-content.active {
   display: block; /* Solo se muestra la pestaña activa */
-}
-
-/* Opción 1: Extensión exclusiva para la pestaña ROA */
-#ascenso.tab-content {
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 @keyframes fadeIn {
@@ -309,32 +309,36 @@ body {
 
 /* Tabla ROA (Real Orden de Ascenso) */
 .roa-table-wrapper {
-  overflow-x: auto;
   margin-top: 1.5em;
   border-radius: 8px;
   border: 1px solid rgba(212, 175, 55, 0.3);
+  width: 100%;
 }
 
 .roa-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.85rem; /* Ajustado para mejor densidad de contenido */
+  font-size: 0.8rem;
+  table-layout: fixed; /* Fuerza a la tabla a no salirse de los límites especificados */
 }
 
 .roa-table th {
   background-color: var(--purple-dark);
   color: var(--gold-accent);
-  padding: 10px 8px; /* Padding reducido para aprovechar el espacio */
+  padding: 10px 6px;
   font-family: 'Cinzel', serif;
   border-bottom: 2px solid var(--gold-accent);
-  white-space: nowrap;
+  font-size: 0.78rem;
 }
 
 .roa-table td {
-  padding: 8px 8px; /* Padding reducido */
+  padding: 8px 6px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-light);
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere; /* Permite que títulos largos como los de Profesión adapten su texto sin ensanchar la celda */
 }
 
 .roa-table tbody tr:hover {
@@ -345,9 +349,9 @@ body {
   background-color: var(--gold-accent);
   color: #000;
   font-weight: bold;
-  padding: 2px 8px;
+  padding: 2px 6px;
   border-radius: 12px;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   display: inline-block;
 }
 
@@ -356,14 +360,14 @@ body {
   font-weight: 600;
 }
 
-/* Distribución de anchos para optimizar la tabla */
-.roa-table th:nth-child(1), .roa-table td:nth-child(1) { width: 5%; text-align: center; } /* ROA */
-.roa-table th:nth-child(2), .roa-table td:nth-child(2) { width: 25%; } /* Nombre */
-.roa-table th:nth-child(3), .roa-table td:nth-child(3) { width: 12%; } /* Mote */
-.roa-table th:nth-child(4), .roa-table td:nth-child(4) { width: 28%; } /* Profesión */
+/* Proporciones de las columnas ajustadas al 100% exacto */
+.roa-table th:nth-child(1), .roa-table td:nth-child(1) { width: 6%; text-align: center; }  /* ROA */
+.roa-table th:nth-child(2), .roa-table td:nth-child(2) { width: 22%; }                     /* Nombre */
+.roa-table th:nth-child(3), .roa-table td:nth-child(3) { width: 12%; }                     /* Mote */
+.roa-table th:nth-child(4), .roa-table td:nth-child(4) { width: 26%; }                     /* Profesión */
 .roa-table th:nth-child(5), .roa-table td:nth-child(5) { width: 10%; text-align: center; } /* Año */
-.roa-table th:nth-child(6), .roa-table td:nth-child(6) { width: 10%; } /* Padrino */
-.roa-table th:nth-child(7), .roa-table td:nth-child(7) { width: 10%; } /* Testigo */
+.roa-table th:nth-child(6), .roa-table td:nth-child(6) { width: 12%; }                     /* Padrino */
+.roa-table th:nth-child(7), .roa-table td:nth-child(7) { width: 12%; }                     /* Testigo */
 
 /* Límite de tiempo / Requisitos */
 .timeline-step {
