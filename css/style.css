@@ -62,11 +62,13 @@ body {
 }
 
 .tuna-logo {
-  height: 65px;               /* Ajusta la altura para que no desborde */
-  width: auto;
-  mix-blend-mode: multiply;   /* Oculta el fondo blanco del logo */
-  border-radius: 8px;         /* Suaviza los bordes */
-  filter: contrast(110%);     /* Realza los colores para que resalte */
+  height: 65px;
+  width: 65px;
+  object-fit: cover;
+  border-radius: 50%; /* Lo hace un escudo circular */
+  border: 2px solid var(--gold-accent); /* Borde dorado */
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); /* Resplandor dorado */
+  background-color: #ffffff;
 }
 
 .header-titles h1 {
