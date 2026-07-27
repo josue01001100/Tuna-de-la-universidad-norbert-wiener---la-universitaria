@@ -57,18 +57,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
   margin-bottom: 1rem;
+  padding: 0 10px;
 }
 
 .tuna-logo {
-  height: 65px;
-  width: 65px;
-  object-fit: cover;
+  height: 95px;
+  width: 95px;
+  object-fit: contain;
   border-radius: 50%; /* Lo hace un escudo circular */
-  border: 2px solid var(--gold-accent); /* Borde dorado */
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); /* Resplandor dorado */
+  border: 3px solid var(--gold-accent); /* Borde dorado */
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); /* Resplandor dorado */
   background-color: #ffffff;
+  padding: 4px;
+  transition: transform 0.3s ease;
+}
+
+.tuna-logo:hover {
+  transform: scale(1.05);
 }
 
 .header-titles h1 {
