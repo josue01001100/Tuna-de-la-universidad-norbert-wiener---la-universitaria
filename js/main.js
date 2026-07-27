@@ -1,6 +1,3 @@
-Aquí tienes todo tu código integrado respetando la estructura exacta de tus funciones (`switchTab`, `filterSongs`, `filterROA`, etc.), agregando las estructuras de datos con **toda la información del ROA (los 22 tunos) y del Decálogo**, y reemplazando el trivia básico por el **generador de preguntas dinámico y exhaustivo**:
-
-```javascript
 /* ==========================================
    DATOS OFICIALES (ROA y Decálogo)
    ========================================== */
@@ -57,16 +54,16 @@ const decalogoData = {
 };
 
 /* ==========================================
-   NAVEGACIÓN Y FILTROS (Tus funciones originales)
+   NAVEGACIÓN Y FILTROS
    ========================================== */
 
-// Función para cambiar de sección/pestaña
+// Función corregida para cambiar de sección/pestaña
 function switchTab(tabId) {
   // 1. Ocultar todas las secciones
   const allTabs = document.querySelectorAll('.tab-content');
   allTabs.forEach(tab => tab.classList.remove('active'));
 
-  // 2. Desactivar todos los botones
+  // 2. Desactivar todos los botones de la barra de navegación
   const allButtons = document.querySelectorAll('.nav-btn');
   allButtons.forEach(btn => btn.classList.remove('active'));
 
@@ -76,30 +73,26 @@ function switchTab(tabId) {
     selectedTab.classList.add('active');
   }
 
-  // 4. Activar el botón correspondiente
-  if (window.event && window.event.currentTarget) {
-    window.event.currentTarget.classList.add('active');
-  } else {
-    const btnToActive = document.querySelector(`.nav-btn[onclick*="${tabId}"]`);
-    if (btnToActive) btnToActive.classList.add('active');
+  // 4. Activar el botón correspondiente en la navegación
+  const navBtnToActivate = document.querySelector(`.nav-btn[onclick*="${tabId}"]`);
+  if (navBtnToActivate) {
+    navBtnToActivate.classList.add('active');
   }
 
-  // Desplazar suavemente arriba
+  // 5. Desplazar suavemente hacia arriba
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Filtro de búsqueda para el cancionero
 function filterSongs() {
-  const input = document.getElementById('songSearch').value.toLowerCase();
+  const input = document.getElementById('songSearch');
+  if (!input) return;
+  const filter = input.value.toLowerCase();
   const songs = document.querySelectorAll('.song-accordion');
 
   songs.forEach(song => {
     const title = song.querySelector('.song-title').textContent.toLowerCase();
-    if (title.includes(input)) {
-      song.style.display = 'block';
-    } else {
-      song.style.display = 'none';
-    }
+    song.style.display = title.includes(filter) ? 'block' : 'none';
   });
 }
 
@@ -116,11 +109,7 @@ function filterROA() {
 
   rows.forEach(row => {
     const textContent = row.textContent.toLowerCase();
-    if (textContent.includes(filter)) {
-      row.style.display = '';
-    } else {
-      row.style.display = 'none';
-    }
+    row.style.display = textContent.includes(filter) ? '' : 'none';
   });
 }
 
@@ -152,8 +141,8 @@ function getWrongOptions(correctVal, keyType) {
     pool = ["2015", "2016", "2017", "2018", "2019", "2022", "2023", "2024"];
   }
 
-  // Filtrar la respuesta correcta y valores vacíos
-  pool = pool.filter(v => v !== correctVal && v !== "—" && v !== "");
+  // Filtrar la respuesta correcta y valores vacíos o no disponibles
+  pool = pool.filter(v => v !== correctVal && v !== "—" && v !== "" && v !== undefined);
   shuffleArray(pool);
 
   const choices = [correctVal, pool[0], pool[1], pool[2]];
@@ -187,9 +176,8 @@ function generateQuestions() {
     correct: 1
   });
 
-  // --- Preguntas del Decálogo (Regla por Regla) ---
+  // --- Preguntas del Decálogo ---
   decalogoData.puntos.forEach(p => {
-    // Pregunta sobre número de punto
     let distractoresPunto = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].filter(n => n !== p.num.toString());
     shuffleArray(distractoresPunto);
     
@@ -207,7 +195,6 @@ function generateQuestions() {
       correct: optsPunto.indexOf(`Punto ${p.num}`)
     });
 
-    // Pregunta sobre detalle de la regla
     if (p.detalle !== "") {
       questions.push({
         question: `Según el Decálogo (${p.regla}), completa: "${p.detalle.substring(0, 45)}..."`,
@@ -233,7 +220,7 @@ function generateQuestions() {
     correct: 0
   });
 
-  // --- Preguntas dinámicas del ROA (22 Tunos) ---
+  // --- Preguntas dinámicas del ROA ---
   roaData.forEach(tuno => {
     // 1. Mote por Nombre
     let qMote = getWrongOptions(tuno.mote, 'mote');
@@ -269,7 +256,7 @@ function generateQuestions() {
       correct: qAnio.correctIdx
     });
 
-    // 5. Padrino
+    // 5. Padrino (Corregido)
     if (tuno.padrino !== "—") {
       let qPad = getWrongOptions(tuno.padrino, 'padrino');
       questions.push({
@@ -279,7 +266,7 @@ function generateQuestions() {
       });
     }
 
-    // 6. Testigo
+    // 6. Testigo (Corregido)
     if (tuno.testigo !== "—") {
       let qTest = getWrongOptions(tuno.testigo, 'testigo');
       questions.push({
@@ -304,11 +291,10 @@ function generateQuestions() {
     });
   });
 
-  // Mezclamos todas las preguntas generadas
   shuffleArray(questions);
 }
 
-// Cargar y mostrar la pregunta actual
+// Cargar y mostrar la pregunta actual (Corregido)
 function loadQuiz() {
   const quizQuestion = document.getElementById('quizQuestion');
   const optionsDiv = document.getElementById('quizOptions');
@@ -326,6 +312,7 @@ function loadQuiz() {
   q.options.forEach((opt, idx) => {
     const btn = document.createElement('button');
     btn.textContent = opt;
+    btn.disabled = false; // Habilita los botones en cada nueva pregunta
     btn.onclick = () => checkAnswer(idx);
     optionsDiv.appendChild(btn);
   });
@@ -337,17 +324,16 @@ function checkAnswer(selectedIdx) {
   const optionsDiv = document.getElementById('quizOptions');
   if (!resultDiv) return;
 
-  // Deshabilitar botones para evitar clics múltiples
   if (optionsDiv) {
     const buttons = optionsDiv.querySelectorAll('button');
     buttons.forEach(btn => btn.disabled = true);
   }
 
   if (selectedIdx === questions[currentQ].correct) {
-    resultDiv.innerHTML = '<p style="color:#2ecc71; margin-top:10px; font-weight:bold;">¡Correcto! Aúpa Wiener 🎉</p>';
+    resultDiv.innerHTML = '<p class="result-msg correct">¡Correcto! Aúpa Wiener 🎉</p>';
   } else {
     const correctaText = questions[currentQ].options[questions[currentQ].correct];
-    resultDiv.innerHTML = `<p style="color:#e74c3c; margin-top:10px; font-weight:bold;">Incorrecto. La respuesta correcta era: "${correctaText}" 😅</p>`;
+    resultDiv.innerHTML = `<p class="result-msg incorrect">Incorrecto. La respuesta correcta era: "${correctaText}" 😅</p>`;
   }
 
   setTimeout(() => {
@@ -357,7 +343,7 @@ function checkAnswer(selectedIdx) {
   }, 2200);
 }
 
-// Cargar componentes al abrir el sitio web
+// Cargar componentes al abrir la página web
 document.addEventListener('DOMContentLoaded', () => {
   loadQuiz();
 });
