@@ -301,6 +301,55 @@ body {
   border: 0;
 }
 
+/* Tabla ROA (Real Orden de Ascenso) */
+.roa-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1.5em;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.roa-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.roa-table th {
+  background-color: var(--purple-dark);
+  color: var(--gold-accent);
+  padding: 12px 16px;
+  font-family: 'Cinzel', serif;
+  border-bottom: 2px solid var(--gold-accent);
+  white-space: nowrap;
+}
+
+.roa-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+}
+
+.roa-table tbody tr:hover {
+  background-color: rgba(212, 175, 55, 0.08);
+}
+
+.roa-badge {
+  background-color: var(--gold-accent);
+  color: #000;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.roa-table .mote {
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
 /* Límite de tiempo / Requisitos */
 .timeline-step {
   display: flex;
