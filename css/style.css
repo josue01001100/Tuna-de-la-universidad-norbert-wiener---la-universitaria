@@ -24,19 +24,19 @@ body {
   overflow-x: hidden;
 }
 
-/* Marca de Agua con el Logo en el Fondo */
+/* Marca de Agua con la Imagen de Fondo */
 .background-watermark {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 550px;
-  height: 550px;
-  background-image: url('../assets/logo-tuna.png');
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../assets/fondo-tuna.jpeg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
-  opacity: 0.12;
+  background-size: cover;
+  opacity: 0.15;
   z-index: -1;
   pointer-events: none;
 }
