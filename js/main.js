@@ -14,8 +14,14 @@ function switchTab(tabId) {
     selectedTab.classList.add('active');
   }
 
-  // 4. Activar el botón correspondiente
-  event.currentTarget.classList.add('active');
+  // 4. Activar el botón correspondiente (si existe un evento activo)
+  if (window.event && window.event.currentTarget) {
+    window.event.currentTarget.classList.add('active');
+  } else {
+    // Si se llama por función directa (ej. desde una card de inicio)
+    const btnToActive = document.querySelector(`.nav-btn[onclick*="${tabId}"]`);
+    if (btnToActive) btnToActive.classList.add('active');
+  }
 
   // Desplazar suavemente arriba
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -32,6 +38,27 @@ function filterSongs() {
       song.style.display = 'block';
     } else {
       song.style.display = 'none';
+    }
+  });
+}
+
+// Filtro de búsqueda para la tabla ROA (Real Orden de Ascenso)
+function filterROA() {
+  const input = document.getElementById('roaSearch');
+  if (!input) return;
+  
+  const filter = input.value.toLowerCase();
+  const table = document.getElementById('roaTable');
+  if (!table) return;
+
+  const rows = table.querySelectorAll('tbody tr');
+
+  rows.forEach(row => {
+    const textContent = row.textContent.toLowerCase();
+    if (textContent.includes(filter)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
     }
   });
 }
@@ -58,9 +85,13 @@ const questions = [
 let currentQ = 0;
 
 function loadQuiz() {
-  const q = questions[currentQ];
-  document.getElementById('quizQuestion').textContent = q.question;
+  const quizQuestion = document.getElementById('quizQuestion');
   const optionsDiv = document.getElementById('quizOptions');
+
+  if (!quizQuestion || !optionsDiv) return;
+
+  const q = questions[currentQ];
+  quizQuestion.textContent = q.question;
   optionsDiv.innerHTML = '';
 
   q.options.forEach((opt, idx) => {
@@ -73,10 +104,12 @@ function loadQuiz() {
 
 function checkAnswer(selectedIdx) {
   const resultDiv = document.getElementById('quizResult');
+  if (!resultDiv) return;
+
   if (selectedIdx === questions[currentQ].correct) {
-    resultDiv.innerHTML = '<p style="color:#2ecc71; margin-top:10px;">¡Correcto! 🎉</p>';
+    resultDiv.innerHTML = '<p style="color:#2ecc71; margin-top:10px; font-weight:bold;">¡Correcto! 🎉</p>';
   } else {
-    resultDiv.innerHTML = '<p style="color:#e74c3c; margin-top:10px;">Incorrecto, ¡vuelve a repasar la tradición! 😅</p>';
+    resultDiv.innerHTML = '<p style="color:#e74c3c; margin-top:10px; font-weight:bold;">Incorrecto, ¡vuelve a repasar la tradición! 😅</p>';
   }
 
   setTimeout(() => {
@@ -86,5 +119,7 @@ function checkAnswer(selectedIdx) {
   }, 1800);
 }
 
-// Cargar la primera pregunta al abrir
-document.addEventListener('DOMContentLoaded', loadQuiz);
+// Cargar componentes al abrir el sitio web
+document.addEventListener('DOMContentLoaded', () => {
+  loadQuiz();
+});
