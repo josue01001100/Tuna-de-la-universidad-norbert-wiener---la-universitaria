@@ -330,10 +330,10 @@ function checkAnswer(selectedIdx) {
   }
 
   if (selectedIdx === questions[currentQ].correct) {
-    resultDiv.innerHTML = '<p class="result-msg correct">¡Correcto! Aúpa Wiener 🎉</p>';
+    resultDiv.innerHTML = '<p class="result-msg correct">¡Correcto! Aúpa Wiener </p>';
   } else {
     const correctaText = questions[currentQ].options[questions[currentQ].correct];
-    resultDiv.innerHTML = `<p class="result-msg incorrect">Incorrecto. La respuesta correcta era: "${correctaText}" 😅</p>`;
+    resultDiv.innerHTML = `<p class="result-msg incorrect">Incorrecto. La respuesta correcta era: "${correctaText}" </p>`;
   }
 
   setTimeout(() => {
