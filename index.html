@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuna Universidad Norbert Wiener - Portal Oficial</title>
+  
+  <!-- Fuetes Elegantes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Archivo de Estilos -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- MARCA DE AGUA DEL LOGO EN EL FONDO -->
+  <div class="background-watermark"></div>
+
+  <!-- NAVEGACIÓN SUPERIOR / CABECERA -->
+  <header class="main-header">
+    <div class="header-content">
+      <img src="assets/logo-tuna.png" alt="Logo Tuna UNW" class="tuna-logo">
+      <div class="header-titles">
+        <h1>TUNA UNIVERSIDAD NORBERT WIENER</h1>
+        <p class="subtitle">MMXV • LIMA - PERÚ</p>
+      </div>
+    </div>
+
+    <!-- Menú por pestañas dinámicas -->
+    <nav class="main-nav">
+      <button class="nav-btn active" onclick="switchTab('inicio')">🏛️ Inicio</button>
+      <button class="nav-btn" onclick="switchTab('cancionero')">🎵 Cancionero</button>
+      <button class="nav-btn" onclick="switchTab('tutoriales')">🎥 Tutoriales</button>
+      <button class="nav-btn" onclick="switchTab('decalogo')">📜 Decálogo</button>
+      <button class="nav-btn" onclick="switchTab('ascenso')">🏅 Orden de Ascenso</button>
+      <button class="nav-btn" onclick="switchTab('minijuegos')">🎮 Minijuegos</button>
+    </nav>
+  </header>
+
+  <main class="content-wrapper">
+
+    <!-- SECCIÓN: INICIO -->
+    <section id="inicio" class="tab-content active">
+      <div class="hero-card">
+        <h2>¡Aupa Tuna!</h2>
+        <p class="lead">Bienvenido al portal oficial de aprendizaje, tradición y archivo musical de la <strong>Tuna de la Universidad Norbert Wiener</strong>.</p>
+        
+        <div class="quick-access-grid">
+          <div class="quick-card" onclick="switchTab('cancionero')">
+            <span class="icon">🎶</span>
+            <h3>Cancionero</h3>
+            <p>Aprende las letras y los acordes oficiales de nuestro repertorio.</p>
+          </div>
+          <div class="quick-card" onclick="switchTab('decalogo')">
+            <span class="icon">📜</span>
+            <h3>Decálogo</h3>
+            <p>Conoce e imprime el decálogo de la hermandad.</p>
+          </div>
+          <div class="quick-card" onclick="switchTab('ascenso')">
+            <span class="icon">🏅</span>
+            <h3>Real Orden de Ascenso</h3>
+            <p>Descubre los requisitos desde Aspirante hasta Tuno de Beca.</p>
+          </div>
+          <div class="quick-card" onclick="switchTab('minijuegos')">
+            <span class="icon">🎮</span>
+            <h3>Minijuegos</h3>
+            <p>Pon a prueba tus conocimientos sobre la Tuna jugando.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: CANCIONERO Y ACORDES -->
+    <section id="cancionero" class="tab-content">
+      <div class="section-card">
+        <h2>🎵 Cancionero & Transcripciones</h2>
+        <p>Busca cualquier canción y despliega los acordes para guitarra, laúd o bandurria.</p>
+        
+        <div class="search-bar">
+          <input type="text" id="songSearch" placeholder="🔍 Buscar por nombre de canción..." onkeyup="filterSongs()">
+        </div>
+
+        <div class="song-list">
+          <!-- Ejemplo de Canción 1 -->
+          <details class="song-accordion">
+            <summary class="song-title">
+              <span>Clavelitos</span>
+              <span class="badge">Pasodoble</span>
+            </summary>
+            <div class="song-body">
+              <pre class="chords-display">
+<span class="intro">[Intro]</span>
+<span class="chord">Lam</span> - <span class="chord">Mi7</span> - <span class="chord">Lam</span>
+
+<span class="intro">[Estrofa]</span>
+<span class="chord">Lam</span>                       <span class="chord">Mi7</span>
+Mocita que vas a la fuente,
+                          <span class="chord">Lam</span>
+dame un trago de tu agua fresca,
+<span class="chord">La7</span>                     <span class="chord">Rem</span>
+que el sol me abrasa la frente
+   <span class="chord">Sol7</span>               <span class="chord">Do</span>
+y el cansancio me quita la fuerza.
+
+<span class="intro">[Estribillo]</span>
+<span class="chord">Lam</span>          <span class="chord">Mi7</span>
+Clavelitos, clavelitos,
+                         <span class="chord">Lam</span>
+clavelitos de mi corazón,
+                          <span class="chord">Mi7</span>
+hoy te traigo clavelitos
+                       <span class="chord">Lam</span>
+colorados como un fresón.
+              </pre>
+            </div>
+          </details>
+
+          <!-- Puedes agregar más canciones usando la estructura anterior -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: TUTORIALES -->
+    <section id="tutoriales" class="tab-content">
+      <div class="section-card">
+        <h2>🎥 Tutoriales en Video</h2>
+        <p>Aprende punteos, ritmos y ejecución de instrumentos paso a paso.</p>
+
+        <div class="video-grid">
+          <div class="video-card">
+            <h3>Puntero de Bandurria - Clavelitos</h3>
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="video-card">
+            <h3>Rasgueo de Pasodoble en Guitarra</h3>
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: DECÁLOGO -->
+    <section id="decalogo" class="tab-content">
+      <div class="section-card">
+        <h2>📜 Decálogo de la Tuna</h2>
+        <p>Visualiza el documento oficial o descárgalo en alta resolución.</p>
+        
+        <div class="decalogo-viewer">
+          <!-- Coloca la imagen de tu decálogo en la carpeta assets -->
+          <img src="assets/decalogo-imagen.jpg" alt="Decálogo de la Tuna UNW" class="decalogo-img">
+        </div>
+
+        <div class="action-buttons">
+          <a href="assets/decalogo-imagen.jpg" download class="gold-btn">📥 Descargar Imagen del Decálogo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: REAL ORDEN DE ASCENSO -->
+    <section id="ascenso" class="tab-content">
+      <div class="section-card">
+        <h2>🏅 Real Orden de Ascenso</h2>
+        <p>Las etapas tradicionales para conseguir la preciada Beca Morada.</p>
+
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="step-badge">1</div>
+            <div class="step-content">
+              <h3>Aspirante</h3>
+              <ul>
+                <li>Aprender de memoria el Decálogo.</li>
+                <li>Conocer las canciones emblemáticas de la Tuna.</li>
+                <li>Asistir con puntualidad a ensayos e integraciones.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-badge">2</div>
+            <div class="step-content">
+              <h3>Pardillo / Novato</h3>
+              <ul>
+                <li>Aprender la ejecución de instrumento, pandereta o capa.</li>
+                <li>Demostrar caballerosidad, gallardía y respeto a la tradición.</li>
+                <li>Aprobar los exámenes prácticos ante el Consejo de Becas.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-badge">3</div>
+            <div class="step-content">
+              <h3>Tuno de Beca</h3>
+              <ul>
+                <li>Aprobación por votación unánime del Consejo de Beca.</li>
+                <li>Aportar activamente al prestigio y crecimiento del grupo.</li>
+                <li>Imposición oficial de la Beca Morada.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: MINIJUEGOS -->
+    <section id="minijuegos" class="tab-content">
+      <div class="section-card">
+        <h2>🎮 Minijuegos Tradicionales</h2>
+        <p>¿Qué tanto sabes de la Tuna? Ponte a prueba.</p>
+
+        <div class="game-box">
+          <h3 id="quizQuestion">Cargando pregunta...</h3>
+          <div id="quizOptions" class="options-container"></div>
+          <div id="quizResult" class="result-msg"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="main-footer">
+    <p>&copy; 2026 Tuna de la Universidad Norbert Wiener • Lima, Perú</p>
+  </footer>
+
+  <!-- Lógica en JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>
