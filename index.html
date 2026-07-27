@@ -18,29 +18,28 @@
     .song-chords-container {
       font-family: 'Poppins', monospace, sans-serif;
       font-size: 1.05rem;
-      line-height: 2.6em;
       color: #fff;
     }
     .song-line {
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 0.6em;
+      display: block; /* Mantiene el flujo de texto natural con espacios */
+      margin-top: 1.8em; /* Crea espacio superior suficiente para los acordes */
+      margin-bottom: 0.4em;
+      white-space: normal;
     }
     .syl {
       position: relative;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      white-space: pre;
+      display: inline-block;
     }
     .syl .c {
       position: absolute;
       top: -1.3em;
+      left: 50%;
+      transform: translateX(-50%); /* Centra exactamente el acorde sobre la sílaba */
       font-weight: bold;
       color: #e5c158; /* Color dorado para los acordes */
-      font-size: 0.9em;
+      font-size: 0.85em;
       line-height: 1em;
+      white-space: nowrap;
     }
     .intro-text {
       color: #aaa;
@@ -153,7 +152,7 @@
                   Mucha vergüenza ni <span class="syl"><span class="c">Am</span>po</span>ca.
                 </div>
 
-                <div class="song-line" style="margin-top: 1em;">
+                <div class="song-line">
                   <span class="syl"><span class="c">G7</span>Yo</span> te daré el casca<span class="syl"><span class="c">C</span>bel</span>,
                 </div>
                 <div class="song-line">
@@ -167,7 +166,7 @@
                 </div>
 
                 <!-- CORO 1 -->
-                <div class="song-line" style="margin-top: 1.5em;">
+                <div class="song-line">
                   Clave<span class="syl"><span class="c">A</span>li</span>tos, clavelitos,
                 </div>
                 <div class="song-line">
@@ -180,7 +179,7 @@
                   Colorados igual que un fre<span class="syl"><span class="c">A</span>són</span>.
                 </div>
 
-                <div class="song-line" style="margin-top: 1em;">
+                <div class="song-line">
                   Si algún día clavelitos
                 </div>
                 <div class="song-line">
@@ -190,17 +189,17 @@
                   No te creas que ya <span class="syl"><span class="c">A</span>no</span> te qui<span class="syl"><span class="c">F#</span>ero</span>,
                 </div>
                 <div class="song-line">
-                  Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">A7</span> </span>
+                  Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">A7</span></span>
                 </div>
                 <div class="song-line">
                   <span class="syl"><span class="c">D</span>No</span> te creas que ya <span class="syl"><span class="c">A</span>no</span> te qui<span class="syl"><span class="c">F#</span>ero</span>,
                 </div>
                 <div class="song-line">
-                  Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">E7</span> </span>- <span class="syl"><span class="c">A</span> </span>
+                  Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">E7</span></span> - <span class="syl"><span class="c">A</span></span>
                 </div>
 
                 <!-- ESTROFA 2 -->
-                <div class="song-line" style="margin-top: 1.5em;">
+                <div class="song-line">
                   La <span class="syl"><span class="c">Am</span>tar</span>de <span class="syl"><span class="c">E7</span>que</span> a media <span class="syl"><span class="c">Am</span>luz</span>
                 </div>
                 <div class="song-line">
@@ -213,7 +212,7 @@
                   yo no he visto otra más <span class="syl"><span class="c">Am</span>lin</span>da.
                 </div>
 
-                <div class="song-line" style="margin-top: 1em;">
+                <div class="song-line">
                   <span class="syl"><span class="c">G7</span>Y</span> luego al ver el cla<span class="syl"><span class="c">C</span>vel</span>
                 </div>
                 <div class="song-line">
@@ -227,7 +226,7 @@
                 </div>
 
                 <!-- CORO 2 (VARIACIÓN FINAL) -->
-                <div class="song-line" style="margin-top: 1.5em;">
+                <div class="song-line">
                   Clave<span class="syl"><span class="c">A</span>li</span>tos, clavelitos,
                 </div>
                 <div class="song-line">
@@ -240,7 +239,7 @@
                   Colorados igual que un fre<span class="syl"><span class="c">A</span>són</span>.
                 </div>
 
-                <div class="song-line" style="margin-top: 1em;">
+                <div class="song-line">
                   Si algún día clavelitos
                 </div>
                 <div class="song-line">
@@ -250,13 +249,13 @@
                   No te creas que ya <span class="syl"><span class="c">A</span>no</span> te qui<span class="syl"><span class="c">F#</span>ero</span>,
                 </div>
                 <div class="song-line">
-                  Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">A7</span> </span>
+                  Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">A7</span></span>
                 </div>
                 <div class="song-line">
                   <span class="syl"><span class="c">D</span>No</span> te creas que ya <span class="syl"><span class="c">A</span>no</span> te qui<span class="syl"><span class="c">F#</span>ero</span>,
                 </div>
                 <div class="song-line">
-                  Es que <span class="syl"><span class="c">Bm</span>no</span> me <span class="syl"><span class="c">E</span>de</span>jo mi mu<span class="syl"><span class="c">A</span>jer</span>. <span class="syl"><span class="c">E7</span> </span>- <span class="syl"><span class="c">A</span> </span>
+                  Es que <span class="syl"><span class="c">Bm</span>no</span> me <span class="syl"><span class="c">E</span>de</span>jo mi mu<span class="syl"><span class="c">A</span>jer</span>. <span class="syl"><span class="c">E7</span></span> - <span class="syl"><span class="c">A</span></span>
                 </div>
 
                 <!-- RESEÑA HISTÓRICA -->
