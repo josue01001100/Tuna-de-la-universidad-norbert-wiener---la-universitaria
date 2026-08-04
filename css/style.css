@@ -311,68 +311,102 @@ body {
   border: 0;
 }
 
-/* Tabla ROA (Real Orden de Ascenso) */
-.roa-table-wrapper {
-  margin-top: 1.5em;
-  border-radius: 8px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  width: 100%;
-  overflow-x: auto;
+/* ==========================================
+   CONTENEDOR DESLIZABLE Y TARJETAS ROA
+   ========================================== */
+
+/* CONTENEDOR DESLIZABLE DE TARJETAS (ROA) */
+.roa-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 65vh; /* Altura fija para hacer scroll */
+  overflow-y: auto;
+  padding: 10px 5px;
+  scroll-snap-type: y mandatory; /* Hace que se detenga tarjeta por tarjeta al deslizar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-accent) var(--purple-dark);
 }
 
-.roa-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.8rem;
-  table-layout: fixed;
-}
-
-.roa-table th {
-  background-color: var(--purple-dark);
-  color: var(--gold-accent);
-  padding: 10px 6px;
-  font-family: 'Cinzel', serif;
-  border-bottom: 2px solid var(--gold-accent);
-  font-size: 0.78rem;
-}
-
-.roa-table td {
-  padding: 8px 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-light);
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: anywhere;
-}
-
-.roa-table tbody tr:hover {
-  background-color: rgba(212, 175, 55, 0.08);
-}
-
-.roa-badge {
-  background-color: var(--gold-accent);
-  color: #000;
-  font-weight: bold;
-  padding: 2px 6px;
+/* ESTILO DE CADA TARJETA DE PRESENTACIÓN */
+.roa-card {
+  scroll-snap-align: start; /* Engancha la tarjeta centrada al hacer scroll */
+  background: linear-gradient(145deg, rgba(34, 9, 51, 0.95) 0%, rgba(15, 11, 18, 0.95) 100%);
+  border: 2px solid var(--gold-accent);
   border-radius: 12px;
-  font-size: 0.75rem;
-  display: inline-block;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 200px;
 }
 
-.roa-table .mote {
+.roa-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+/* ENCABEZADO DE LA TARJETA */
+.roa-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.roa-card-badge {
+  background: var(--gold-accent);
+  color: #000;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+}
+
+.roa-card-year {
   color: var(--gold-accent);
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
-/* Proporciones de las columnas ajustadas al 100% exacto */
-.roa-table th:nth-child(1), .roa-table td:nth-child(1) { width: 6%; text-align: center; }  /* ROA */
-.roa-table th:nth-child(2), .roa-table td:nth-child(2) { width: 22%; }                     /* Nombre */
-.roa-table th:nth-child(3), .roa-table td:nth-child(3) { width: 12%; }                     /* Mote */
-.roa-table th:nth-child(4), .roa-table td:nth-child(4) { width: 26%; }                     /* Profesión */
-.roa-table th:nth-child(5), .roa-table td:nth-child(5) { width: 10%; text-align: center; } /* Año */
-.roa-table th:nth-child(6), .roa-table td:nth-child(6) { width: 12%; }                     /* Padrino */
-.roa-table th:nth-child(7), .roa-table td:nth-child(7) { width: 12%; }                     /* Testigo */
+/* CUERPO DE LA TARJETA */
+.roa-card-mote {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--gold-accent);
+  margin-bottom: 2px;
+}
+
+.roa-card-name {
+  font-size: 1rem;
+  color: var(--text-light);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.roa-card-profession {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* PIE DE LA TARJETA */
+.roa-card-footer {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.roa-card-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #ddd;
+}
 
 /* Límite de tiempo / Requisitos */
 .timeline-step {
