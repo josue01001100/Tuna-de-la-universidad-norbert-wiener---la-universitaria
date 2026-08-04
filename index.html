@@ -403,23 +403,28 @@
       </div>
     </section>
 
-    <!-- SECCIÓN: REAL ORDEN DE ASCENSO (TARJETAS DE PRESENTACIÓN) -->
-    <section id="ascenso" class="tab-content">
-      <div class="section-card">
-        <h2>Real Orden de Ascenso (ROA)</h2>
-        <p>Jerarquía e historial de los Tunos de Beca de nuestra hermandad.</p>
-        
-        <!-- Filtro / Buscador rápido de Tunos -->
-        <div class="search-bar">
-          <input type="text" id="roaSearch" placeholder="🔍 Buscar Tuno por nombre, mote, profesión, ROA..." onkeyup="filterROACards()">
-        </div>
+    <!-- SECCIÓN: REAL ORDEN DE ASCENSO -->
+<section id="ascenso" class="tab-content">
+  <div class="section-card">
+    <h2>Real Orden de Ascenso (ROA)</h2>
+    <p>Jerarquía e historial de los Tunos de Beca de nuestra hermandad.</p>
 
-        <!-- Contenedor Deslizable tipo Deck de Tarjetas -->
-        <div class="roa-cards-container" id="roaCardsContainer">
-          <!-- Se genera dinámicamente desde JavaScript -->
-        </div>
-      </div>
-    </section>
+    <!-- Filtro / Buscador rápido de Tunos -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        id="roaSearch" 
+        placeholder="Buscar Tuno por nombre, mote, carrera, ROA..." 
+        onkeyup="filterROACards()"
+      >
+    </div>
+
+    <!-- Contenedor Deslizable de Tarjetas ROA -->
+    <div class="roa-cards-container" id="roaCardsContainer">
+      <!-- Las tarjetas se generan dinámicamente desde JavaScript -->
+    </div>
+  </div>
+</section>
 
     <!-- SECCIÓN: MINIJUEGOS -->
     <section id="minijuegos" class="tab-content">
