@@ -96,20 +96,53 @@ function filterSongs() {
   });
 }
 
-// Filtro de búsqueda para la tabla ROA
-function filterROA() {
+/* ==========================================
+   MÓDULO TARJETAS ROA (Real Orden de Ascenso)
+   ========================================== */
+
+// Renderizar las Tarjetas de Presentación del ROA en orden
+function renderROACards() {
+  const container = document.getElementById('roaCardsContainer');
+  if (!container) return;
+  
+  container.innerHTML = ''; // Limpiar contenedor
+
+  roaData.forEach(tuno => {
+    const card = document.createElement('div');
+    card.className = 'roa-card';
+    card.setAttribute('data-roa', tuno.num);
+    
+    card.innerHTML = `
+      <div class="roa-card-header">
+        <span class="roa-card-badge">ROA N° ${tuno.num}</span>
+        <span class="roa-card-year">${tuno.anio}</span>
+      </div>
+      <div class="roa-card-body">
+        <h3 class="roa-card-mote">"${tuno.mote}"</h3>
+        <h4 class="roa-card-name">${tuno.nombre}</h4>
+        <p class="roa-card-profession"><strong>🎓 Carrera:</strong> ${tuno.profesion || 'No especificada'}</p>
+      </div>
+      <div class="roa-card-footer">
+        <div class="roa-card-meta">
+          <span><strong>🍷 Padrino:</strong> ${tuno.padrino || '-'}</span>
+          <span><strong>📜 Testigo:</strong> ${tuno.testigo || '-'}</span>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Filtro de búsqueda rápido para las Tarjetas ROA
+function filterROACards() {
   const input = document.getElementById('roaSearch');
   if (!input) return;
-  
   const filter = input.value.toLowerCase();
-  const table = document.getElementById('roaTable');
-  if (!table) return;
+  const cards = document.querySelectorAll('.roa-card');
 
-  const rows = table.querySelectorAll('tbody tr');
-
-  rows.forEach(row => {
-    const textContent = row.textContent.toLowerCase();
-    row.style.display = textContent.includes(filter) ? '' : 'none';
+  cards.forEach(card => {
+    const textContent = card.textContent.toLowerCase();
+    card.style.display = textContent.includes(filter) ? 'flex' : 'none';
   });
 }
 
