@@ -234,6 +234,34 @@ body {
   background: rgba(0, 0, 0, 0.8);
 }
 
+.song-chords-container {
+  overflow-x: auto; /* Permite desplazamiento suave en móviles si la línea es muy larga */
+  padding-top: 0.5rem;
+}
+
+.song-line {
+  position: relative;
+  display: block;
+  margin-top: 1.8rem; /* Reserva espacio superior constante para los acordes */
+  line-height: 1.6;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.syl {
+  position: relative;
+  display: inline-block;
+}
+
+.c {
+  position: absolute;
+  top: -1.3em; /* Mantiene el acorde arriba de la letra */
+  left: 0;
+  font-weight: bold;
+  color: #ffc107; /* O el color que uses para los acordes */
+  pointer-events: none;
+}
+
 .chords-display {
   font-family: 'Courier New', Courier, monospace;
   white-space: pre-wrap;
