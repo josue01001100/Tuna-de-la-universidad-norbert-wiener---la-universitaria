@@ -87,7 +87,7 @@ function filterSongs() {
 function renderROACards() {
   const container = document.getElementById('roaCardsContainer');
   if (!container) return;
-  container.innerHTML = ""; // Limpieza correcta
+  container.innerHTML = "";
   roaData.forEach(tuno => {
     const card = document.createElement('div');
     card.className = 'roa-card';
@@ -157,21 +157,138 @@ function getWrongOptions(correctVal, keyType) {
   };
 }
 
+// Generador total de preguntas cruzadas
 function generateQuestions() {
   questions = [];
   
+  // 1. Historia y Fundación
   questions.push({
     question: `¿En qué fecha exacta se formó la Tuna de la ${datosFundacion.universidad}?`,
     options: ["15 de marzo del 2015", "1 de abril del 2015", "15 de mayo del 2016", "20 de enero del 2014"],
     correct: 0
   });
 
+  questions.push({
+    question: "¿A quién va dirigida la arenga del Decálogo del Pardillo?",
+    options: [
+      "A los tunos veteranos de la universidad",
+      "Para ese atolondrado ser, que siendo alguien no es nada...",
+      "Exclusivamente a los neófitos preparados",
+      "A los padrinos y testigos del ascenso"
+    ],
+    correct: 1
+  });
+
+  // 2. Decálogo del Pardillo
+  decalogoData.puntos.forEach(p => {
+    let distractoresPunto = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].filter(n => n !== p.num.toString());
+    shuffleArray(distractoresPunto);
+    let optsPunto = [
+      `Punto ${p.num}`,
+      `Punto ${distractoresPunto[0]}`,
+      `Punto ${distractoresPunto[1]}`,
+      `Punto ${distractoresPunto[2]}`
+    ];
+    shuffleArray(optsPunto);
+    questions.push({
+      question: `¿A qué número de punto del Decálogo corresponde: "${p.regla}"?`,
+      options: optsPunto,
+      correct: optsPunto.indexOf(`Punto ${p.num}`)
+    });
+
+    if (p.detalle !== "") {
+      questions.push({
+        question: `Según el Decálogo (${p.regla}), completa: "${p.detalle.substring(0, 45)}..."`,
+        options: [
+          p.detalle,
+          "No importa el abastecimiento si el pardillo canta bien.",
+          "El pardillo puede elevar su protesta si es justa.",
+          "El veterano debe solicitar opinión al pardillo."
+        ],
+        correct: 0
+      });
+    }
+  });
+
+  questions.push({
+    question: "¿Qué es un Neófito según la conclusión del Decálogo?",
+    options: [
+      decalogoData.neofito,
+      "Aquel pardillo que ha pagado la ronda de vino.",
+      "Aquel que ha cumplido un año sin faltar a los ensayos.",
+      "Un tuno de beca completo con derecho a voto."
+    ],
+    correct: 0
+  });
+
+  // 3. Preguntas dinámicas del ROA
   roaData.forEach(tuno => {
+    // Mote por Nombre
     let qMote = getWrongOptions(tuno.mote, 'mote');
     questions.push({
       question: `¿Cuál es el Mote/Apodo de ${tuno.nombre}?`,
       options: qMote.opts,
       correct: qMote.correctIdx
+    });
+
+    // Nombre por Mote
+    let qNom = getWrongOptions(tuno.nombre, 'nombre');
+    questions.push({
+      question: `¿Quién es el Tuno conocido como "${tuno.mote}"?`,
+      options: qNom.opts,
+      correct: qNom.correctIdx
+    });
+
+    // Profesión por Mote
+    if (tuno.profesion !== "-") {
+      let qProf = getWrongOptions(tuno.profesion, 'profesion');
+      questions.push({
+        question: `¿Qué profesión/carrera tiene ${tuno.mote} (${tuno.nombre})?`,
+        options: qProf.opts,
+        correct: qProf.correctIdx
+      });
+    }
+
+    // Año de Ascenso
+    let qAnio = getWrongOptions(tuno.anio, 'anio');
+    questions.push({
+      question: `¿En qué año fue el ascenso de ${tuno.mote}?`,
+      options: qAnio.opts,
+      correct: qAnio.correctIdx
+    });
+
+    // Padrino
+    if (tuno.padrino !== "-") {
+      let qPad = getWrongOptions(tuno.padrino, 'padrino');
+      questions.push({
+        question: `¿Quién fue el Padrino de ${tuno.mote}?`,
+        options: qPad.opts,
+        correct: qPad.correctIdx
+      });
+    }
+
+    // Testigo
+    if (tuno.testigo !== "-") {
+      let qTest = getWrongOptions(tuno.testigo, 'testigo');
+      questions.push({
+        question: `¿Quién fue el Testigo de ascenso de ${tuno.mote}?`,
+        options: qTest.opts,
+        correct: qTest.correctIdx
+      });
+    }
+
+    // Número ROA
+    let optsROA = [
+      `ROA N°${tuno.num}`,
+      `ROA N°${(tuno.num % 22) + 1}`,
+      `ROA N°${((tuno.num + 3) % 22) + 1}`,
+      `ROA N°${((tuno.num + 7) % 22) + 1}`
+    ];
+    shuffleArray(optsROA);
+    questions.push({
+      question: `¿Qué número de orden ROA ocupa ${tuno.mote} (${tuno.nombre})?`,
+      options: optsROA,
+      correct: optsROA.indexOf(`ROA N°${tuno.num}`)
     });
   });
 
@@ -194,6 +311,7 @@ function loadQuiz() {
   q.options.forEach((opt, idx) => {
     const btn = document.createElement('button');
     btn.textContent = opt;
+    btn.disabled = false;
     btn.onclick = () => checkAnswer(idx);
     optionsDiv.appendChild(btn);
   });
