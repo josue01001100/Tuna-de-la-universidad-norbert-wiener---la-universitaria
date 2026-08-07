@@ -200,7 +200,7 @@ body {
 }
 
 /* ==========================================================================
-   Cancionero Acordeón (Actualizado con Container Queries)
+   Cancionero Acordeón (Ajustado para Pantallas Móviles)
    ========================================================================== */
 .search-bar input {
   width: 100%;
@@ -238,18 +238,16 @@ body {
 
 .song-chords-container {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Desplazamiento suave en móviles */
   padding-top: 0.5rem;
 }
-
-/* --- CAMBIOS AQUÍ --- */
 
 .song-line {
   position: relative;
   display: block;
-  margin-top: 1.8rem; /* Reserva espacio superior para los acordes */
+  margin-top: 1.8rem; /* Espacio superior para acordes */
   line-height: 1.6;
-  white-space: nowrap; /* Evita saltos de línea para mantener el texto continuo */
-  container-type: inline-size; /* Habilita container queries para esta línea */
+  white-space: nowrap; /* Evita que las frases o acordes salten de línea */
 }
 
 .syl {
@@ -259,26 +257,19 @@ body {
 
 .c {
   position: absolute;
-  top: -1.3em; /* Mantiene la posición sobre la sílaba usando unidades em */
+  top: -1.3em;
   left: 0;
   font-weight: bold;
   color: #ffc107;
   pointer-events: none;
 }
 
-/* Escala dinámica del texto únicamente en pantallas pequeñas (móviles) */
+/* Escala dinámica del texto mediante clamp y vw para pantallas móviles */
 @media (max-width: 600px) {
   .song-line {
-    /* 
-       clamp(mínimo, dinámico, máximo):
-       - 0.75rem: tamaño mínimo legible en móvil
-       - 4.2cqw: escala respecto al ancho disponible de la línea
-       - 1rem: tamaño normal base
-    */
-    font-size: clamp(0.75rem, 4.2cqw, 1rem);
+    font-size: clamp(0.65rem, 3.2vw, 1rem);
   }
 }
-
 /* Visor del Decálogo */
 .decalogo-viewer {
   text-align: center;
