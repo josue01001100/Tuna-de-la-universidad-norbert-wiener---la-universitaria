@@ -7,6 +7,8 @@
   --text-light: #ffffff;
   --text-muted: #cccccc;
   --card-bg: rgba(34, 9, 51, 0.75);
+  --danger-color: #e74c3c;
+  --success-color: #2ecc71;
 }
 
 * {
@@ -66,9 +68,9 @@ body {
   height: 95px;
   width: 95px;
   object-fit: contain;
-  border-radius: 50%; /* Escudo circular */
-  border: 3px solid var(--gold-accent); /* Borde dorado */
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); /* Resplandor dorado */
+  border-radius: 50%;
+  border: 3px solid var(--gold-accent);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
   background-color: #ffffff;
   padding: 4px;
   transition: transform 0.3s ease;
@@ -133,19 +135,20 @@ body {
   transition: max-width 0.3s ease;
 }
 
-/* Amplía el contenedor automáticamente a un 95% de la pantalla cuando la pestaña ROA esté activa */
+/* Amplía el contenedor automáticamente cuando la pestaña ROA o Ascenso esté activa */
+.content-wrapper:has(#roa.active),
 .content-wrapper:has(#ascenso.active) {
   max-width: 95vw;
 }
 
 /* Control de Visibilidad de Pestañas */
 .tab-content {
-  display: none; /* Se ocultan por defecto */
+  display: none;
   animation: fadeIn 0.4s ease-in-out;
 }
 
 .tab-content.active {
-  display: block; /* Solo se muestra la pestaña activa */
+  display: block;
 }
 
 @keyframes fadeIn {
@@ -160,6 +163,7 @@ body {
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5rem;
 }
 
 .section-card h2, .hero-card h2 {
@@ -202,15 +206,24 @@ body {
 /* ==========================================================================
    Cancionero Acordeón (Ajustado para Pantallas Móviles)
    ========================================================================== */
-.search-bar input {
+.search-bar input,
+.admin-input {
   width: 100%;
   padding: 12px;
   margin: 1rem 0;
   border-radius: 6px;
   border: 1px solid var(--gold-accent);
-  background: rgba(0,0,0,0.6);
-  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--text-light);
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
+}
+
+.search-bar input:focus,
+.admin-input:focus {
+  outline: none;
+  border-color: var(--gold-hover);
+  box-shadow: 0 0 8px rgba(241, 196, 15, 0.4);
 }
 
 .song-accordion {
@@ -238,16 +251,16 @@ body {
 
 .song-chords-container {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* Desplazamiento suave en móviles */
+  -webkit-overflow-scrolling: touch;
   padding-top: 0.5rem;
 }
 
 .song-line {
   position: relative;
   display: block;
-  margin-top: 1.8rem; /* Espacio superior para acordes */
+  margin-top: 1.8rem;
   line-height: 3.5;
-  white-space: nowrap; /* Evita que las frases o acordes salten de línea */
+  white-space: nowrap;
 }
 
 .syl {
@@ -264,12 +277,6 @@ body {
   pointer-events: none;
 }
 
-/* Escala dinámica del texto mediante clamp y vw para pantallas móviles */
-@media (max-width: 600px) {
-  .song-line {
-    font-size: clamp(0.65rem, 3.2vw, 1rem);
-  }
-}
 /* Visor del Decálogo */
 .decalogo-viewer {
   text-align: center;
@@ -283,7 +290,7 @@ body {
   box-shadow: 0 4px 15px rgba(0,0,0,0.8);
 }
 
-/* Botón Dorado */
+/* Botones Personalizados */
 .gold-btn {
   display: inline-block;
   background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
@@ -302,6 +309,42 @@ body {
 .gold-btn:hover {
   opacity: 0.9;
   transform: translateY(-2px);
+}
+
+.danger-btn {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: #fff;
+}
+
+/* Panel de Administración */
+.admin-form-group {
+  margin-bottom: 1.2rem;
+}
+
+.admin-form-group label {
+  display: block;
+  color: var(--gold-accent);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.admin-textarea {
+  width: 100%;
+  height: 220px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--gold-accent);
+  border-radius: 6px;
+  color: var(--text-light);
+  font-family: monospace;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
 }
 
 /* Videos */
@@ -416,7 +459,7 @@ body {
   color: var(--text-muted);
 }
 
-/* Límite de tiempo / Requisitos */
+/* Línea de tiempo / Requisitos */
 .timeline-step {
   display: flex;
   gap: 15px;
@@ -437,9 +480,8 @@ body {
 }
 
 /* ==========================================
-   MINIJUEGOS / TRIVIA (Estilos mejorados)
+   MINIJUEGOS / TRIVIA
    ========================================== */
-
 .game-box {
   background: rgba(0,0,0,0.5);
   padding: 1.5rem;
@@ -456,14 +498,12 @@ body {
   line-height: 1.4;
 }
 
-/* Contenedor de Opciones del Trivia */
 .options-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* Estilo para los botones del Trivia generados por JS */
 .options-container button, .quiz-option-btn {
   display: block;
   width: 100%;
@@ -492,7 +532,6 @@ body {
   cursor: not-allowed;
 }
 
-/* Mensajes de resultado */
 .result-msg {
   margin-top: 15px;
   font-size: 1.05rem;
@@ -502,11 +541,11 @@ body {
 }
 
 .result-msg.correct {
-  color: #2ecc71;
+  color: var(--success-color);
 }
 
 .result-msg.incorrect {
-  color: #e74c3c;
+  color: var(--danger-color);
 }
 
 /* Footer */
@@ -519,15 +558,27 @@ body {
   margin-top: 3rem;
 }
 
+/* Media Queries Responsivas */
 @media (max-width: 600px) {
+  html {
+    font-size: 90%;
+  }
+
+  .song-line {
+    font-size: clamp(0.75rem, 3.5vw, 1rem);
+  }
+
   .roa-grid {
     grid-template-columns: 1fr;
   }
-}
 
-/* Reduce la tipografía general solo para pantallas de móviles */
-@media (max-width: 600px) {
-  html {
-    font-size: 50%; /* Puedes bajarlo a 80% o 75% si quieres la letra más pequeña */
+  .nav-btn {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
   }
 }
