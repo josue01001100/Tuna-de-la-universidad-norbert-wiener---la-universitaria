@@ -162,11 +162,12 @@ function generateQuestions() {
   questions = [];
   
   // 1. Historia y Fundación
-questions.push({
-question: `¿En qué fecha exacta se formó la Tuna de la ${datosFundacion.universidad}?`,
-options: ["15 de marzo del 2015", "1 de abril del 2015", "15 de mayo del 2016", "20 de enero del 2014"],
-correct: 0
-});
+  questions.push({
+    question: `¿En qué fecha exacta se formó la Tuna de la ${datosFundacion.universidad}?`,
+    options: ["15 de marzo del 2015", "1 de abril del 2015", "15 de mayo del 2016", "20 de enero del 2014"],
+    correct: 0
+  });
+
   questions.push({
     question: "¿A quién va dirigida la arenga del Decálogo del Pardillo?",
     options: [
@@ -180,20 +181,21 @@ correct: 0
 
   // 2. Decálogo del Pardillo
   decalogoData.puntos.forEach(p => {
-let distractoresPunto = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].filter(n => n !== p.num.toString());
-shuffleArray(distractoresPunto);
-let optsPunto = [
-    `Punto ${p.num}`,
-    `Punto ${distractoresPunto[0]}`,
-    `Punto ${distractoresPunto[1]}`,
-    `Punto ${distractoresPunto[2]}`
-];
-shuffleArray(optsPunto);
-questions.push({
-    question: `¿A qué número de punto del Decálogo corresponde: "${p.regla}"?`,
-    options: optsPunto,
-    correct: optsPunto.indexOf(`Punto ${p.num}`)
-});
+    let distractoresPunto = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].filter(n => n !== p.num.toString());
+    shuffleArray(distractoresPunto);
+    let optsPunto = [
+      `Punto ${p.num}`,
+      `Punto ${distractoresPunto[0]}`,
+      `Punto ${distractoresPunto[1]}`,
+      `Punto ${distractoresPunto[2]}`
+    ];
+    shuffleArray(optsPunto);
+    questions.push({
+      question: `¿A qué número de punto del Decálogo corresponde: "${p.regla}"?`,
+      options: optsPunto,
+      correct: optsPunto.indexOf(`Punto ${p.num}`)
+    });
+
     if (p.detalle !== "") {
       questions.push({
         question: `Según el Decálogo (${p.regla}), completa: "${p.detalle.substring(0, 45)}..."`,
@@ -294,12 +296,13 @@ questions.push({
 }
 
 function loadQuiz() {
-const quizQuestion = document.getElementById('quizQuestion');
-const optionsDiv = document.getElementById('quizOptions');
-if (!quizQuestion || !optionsDiv) return;
-if (questions.length === 0) {
+  const quizQuestion = document.getElementById('quizQuestion');
+  const optionsDiv = document.getElementById('quizOptions');
+  if (!quizQuestion || !optionsDiv) return;
+  
+  if (questions.length === 0) {
     generateQuestions();
-}
+  }
 
   const q = questions[currentQ];
   quizQuestion.innerHTML = `<small style="color:#888;">Pregunta ${currentQ + 1} de ${questions.length}</small><br>${q.question}`;
@@ -337,12 +340,6 @@ function checkAnswer(selectedIdx) {
     loadQuiz();
   }, 2200);
 }
-
-// Inicialización de la aplicación
-document.addEventListener('DOMContentLoaded', () => {
-  renderROACards();
-  loadQuiz();
-});
 
 const ADMIN_PASS = "messi180411pm";
 let esAdminAutenticado = false;
@@ -581,6 +578,9 @@ function cargarCancionesAlIniciar() {
   });
 }
 
+// Inicialización centralizada de la aplicación
 document.addEventListener('DOMContentLoaded', () => {
+  renderROACards();
   cargarCancionesAlIniciar();
+  loadQuiz();
 });
