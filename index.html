@@ -91,10 +91,59 @@
       <button class="nav-btn" onclick="switchTab('decalogo')">Decálogo</button>
       <button class="nav-btn" onclick="switchTab('roa')">ROA</button>
       <button class="nav-btn" onclick="switchTab('minijuegos')">Minijuegos</button>
+      <button class="nav-btn" onclick="solicitarAccesoAdmin()">Admin</button>
     </nav>
   </header>
 
   <main class="content-wrapper">
+    <section id="admin" class="tab-content">
+  <div class="section-card">
+    <h2>Gestor del Cancionero (Área Privada)</h2>
+    <p>Crea, edita o elimina canciones del repertorio en tiempo real.</p>
+    
+    <!-- Selector para cargar canciones a editar -->
+    <div style="margin-bottom: 1.5rem; padding: 12px; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; border-radius: 6px;">
+      <label><strong>Selecciona una canción para editar o eliminar:</strong></label>
+      <select id="adminSongSelector" onchange="cargarCancionParaEditar()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+        <option value="nueva">-- Crear una canción nueva --</option>
+      </select>
+    </div>
+
+    <form id="adminSongForm" onsubmit="guardarNuevaCancion(event)">
+      <!-- Identificador invisible para saber si estamos editando -->
+      <input type="hidden" id="adminSongId" value="">
+
+      <div style="margin-bottom: 1rem;">
+        <label><strong>Título de la Canción:</strong></label>
+        <input type="text" id="adminTitle" required style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label><strong>Ritmo / Ritmo (Badge):</strong> (ej: vals 3/4, pasodoble 2/4)</label>
+        <input type="text" id="adminBadge" placeholder="vals 3/4" required style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label><strong>Intro / Notas adicionales:</strong></label>
+        <input type="text" id="adminIntro" placeholder="intro: | E - Am - E7 - Am |" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label><strong>Letra y Acordes:</strong></label>
+        <small style="display:block; color:#aaa; margin-bottom:5px;">
+          Escribe el acorde entre corchetes <code>[Acorde]</code> justo **antes** de la sílaba sobre la que debe alinearse.<br>
+          <em>Ejemplo:</em> <code>Mo[Am]ci[E7]ta [Am]dame el cla[Am]vel</code>
+        </small>
+        <textarea id="adminLyrics" rows="10" required placeholder="Mo[Am]ci[E7]ta [Am]dame el cla[Am]vel&#10;Dame el clavel [F]de tu [E]boca" style="width:100%; padding:8px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px; font-family:monospace;"></textarea>
+      </div>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button type="submit" id="btnGuardar" class="gold-btn" style="flex: 1;">Guardar Cambios</button>
+        <button type="button" id="btnEliminar" onclick="eliminarCancionActual()" class="gold-btn" style="background: #e74c3c; display: none;">Eliminar Canción</button>
+      </div>
+    </form>
+  </div>
+</section>
 
     <!-- SECCIÓN: INICIO -->
     <section id="inicio" class="tab-content active">
