@@ -199,7 +199,9 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* Cancionero Acordeón */
+/* ==========================================================================
+   Cancionero Acordeón (Actualizado con Container Queries)
+   ========================================================================== */
 .search-bar input {
   width: 100%;
   padding: 12px;
@@ -235,17 +237,19 @@ body {
 }
 
 .song-chords-container {
-  overflow-x: auto; /* Permite desplazamiento suave en móviles si la línea es muy larga */
+  overflow-x: auto;
   padding-top: 0.5rem;
 }
+
+/* --- CAMBIOS AQUÍ --- */
 
 .song-line {
   position: relative;
   display: block;
-  margin-top: 1.8rem; /* Reserva espacio superior constante para los acordes */
+  margin-top: 1.8rem; /* Reserva espacio superior para los acordes */
   line-height: 1.6;
-  white-space: normal;
-  word-wrap: break-word;
+  white-space: nowrap; /* Evita saltos de línea para mantener el texto continuo */
+  container-type: inline-size; /* Habilita container queries para esta línea */
 }
 
 .syl {
@@ -255,30 +259,24 @@ body {
 
 .c {
   position: absolute;
-  top: -1.3em; /* Mantiene el acorde arriba de la letra */
+  top: -1.3em; /* Mantiene la posición sobre la sílaba usando unidades em */
   left: 0;
   font-weight: bold;
-  color: #ffc107; /* O el color que uses para los acordes */
+  color: #ffc107;
   pointer-events: none;
 }
 
-.chords-display {
-  font-family: 'Courier New', Courier, monospace;
-  white-space: pre-wrap;
-  color: #fff;
-}
-
-.chord {
-  color: var(--gold-accent);
-  font-weight: bold;
-}
-
-.badge {
-  background: var(--purple-primary);
-  color: #fff;
-  font-size: 0.75rem;
-  padding: 3px 8px;
-  border-radius: 12px;
+/* Escala dinámica del texto únicamente en pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  .song-line {
+    /* 
+       clamp(mínimo, dinámico, máximo):
+       - 0.75rem: tamaño mínimo legible en móvil
+       - 4.2cqw: escala respecto al ancho disponible de la línea
+       - 1rem: tamaño normal base
+    */
+    font-size: clamp(0.75rem, 4.2cqw, 1rem);
+  }
 }
 
 /* Visor del Decálogo */
