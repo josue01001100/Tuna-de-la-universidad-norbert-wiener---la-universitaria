@@ -68,6 +68,8 @@ function switchTab(tabId) {
         navBtnToActivate.classList.add('active');
     }
 
+    renderROACards();
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
