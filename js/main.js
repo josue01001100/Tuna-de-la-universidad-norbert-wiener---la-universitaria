@@ -346,3 +346,244 @@ document.addEventListener('DOMContentLoaded', () => {
   renderROACards();
   loadQuiz();
 });
+
+const ADMIN_PASS = "messi180411pm";
+let esAdminAutenticado = false;
+
+// Solicitud de Contraseña para entrar al Panel Admin
+function solicitarAccesoAdmin() {
+  if (esAdminAutenticado) {
+    poblarSelectorCanciones();
+    switchTab('admin');
+    return;
+  }
+  
+  const password = prompt("Ingresa la contraseña de administrador:");
+  if (password === ADMIN_PASS) {
+    esAdminAutenticado = true;
+    poblarSelectorCanciones();
+    switchTab('admin');
+  } else if (password !== null) {
+    alert("Contraseña incorrecta.");
+  }
+}
+
+// Convierte texto con [Acorde]sílaba a HTML (.syl / .c)
+function parsearTextoACancioneroHTML(texto) {
+  const lineas = texto.split('\n');
+  let htmlResultante = '';
+
+  lineas.forEach(linea => {
+    if (!linea.trim()) return;
+
+    let lineaHTML = '<div class="song-line">';
+    const regex = /\[(.*?)\]([^\s\[]*)/g;
+    let lastIndex = 0;
+    let match;
+
+    while ((match = regex.exec(linea)) !== null) {
+      const textoPrevio = linea.substring(lastIndex, match.index);
+      lineaHTML += textoPrevio;
+
+      const acorde = match[1];
+      const silaba = match[2];
+
+      if (silaba.length > 0) {
+        lineaHTML += `<span class="syl"><span class="c">${acorde}</span>${silaba}</span>`;
+      } else {
+        lineaHTML += `<span class="syl"><span class="c">${acorde}</span>&nbsp;</span>`;
+      }
+
+      lastIndex = regex.lastIndex;
+    }
+
+    lineaHTML += linea.substring(lastIndex);
+    lineaHTML += '</div>';
+    htmlResultante += lineaHTML;
+  });
+
+  return htmlResultante;
+}
+
+// Convierte HTML (.syl / .c) de vuelta a [Acorde] para cargar en el área de texto
+function desparsearHTMLaTexto(cancionContainer) {
+  let textoFinal = '';
+  const lineas = cancionContainer.querySelectorAll('.song-line');
+
+  lineas.forEach(linea => {
+    let lineaTexto = '';
+    linea.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        lineaTexto += node.textContent;
+      } else if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('syl')) {
+        const acordeEl = node.querySelector('.c');
+        const acorde = acordeEl ? acordeEl.textContent.trim() : '';
+        
+        let silaba = node.textContent;
+        if (acordeEl) {
+          silaba = silaba.replace(acordeEl.textContent, '');
+        }
+        if (silaba === '\u00a0') silaba = '';
+
+        lineaTexto += `[${acorde}]${silaba}`;
+      }
+    });
+    textoFinal += lineaTexto + '\n';
+  });
+
+  return textoFinal.trim();
+}
+
+// Llena el selector desplegable con las canciones existentes
+function poblarSelectorCanciones() {
+  const selector = document.getElementById('adminSongSelector');
+  if (!selector) return;
+
+  selector.innerHTML = '<option value="nueva">-- Crear una canción nueva --</option>';
+
+  const cancionesEstaticas = document.querySelectorAll('.song-list > details.song-accordion');
+  cancionesEstaticas.forEach((acc, index) => {
+    const titulo = acc.querySelector('.song-title span').textContent;
+    const id = acc.dataset.id || `estatica_${index}`;
+    acc.dataset.id = id;
+
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = `[Canción] ${titulo}`;
+    selector.appendChild(opt);
+  });
+}
+
+// Carga los datos de la canción seleccionada en los campos del formulario
+function cargarCancionParaEditar() {
+  const selector = document.getElementById('adminSongSelector');
+  const selectedId = selector.value;
+  const btnEliminar = document.getElementById('btnEliminar');
+
+  if (selectedId === 'nueva') {
+    document.getElementById('adminSongForm').reset();
+    document.getElementById('adminSongId').value = '';
+    btnEliminar.style.display = 'none';
+    return;
+  }
+
+  btnEliminar.style.display = 'inline-block';
+  
+  const cancionAcc = document.querySelector(`details.song-accordion[data-id="${selectedId}"]`);
+  if (cancionAcc) {
+    document.getElementById('adminSongId').value = selectedId;
+    document.getElementById('adminTitle').value = cancionAcc.querySelector('.song-title span').textContent;
+    
+    const badgeEl = cancionAcc.querySelector('.badge');
+    document.getElementById('adminBadge').value = badgeEl ? badgeEl.textContent : '';
+
+    const introEl = cancionAcc.querySelector('.intro-text');
+    document.getElementById('adminIntro').value = introEl ? introEl.textContent.trim() : '';
+
+    const chordsContainer = cancionAcc.querySelector('.song-chords-container');
+    document.getElementById('adminLyrics').value = desparsearHTMLaTexto(chordsContainer);
+  }
+}
+
+// Guardar los cambios (Crea una nueva o actualiza la existente)
+function guardarNuevaCancion(event) {
+  event.preventDefault();
+
+  const id = document.getElementById('adminSongId').value;
+  const titulo = document.getElementById('adminTitle').value;
+  const badge = document.getElementById('adminBadge').value;
+  const intro = document.getElementById('adminIntro').value;
+  const letraMarcada = document.getElementById('adminLyrics').value;
+
+  const lineasHTML = parsearTextoACancioneroHTML(letraMarcada);
+
+  const cancionData = {
+    id: id || `custom_${Date.now()}`,
+    titulo: titulo,
+    badge: badge,
+    intro: intro,
+    bodyHTML: lineasHTML
+  };
+
+  let cancionesGuardadas = JSON.parse(localStorage.getItem('canciones_custom_v2') || '{}');
+  cancionesGuardadas[cancionData.id] = cancionData;
+  localStorage.setItem('canciones_custom_v2', JSON.stringify(cancionesGuardadas));
+
+  renderizarOActualizarCancion(cancionData);
+
+  alert('¡Canción guardada con éxito!');
+  document.getElementById('adminSongForm').reset();
+  poblarSelectorCanciones();
+  switchTab('cancionero');
+}
+
+// Renderiza o actualiza la estructura en el DOM
+function renderizarOActualizarCancion(cancion) {
+  let accordion = document.querySelector(`details.song-accordion[data-id="${cancion.id}"]`);
+
+  if (!accordion) {
+    accordion = document.createElement('details');
+    accordion.className = 'song-accordion';
+    accordion.dataset.id = cancion.id;
+    document.querySelector('.song-list').appendChild(accordion);
+  }
+
+  accordion.innerHTML = `
+    <summary class="song-title">
+      <span>${cancion.titulo}</span>
+      <span class="badge">${cancion.badge}</span>
+    </summary>
+    <div class="song-body">
+      <div class="song-chords-container">
+        ${cancion.intro ? `<div class="intro-text">${cancion.intro}</div>` : ''}
+        ${cancion.bodyHTML}
+      </div>
+    </div>
+  `;
+}
+
+// Eliminar canción
+function eliminarCancionActual() {
+  const id = document.getElementById('adminSongId').value;
+  if (!id) return;
+
+  if (confirm('¿Deseas eliminar esta canción del cancionero?')) {
+    let cancionesGuardadas = JSON.parse(localStorage.getItem('canciones_custom_v2') || '{}');
+    if (cancionesGuardadas[id]) {
+      delete cancionesGuardadas[id];
+      localStorage.setItem('canciones_custom_v2', JSON.stringify(cancionesGuardadas));
+    } else {
+      let ocultas = JSON.parse(localStorage.getItem('canciones_ocultas') || '[]');
+      ocultas.push(id);
+      localStorage.setItem('canciones_ocultas', JSON.stringify(ocultas));
+    }
+
+    const accordion = document.querySelector(`details.song-accordion[data-id="${id}"]`);
+    if (accordion) accordion.remove();
+
+    alert('Canción eliminada.');
+    document.getElementById('adminSongForm').reset();
+    poblarSelectorCanciones();
+    switchTab('cancionero');
+  }
+}
+
+// Cargar cambios guardados al abrir la página
+function cargarCancionesAlIniciar() {
+  poblarSelectorCanciones();
+
+  const ocultas = JSON.parse(localStorage.getItem('canciones_ocultas') || '[]');
+  ocultas.forEach(id => {
+    const acc = document.querySelector(`details.song-accordion[data-id="${id}"]`);
+    if (acc) acc.remove();
+  });
+
+  const cancionesGuardadas = JSON.parse(localStorage.getItem('canciones_custom_v2') || '{}');
+  Object.values(cancionesGuardadas).forEach(cancion => {
+    renderizarOActualizarCancion(cancion);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  cargarCancionesAlIniciar();
+});
