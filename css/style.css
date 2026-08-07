@@ -524,3 +524,10 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Reduce la tipografía general solo para pantallas de móviles */
+@media (max-width: 600px) {
+  html {
+    font-size: 85%; /* Puedes bajarlo a 80% o 75% si quieres la letra más pequeña */
+  }
+}
