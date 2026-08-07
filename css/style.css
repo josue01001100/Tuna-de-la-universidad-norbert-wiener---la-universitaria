@@ -246,7 +246,7 @@ body {
   position: relative;
   display: block;
   margin-top: 1.8rem; /* Espacio superior para acordes */
-  line-height: 1.6;
+  line-height: 3.5;
   white-space: nowrap; /* Evita que las frases o acordes salten de línea */
 }
 
