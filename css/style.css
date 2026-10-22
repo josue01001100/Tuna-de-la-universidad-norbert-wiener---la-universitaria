@@ -204,7 +204,7 @@ body {
 }
 
 /* ==========================================================================
-   Cancionero Acordeón (Ajustado para Pantallas Móviles)
+   Cancionero Acordeón (Diseño Compacto y Legible)
    ========================================================================== */
 .search-bar input,
 .admin-input {
@@ -244,7 +244,7 @@ body {
 }
 
 .song-body {
-  padding: 15px;
+  padding: 10px 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(0, 0, 0, 0.8);
 }
@@ -252,15 +252,19 @@ body {
 .song-chords-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-top: 0.5rem;
+  padding-top: 0.2rem;
+  font-size: 0.92rem;
 }
 
+/* Configuración compacta de líneas y letras */
 .song-line {
   position: relative;
   display: block;
-  margin-top: 1.8rem;
-  line-height: 3.5;
-  white-space: nowrap;
+  margin-top: 0.9em;
+  margin-bottom: 0.2em;
+  line-height: 1.2;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .syl {
@@ -268,13 +272,22 @@ body {
   display: inline-block;
 }
 
+/* Posicionamiento apretado del acorde justo arriba de la palabra */
 .c {
   position: absolute;
-  top: -1.3em;
+  top: -0.95em;
   left: 0;
   font-weight: bold;
   color: #ffc107;
+  font-size: 0.8em;
   pointer-events: none;
+}
+
+.intro-text {
+  margin-bottom: 0.6em;
+  font-size: 0.85rem;
+  color: #aaa;
+  font-style: italic;
 }
 
 /* Visor del Decálogo */
@@ -564,8 +577,18 @@ body {
     font-size: 90%;
   }
 
+  .song-chords-container {
+    font-size: 0.8rem;
+  }
+
   .song-line {
-    font-size: clamp(0.75rem, 3.5vw, 1rem);
+    margin-top: 0.8em;
+    line-height: 1.15;
+  }
+
+  .c {
+    top: -0.9em;
+    font-size: 0.75em;
   }
 
   .roa-grid {
