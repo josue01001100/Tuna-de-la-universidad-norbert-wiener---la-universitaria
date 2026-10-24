@@ -290,6 +290,28 @@ body {
   font-style: italic;
 }
 
+/* ==========================================================================
+   Modo Multi-Página (2 Columnas en PC / Deslizable en Móvil)
+   ========================================================================== */
+.song-chords-container.multi-page {
+  display: flex;
+  gap: 2rem;
+  overflow-x: visible;
+}
+
+.song-chords-container.multi-page .song-page {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 15px;
+  border-radius: 6px;
+  border-left: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.page-indicator-info {
+  display: none;
+}
+
 /* Visor del Decálogo */
 .decalogo-viewer {
   text-align: center;
@@ -603,5 +625,47 @@ body {
   .header-content {
     flex-direction: column;
     gap: 6px;
+  }
+
+  /* Modo deslizable de páginas para celular */
+  .page-indicator-info {
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--gold-accent);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .song-chords-container.multi-page {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 10px;
+  }
+
+  .song-chords-container.multi-page .song-page {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    box-sizing: border-box;
+    border-left: none;
+    border-top: 2px solid var(--gold-accent);
+  }
+
+  .song-chords-container.multi-page::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .song-chords-container.multi-page::-webkit-scrollbar-thumb {
+    background: var(--gold-accent);
+    border-radius: 4px;
+  }
+
+  .song-chords-container.multi-page::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.4);
   }
 }
