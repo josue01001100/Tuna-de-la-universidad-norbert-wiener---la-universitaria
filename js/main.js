@@ -40,7 +40,7 @@ const roaData = [
     testigo: "rex",
     fecha: "11 de septiembre de 2026",
     hora: "7:30 pm",
-    lugar: "Plaza de San Blas, Cusco"
+    lugar: "Plaza de San Blas, Cusco, Perú"
   }
 ];
 
