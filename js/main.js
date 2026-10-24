@@ -107,6 +107,13 @@ function renderROACards() {
     const card = document.createElement('div');
     card.className = 'roa-card';
     card.setAttribute('data-roa', tuno.num);
+    
+    if (tuno.foto) {
+      card.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('${tuno.foto}')`;
+      card.style.backgroundSize = 'cover';
+      card.style.backgroundPosition = 'center';
+    }
+
     card.innerHTML = `
       <div class="roa-card-header">
         <span class="roa-card-badge">ROA N° ${tuno.num}</span>
