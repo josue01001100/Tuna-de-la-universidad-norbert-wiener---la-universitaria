@@ -31,17 +31,18 @@ const roaData = [
   { num: 21, nombre: "Jose Andres Quispe Abanto", mote: "Flan", profesion: "Enfermería", anio: "2024", padrino: "Quimico", testigo: "Cucho" },
   { num: 22, nombre: "Carlos Antonio Loayza Prado", mote: "Kbooms", profesion: "Medicina Humana", anio: "2024", padrino: "Olaf", testigo: "Nobita" },
   { 
-    num: 23, 
-    nombre: "Joseph Elí Victor Carmen Rodriguez", 
-    mote: "jackie chu", 
-    profesion: "Medicina Humana", 
-    anio: "2026", 
-    padrino: "nobita", 
-    testigo: "rex",
-    fecha: "11 de septiembre de 2026",
-    hora: "7:30 pm",
-    lugar: "Plaza de San Blas, Cusco, Perú"
-  }
+  num: 23, 
+  nombre: "Joseph Elí Victor Carmen Rodriguez", 
+  mote: "jackie chu", 
+  profesion: "Medicina Humana", 
+  anio: "2026", 
+  padrino: "nobita", 
+  testigo: "rex",
+  fecha: "11 de septiembre de 2026",
+  hora: "7:30 pm",
+  lugar: "Plaza de San Blas, Cusco",
+  foto: "assets/tunos/jackie-chu.jpg" // <--- Ruta de la imagen
+}
 ];
 
 // Decálogo del Pardillo
