@@ -30,7 +30,18 @@ const roaData = [
   { num: 20, nombre: "Jaime Arturo Pacheco Retamozo", mote: "Charlie Brown", profesion: "Contabilidad y Auditoría", anio: "2024", padrino: "Largo", testigo: "Cucho" },
   { num: 21, nombre: "Jose Andres Quispe Abanto", mote: "Flan", profesion: "Enfermería", anio: "2024", padrino: "Quimico", testigo: "Cucho" },
   { num: 22, nombre: "Carlos Antonio Loayza Prado", mote: "Kbooms", profesion: "Medicina Humana", anio: "2024", padrino: "Olaf", testigo: "Nobita" },
-  { num: 23, nombre: "Joseph Elí Victor Carmen Rodriguez", mote: "jackie chu", profesion: "Medicina Humana", anio: "2026", padrino: "nobita", testigo: "rex" }
+  { 
+    num: 23, 
+    nombre: "Joseph Elí Victor Carmen Rodriguez", 
+    mote: "jackie chu", 
+    profesion: "Medicina Humana", 
+    anio: "2026", 
+    padrino: "nobita", 
+    testigo: "rex",
+    fecha: "11 de septiembre de 2026",
+    hora: "7:30 pm",
+    lugar: "Plaza de San Blas, Cusco"
+  }
 ];
 
 // Decálogo del Pardillo
@@ -109,6 +120,9 @@ function renderROACards() {
         <div class="roa-card-meta">
           <span><strong>Padrino:</strong> ${tuno.padrino || '-'}</span>
           <span><strong>Testigo:</strong> ${tuno.testigo || '-'}</span>
+          <span><strong>Fecha de Ascenso:</strong> ${tuno.fecha || '-'}</span>
+          <span><strong>Hora:</strong> ${tuno.hora || '-'}</span>
+          <span><strong>Lugar:</strong> ${tuno.lugar || '-'}</span>
         </div>
       </div>
     `;
