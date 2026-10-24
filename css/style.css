@@ -260,7 +260,7 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   padding-top: 0.2rem;
-  font-size: 0.55rem; /* Ajustado el tamaño de la letra sin tocar márgenes */
+  font-size: 0.75rem; /* Ajustado el tamaño de la letra sin tocar márgenes */
 }
 
 /* Configuración compacta de líneas y letras */
