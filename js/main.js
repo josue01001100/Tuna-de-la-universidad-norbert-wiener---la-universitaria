@@ -37,7 +37,7 @@ const roaData = [
     fecha: "10 de diciembre de 2023",
     hora: "12:25 am",
     lugar: "Pueblito Boyacense, Duitama, Colombia",
-    foto: "assets/largo.jpg"
+    foto: "assets/Largo.jpg"
   },
   { num: 20, nombre: "Jaime Arturo Pacheco Retamozo", mote: "Charlie Brown", profesion: "Contabilidad y Auditoría", anio: "2024", padrino: "Largo", testigo: "Cucho" },
   { num: 21, nombre: "Jose Andres Quispe Abanto", mote: "Flan", profesion: "Enfermería", anio: "2024", padrino: "Quimico", testigo: "Cucho" },
