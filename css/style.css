@@ -141,6 +141,13 @@ body {
   max-width: 95vw;
 }
 
+/* Amplía el contenedor en PC para acomodar 4 columnas si el cancionero está activo */
+@media (min-width: 992px) {
+  .content-wrapper:has(#cancionero.active) {
+    max-width: 1200px;
+  }
+}
+
 /* Control de Visibilidad de Pestañas */
 .tab-content {
   display: none;
@@ -291,11 +298,11 @@ body {
 }
 
 /* ==========================================================================
-   Modo Multi-Página (2 Columnas en PC / Deslizable en Móvil)
+   Modo Multi-Página (Columnas en PC / Deslizable en Móvil)
    ========================================================================== */
 .song-chords-container.multi-page {
   display: flex;
-  gap: 2rem;
+  gap: 1.2rem;
   overflow-x: visible;
 }
 
@@ -303,9 +310,16 @@ body {
   flex: 1;
   min-width: 0;
   background: rgba(0, 0, 0, 0.2);
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 6px;
   border-left: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+/* Regla específica para forzar 4 columnas en PC si lleva la clase .cols-4 */
+@media (min-width: 768px) {
+  .song-chords-container.multi-page.cols-4 .song-page {
+    flex: 0 0 calc(25% - 0.9rem);
+  }
 }
 
 .page-indicator-info {
