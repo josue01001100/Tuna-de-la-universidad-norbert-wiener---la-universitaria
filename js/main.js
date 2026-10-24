@@ -45,7 +45,7 @@ const roaData = [
   { 
   num: 23, 
   nombre: "Joseph Elí Victor Carmen Rodriguez", 
-  mote: "jackie chu", 
+  mote: "jackie chan", 
   profesion: "Medicina Humana", 
   anio: "2026", 
   padrino: "nobita", 
