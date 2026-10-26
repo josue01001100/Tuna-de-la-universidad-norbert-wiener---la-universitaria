@@ -362,6 +362,7 @@ function solicitarAccesoAdmin() {
   if (esAdminAutenticado) {
     poblarSelectorCanciones();
     switchTab('admin');
+    actualizarVistaPrevia();
     return;
   }
   
@@ -370,6 +371,7 @@ function solicitarAccesoAdmin() {
     esAdminAutenticado = true;
     poblarSelectorCanciones();
     switchTab('admin');
+    actualizarVistaPrevia();
   } else if (password !== null) {
     alert("Contraseña incorrecta.");
   }
@@ -441,7 +443,7 @@ function desparsearHTMLaTexto(cancionContainer) {
   return textoFinal.trim();
 }
 
-// Llena el selector desplegable con las canciones existentes
+// Llena el selector desplegable con las canciones existentes para lectura/edición
 function poblarSelectorCanciones() {
   const selector = document.getElementById('adminSongSelector');
   if (!selector) return;
@@ -465,17 +467,14 @@ function poblarSelectorCanciones() {
 function cargarCancionParaEditar() {
   const selector = document.getElementById('adminSongSelector');
   const selectedId = selector.value;
-  const btnEliminar = document.getElementById('btnEliminar');
 
   if (selectedId === 'nueva') {
     document.getElementById('adminSongForm').reset();
     document.getElementById('adminSongId').value = '';
-    btnEliminar.style.display = 'none';
+    actualizarVistaPrevia();
     return;
   }
 
-  btnEliminar.style.display = 'inline-block';
-  
   const cancionAcc = document.querySelector(`details.song-accordion[data-id="${selectedId}"]`);
   if (cancionAcc) {
     document.getElementById('adminSongId').value = selectedId;
@@ -489,10 +488,67 @@ function cargarCancionParaEditar() {
 
     const chordsContainer = cancionAcc.querySelector('.song-chords-container');
     document.getElementById('adminLyrics').value = desparsearHTMLaTexto(chordsContainer);
+
+    actualizarVistaPrevia();
   }
 }
 
-// Genera y descarga el código HTML configurado para pegarlo en index.html
+// Inserta una etiqueta de acorde [Acorde] justo donde está el cursor
+function insertarAcordeEnCursor() {
+  const textarea = document.getElementById('adminLyrics');
+  if (!textarea) return;
+
+  const acordeNombre = prompt("Ingresa el acorde (ejemplo: Am, E7, Sol):", "Am");
+  if (!acordeNombre) return;
+
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const textoPrevio = textarea.value;
+
+  const textoInyectado = `[${acordeNombre.trim()}]`;
+  textarea.value = textoPrevio.substring(0, start) + textoInyectado + textoPrevio.substring(end);
+
+  // Reposicionar el cursor después del acorde insertado
+  textarea.selectionStart = textarea.selectionEnd = start + textoInyectado.length;
+  textarea.focus();
+
+  // Actualizar la vista previa inmediatamente
+  actualizarVistaPrevia();
+}
+
+// Renderiza la vista previa en tiempo real
+function actualizarVistaPrevia() {
+  const container = document.getElementById('livePreviewContainer');
+  if (!container) return;
+
+  const titulo = document.getElementById('adminTitle').value || 'Título de la Canción';
+  const badge = document.getElementById('adminBadge').value || 'Ritmo';
+  const intro = document.getElementById('adminIntro').value;
+  const letraMarcada = document.getElementById('adminLyrics').value;
+
+  const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
+  const columns = document.getElementById('adminColumns') ? document.getElementById('adminColumns').value : '1';
+
+  const lineasHTML = parsearTextoACancioneroHTML(letraMarcada);
+  const styleColumns = columns === '2' ? 'column-count: 2; column-gap: 1.5rem;' : '';
+
+  container.innerHTML = `
+    <details class="song-accordion" open>
+      <summary class="song-title">
+        <span>${titulo}</span>
+        <span class="badge">${badge}</span>
+      </summary>
+      <div class="song-body">
+        <div class="song-chords-container" style="font-size: ${fontSize}; ${styleColumns}">
+          ${intro ? `<div class="intro-text" style="column-span: all;">${intro}</div>` : ''}
+          ${lineasHTML}
+        </div>
+      </div>
+    </details>
+  `;
+}
+
+// Genera y descarga el archivo HTML sin modificar el cancionero ni guardar en LocalStorage
 function guardarNuevaCancion(event) {
   event.preventDefault();
 
@@ -501,16 +557,12 @@ function guardarNuevaCancion(event) {
   const intro = document.getElementById('adminIntro').value;
   const letraMarcada = document.getElementById('adminLyrics').value;
 
-  // Nuevas configuraciones del formulario
   const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
   const columns = document.getElementById('adminColumns') ? document.getElementById('adminColumns').value : '1';
 
   const lineasHTML = parsearTextoACancioneroHTML(letraMarcada);
-
-  // Estilo de columnas si se seleccionaron 2 columnas
   const styleColumns = columns === '2' ? 'column-count: 2; column-gap: 1.5rem;' : '';
 
-  // Estructura HTML con estilos dinámicos de fuente y columnas
   const codigoHTML = `<!-- CANCIÓN: ${titulo.toUpperCase()} -->
 <details class="song-accordion">
   <summary class="song-title">
@@ -525,7 +577,6 @@ function guardarNuevaCancion(event) {
   </div>
 </details>\n\n`;
 
-  // Crear y descargar el archivo con el código HTML
   const blob = new Blob([codigoHTML], { type: 'text/html;charset=utf-8' });
   const enlace = document.createElement('a');
   enlace.href = URL.createObjectURL(blob);
@@ -534,59 +585,7 @@ function guardarNuevaCancion(event) {
   enlace.click();
   document.body.removeChild(enlace);
 
-  alert('¡Código generado y descargado con éxito!');
-  document.getElementById('adminSongForm').reset();
-}
-
-// Renderiza o actualiza la estructura en el DOM
-function renderizarOActualizarCancion(cancion) {
-  let accordion = document.querySelector(`details.song-accordion[data-id="${cancion.id}"]`);
-
-  if (!accordion) {
-    accordion = document.createElement('details');
-    accordion.className = 'song-accordion';
-    accordion.dataset.id = cancion.id;
-    document.querySelector('.song-list').appendChild(accordion);
-  }
-
-  accordion.innerHTML = `
-    <summary class="song-title">
-      <span>${cancion.titulo}</span>
-      <span class="badge">${cancion.badge}</span>
-    </summary>
-    <div class="song-body">
-      <div class="song-chords-container">
-        ${cancion.intro ? `<div class="intro-text">${cancion.intro}</div>` : ''}
-        ${cancion.bodyHTML}
-      </div>
-    </div>
-  `;
-}
-
-// Eliminar canción
-function eliminarCancionActual() {
-  const id = document.getElementById('adminSongId').value;
-  if (!id) return;
-
-  if (confirm('¿Deseas eliminar esta canción del cancionero?')) {
-    let cancionesGuardadas = JSON.parse(localStorage.getItem('canciones_custom_v2') || '{}');
-    if (cancionesGuardadas[id]) {
-      delete cancionesGuardadas[id];
-      localStorage.setItem('canciones_custom_v2', JSON.stringify(cancionesGuardadas));
-    } else {
-      let ocultas = JSON.parse(localStorage.getItem('canciones_ocultas') || '[]');
-      ocultas.push(id);
-      localStorage.setItem('canciones_ocultas', JSON.stringify(ocultas));
-    }
-
-    const accordion = document.querySelector(`details.song-accordion[data-id="${id}"]`);
-    if (accordion) accordion.remove();
-
-    alert('Canción eliminada.');
-    document.getElementById('adminSongForm').reset();
-    poblarSelectorCanciones();
-    switchTab('cancionero');
-  }
+  alert('¡Código HTML generado y descargado!');
 }
 
 // Cargar cambios guardados al abrir la página
