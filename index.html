@@ -96,73 +96,84 @@
   </header>
 
   <main class="content-wrapper">
-    <section id="admin" class="tab-content">
-  <div class="section-card">
-    <h2>Gestor del Cancionero (Área Privada)</h2>
-    <p>Crea, edita o elimina canciones del repertorio en tiempo real.</p>
-    
-    <!-- Selector para cargar canciones a editar -->
-    <div style="margin-bottom: 1.5rem; padding: 12px; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; border-radius: 6px;">
-      <label><strong>Selecciona una canción para editar o eliminar:</strong></label>
-      <select id="adminSongSelector" onchange="cargarCancionParaEditar()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
-        <option value="nueva">-- Crear una canción nueva --</option>
-      </select>
+  <section id="admin" class="tab-content">
+    <div class="section-card">
+      <h2>Gestor del Cancionero (Área Privada)</h2>
+      <p>Diseña tu canción, observa la vista previa en tiempo real y descarga el código HTML final.</p>
+      
+      <!-- Selector para cargar canciones a editar -->
+      <div style="margin-bottom: 1.5rem; padding: 12px; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; border-radius: 6px;">
+        <label><strong>Selecciona una canción para editar o eliminar:</strong></label>
+        <select id="adminSongSelector" onchange="cargarCancionParaEditar()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+          <option value="nueva">-- Crear una canción nueva --</option>
+        </select>
+      </div>
+
+      <form id="adminSongForm" onsubmit="guardarNuevaCancion(event)">
+        <!-- Identificador invisible para saber si estamos editando -->
+        <input type="hidden" id="adminSongId" value="">
+
+        <div style="margin-bottom: 1rem;">
+          <label><strong>Título de la Canción:</strong></label>
+          <input type="text" id="adminTitle" required oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label><strong>Ritmo / Ritmo (Badge):</strong> (ej: vals 3/4, pasodoble 2/4)</label>
+          <input type="text" id="adminBadge" placeholder="vals 3/4" required oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label><strong>Intro / Notas adicionales:</strong></label>
+          <input type="text" id="adminIntro" placeholder="intro: | E - Am - E7 - Am |" oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+        </div>
+
+        <!-- Selectores de Fuente y Columnas -->
+        <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 200px;">
+            <label><strong>Tamaño de Fuente:</strong></label>
+            <select id="adminFontSize" onchange="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+              <option value="0.75rem">Muy Pequeño (0.75rem)</option>
+              <option value="0.88rem" selected>Normal (0.88rem)</option>
+              <option value="1rem">Grande (1rem)</option>
+            </select>
+          </div>
+          <div style="flex: 1; min-width: 200px;">
+            <label><strong>Distribución en Columnas:</strong></label>
+            <select id="adminColumns" onchange="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+              <option value="1" selected>1 Columna (Normal)</option>
+              <option value="2">2 Columnas (Lado a lado)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+            <label><strong>Letra y Acordes:</strong></label>
+            <!-- BOTÓN PARA INSERTAR ACORDE EN LA POSICIÓN DEL CURSOR -->
+            <button type="button" onclick="insertarAcordeEnCursor()" class="gold-btn" style="padding: 4px 10px; font-size: 0.85rem;">+ Insertar Acorde</button>
+          </div>
+          <small style="display:block; color:#aaa; margin-bottom:5px;">
+            Haz clic en el texto en el lugar deseado y presiona el botón <strong>+ Insertar Acorde</strong>.
+          </small>
+          <textarea id="adminLyrics" rows="10" required oninput="actualizarVistaPrevia()" placeholder="Mo[Am]ci[E7]ta [Am]dame el cla[Am]vel&#10;Dame el clavel [F]de tu [E]boca" style="width:100%; padding:8px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px; font-family:monospace;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button type="submit" id="btnGuardar" class="gold-btn" style="flex: 1;">Descargar Código HTML</button>
+          <button type="button" id="btnEliminar" onclick="eliminarCancionActual()" class="gold-btn" style="background: #e74c3c; display: none;">Eliminar Canción</button>
+        </div>
+      </form>
+
+      <!-- ÁREA DE VISTA PREVIA EN TIEMPO REAL -->
+      <div style="margin-top: 2rem; border-top: 2px dashed #d4af37; padding-top: 1rem;">
+        <h3>Vista Previa en Tiempo Real</h3>
+        <div id="livePreviewContainer" style="background: rgba(0,0,0,0.4); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 1rem;">
+          <!-- Se renderiza dinámicamente -->
+        </div>
+      </div>
     </div>
-
-    <form id="adminSongForm" onsubmit="guardarNuevaCancion(event)">
-      <!-- Identificador invisible para saber si estamos editando -->
-      <input type="hidden" id="adminSongId" value="">
-
-      <div style="margin-bottom: 1rem;">
-        <label><strong>Título de la Canción:</strong></label>
-        <input type="text" id="adminTitle" required style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
-      </div>
-
-      <div style="margin-bottom: 1rem;">
-        <label><strong>Ritmo / Ritmo (Badge):</strong> (ej: vals 3/4, pasodoble 2/4)</label>
-        <input type="text" id="adminBadge" placeholder="vals 3/4" required style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
-      </div>
-
-      <div style="margin-bottom: 1rem;">
-        <label><strong>Intro / Notas adicionales:</strong></label>
-        <input type="text" id="adminIntro" placeholder="intro: | E - Am - E7 - Am |" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
-      </div>
-
-      <!-- NUEVO BLOQUE: Selectores de Fuente y Columnas -->
-      <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 200px;">
-          <label><strong>Tamaño de Fuente:</strong></label>
-          <select id="adminFontSize" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
-            <option value="0.75rem">Muy Pequeño (0.75rem)</option>
-            <option value="0.88rem" selected>Normal (0.88rem)</option>
-            <option value="1rem">Grande (1rem)</option>
-          </select>
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-          <label><strong>Distribución en Columnas:</strong></label>
-          <select id="adminColumns" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
-            <option value="1" selected>1 Columna (Normal)</option>
-            <option value="2">2 Columnas (Lado a lado)</option>
-          </select>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 1rem;">
-        <label><strong>Letra y Acordes:</strong></label>
-        <small style="display:block; color:#aaa; margin-bottom:5px;">
-          Escribe el acorde entre corchetes <code>[Acorde]</code> justo **antes** de la sílaba sobre la que debe alinearse.<br>
-          <em>Ejemplo:</em> <code>Mo[Am]ci[E7]ta [Am]dame el cla[Am]vel</code>
-        </small>
-        <textarea id="adminLyrics" rows="10" required placeholder="Mo[Am]ci[E7]ta [Am]dame el cla[Am]vel&#10;Dame el clavel [F]de tu [E]boca" style="width:100%; padding:8px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px; font-family:monospace;"></textarea>
-      </div>
-
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <button type="submit" id="btnGuardar" class="gold-btn" style="flex: 1;">Guardar Cambios</button>
-        <button type="button" id="btnEliminar" onclick="eliminarCancionActual()" class="gold-btn" style="background: #e74c3c; display: none;">Eliminar Canción</button>
-      </div>
-    </form>
-  </div>
-</section>
+  </section>
 
     <!-- SECCIÓN: INICIO -->
     <section id="inicio" class="tab-content active">
