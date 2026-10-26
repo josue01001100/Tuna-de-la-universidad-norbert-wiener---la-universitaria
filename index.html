@@ -128,6 +128,25 @@
         <input type="text" id="adminIntro" placeholder="intro: | E - Am - E7 - Am |" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
       </div>
 
+      <!-- NUEVO BLOQUE: Selectores de Fuente y Columnas -->
+      <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <label><strong>Tamaño de Fuente:</strong></label>
+          <select id="adminFontSize" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+            <option value="0.75rem">Muy Pequeño (0.75rem)</option>
+            <option value="0.88rem" selected>Normal (0.88rem)</option>
+            <option value="1rem">Grande (1rem)</option>
+          </select>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <label><strong>Distribución en Columnas:</strong></label>
+          <select id="adminColumns" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+            <option value="1" selected>1 Columna (Normal)</option>
+            <option value="2">2 Columnas (Lado a lado)</option>
+          </select>
+        </div>
+      </div>
+
       <div style="margin-bottom: 1rem;">
         <label><strong>Letra y Acordes:</strong></label>
         <small style="display:block; color:#aaa; margin-bottom:5px;">
