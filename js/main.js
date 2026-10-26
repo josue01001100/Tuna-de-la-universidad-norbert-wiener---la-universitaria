@@ -492,36 +492,50 @@ function cargarCancionParaEditar() {
   }
 }
 
-// Guardar los cambios (Crea una nueva o actualiza la existente)
+// Genera y descarga el código HTML configurado para pegarlo en index.html
 function guardarNuevaCancion(event) {
   event.preventDefault();
 
-  const id = document.getElementById('adminSongId').value;
   const titulo = document.getElementById('adminTitle').value;
-  const badge = document.getElementById('adminBadge').value;
+  const badge = document.getElementById('adminBadge').value || 'Tuna';
   const intro = document.getElementById('adminIntro').value;
   const letraMarcada = document.getElementById('adminLyrics').value;
 
+  // Nuevas configuraciones del formulario
+  const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
+  const columns = document.getElementById('adminColumns') ? document.getElementById('adminColumns').value : '1';
+
   const lineasHTML = parsearTextoACancioneroHTML(letraMarcada);
 
-  const cancionData = {
-    id: id || `custom_${Date.now()}`,
-    titulo: titulo,
-    badge: badge,
-    intro: intro,
-    bodyHTML: lineasHTML
-  };
+  // Estilo de columnas si se seleccionaron 2 columnas
+  const styleColumns = columns === '2' ? 'column-count: 2; column-gap: 1.5rem;' : '';
 
-  let cancionesGuardadas = JSON.parse(localStorage.getItem('canciones_custom_v2') || '{}');
-  cancionesGuardadas[cancionData.id] = cancionData;
-  localStorage.setItem('canciones_custom_v2', JSON.stringify(cancionesGuardadas));
+  // Estructura HTML con estilos dinámicos de fuente y columnas
+  const codigoHTML = `<!-- CANCIÓN: ${titulo.toUpperCase()} -->
+<details class="song-accordion">
+  <summary class="song-title">
+    <span>${titulo}</span>
+    <span class="badge">${badge}</span>
+  </summary>
+  <div class="song-body">
+    <div class="song-chords-container" style="font-size: ${fontSize}; ${styleColumns}">
+      ${intro ? `<div class="intro-text" style="column-span: all;">${intro}</div>` : ''}
+      ${lineasHTML}
+    </div>
+  </div>
+</details>\n\n`;
 
-  renderizarOActualizarCancion(cancionData);
+  // Crear y descargar el archivo con el código HTML
+  const blob = new Blob([codigoHTML], { type: 'text/html;charset=utf-8' });
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(blob);
+  enlace.download = `${titulo.toLowerCase().replace(/\s+/g, '-')}-codigo.html`;
+  document.body.appendChild(enlace);
+  enlace.click();
+  document.body.removeChild(enlace);
 
-  alert('¡Canción guardada con éxito!');
+  alert('¡Código generado y descargado con éxito!');
   document.getElementById('adminSongForm').reset();
-  poblarSelectorCanciones();
-  switchTab('cancionero');
 }
 
 // Renderiza o actualiza la estructura en el DOM
