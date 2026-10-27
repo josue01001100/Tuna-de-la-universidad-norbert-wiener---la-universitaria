@@ -95,11 +95,11 @@
     </nav>
   </header>
 
-  <main class="content-wrapper">
+ <main class="content-wrapper">
   <section id="admin" class="tab-content">
     <div class="section-card">
       <h2>Gestor del Cancionero (Área Privada)</h2>
-      <p>Diseña tu canción, especifica saltos de columna con <code>[SALTO]</code> y descarga el código HTML final.</p>
+      <p>Diseña tu canción con múltiples columnas/páginas móviles, añade reseña histórica y descarga el código HTML final.</p>
       
       <!-- Selector para cargar canciones a editar -->
       <div style="margin-bottom: 1.5rem; padding: 12px; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; border-radius: 6px;">
@@ -124,14 +124,14 @@
 
         <div style="margin-bottom: 1rem;">
           <label><strong>Intro / Notas adicionales:</strong></label>
-          <input type="text" id="adminIntro" placeholder="intro: | E - Am - E7 - Am |" oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+          <input type="text" id="adminIntro" placeholder="intro: | E (2 compases) - Am (2 compases) |" oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
         </div>
 
         <!-- Tamaño de Fuente Personalizado y Columnas -->
         <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 200px;">
             <label><strong>Tamaño de Fuente Personalizado:</strong></label>
-            <input type="text" id="adminFontSize" list="fontSizeOptions" value="0.88rem" placeholder="Ej: 0.85rem o 14px" oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
+            <input type="text" id="adminFontSize" list="fontSizeOptions" value="0.88rem" placeholder="Ej: 0.88rem o 14px" oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
             <datalist id="fontSizeOptions">
               <option value="0.70rem"></option>
               <option value="0.75rem"></option>
@@ -154,18 +154,28 @@
           </div>
         </div>
 
+        <!-- Letra y Acordes -->
         <div style="margin-bottom: 1rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; flex-wrap: wrap; gap: 5px;">
             <label><strong>Letra y Acordes:</strong></label>
             <div style="display:flex; gap:5px;">
               <button type="button" onclick="insertarAcordeEnCursor()" class="gold-btn" style="padding: 4px 10px; font-size: 0.85rem;">+ Insertar Acorde</button>
-              <button type="button" onclick="insertarSaltoColumna()" class="gold-btn" style="padding: 4px 10px; font-size: 0.85rem; background:#3498db; color:#fff;">|&lt;- Salto Columna</button>
+              <button type="button" onclick="insertarSaltoColumna()" class="gold-btn" style="padding: 4px 10px; font-size: 0.85rem; background:#3498db; color:#fff;">|&lt;- Salto Columna / Página</button>
             </div>
           </div>
           <small style="display:block; color:#aaa; margin-bottom:5px;">
-            Usa el botón <strong>|&lt;- Salto Columna</strong> para indicar exactamente dónde quieres que la letra salte a la siguiente columna (insertará <code>[SALTO]</code>).
+            Usa el botón <strong>|&lt;- Salto Columna / Página</strong> para indicar exactamente dónde quieres que la letra salte a la siguiente columna (insertará <code>[SALTO]</code>).
           </small>
           <textarea id="adminLyrics" rows="12" required oninput="actualizarVistaPrevia()" placeholder="Mo[Am]ci[E7]ta [Am]dame el cla[Am]vel&#10;Dame el clavel [F]de tu [E]boca&#10;[SALTO]&#10;Pa[Am]ra que [E7]yo lo lle[Am]ve en la boca&#10;[Dm]No me niegues tu [E7]amor" style="width:100%; padding:8px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px; font-family:monospace;"></textarea>
+        </div>
+
+        <!-- Reseña Histórica Opcional -->
+        <div style="margin-bottom: 1rem; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); border-radius: 6px;">
+          <label><strong>Reseña Histórica (Opcional):</strong></label>
+          <textarea id="adminHistory" rows="4" oninput="actualizarVistaPrevia()" placeholder="Escribe aquí la historia o datos curiosos de la canción..." style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;"></textarea>
+          
+          <label style="margin-top: 10px; display: block;"><strong>Ruta de Imagen Histórica (Opcional):</strong></label>
+          <input type="text" id="adminHistoryImg" placeholder="assets/reseña-historica1.png" oninput="actualizarVistaPrevia()" style="width:100%; padding:8px; margin-top:5px; background:#1a1025; color:#fff; border:1px solid #d4af37; border-radius:4px;">
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
