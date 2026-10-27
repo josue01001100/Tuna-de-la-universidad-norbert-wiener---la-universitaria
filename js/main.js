@@ -377,23 +377,22 @@ function solicitarAccesoAdmin() {
   }
 }
 
-// Convierte texto con [Acorde]sílaba y marcas [SALTO] a HTML en columnas Flexbox limpio e indentado
+// Convierte texto con [Acorde] y [SALTO] a la estructura idéntica a Clavelitos (.song-page y .cols-N)
 function parsearTextoACancioneroHTML(texto, fontSize) {
   const bloquesColumnas = texto.split('[SALTO]');
-  let htmlColumnas = '';
-  
-  // Tamaño por defecto si está vacío
+  const totalCols = bloquesColumnas.length;
+  let htmlPaginas = '';
   const tamañoAplicado = fontSize && fontSize.trim() !== '' ? fontSize.trim() : '0.88rem';
 
   bloquesColumnas.forEach((bloque) => {
     const lineas = bloque.split('\n');
-    let htmlColumnaActual = `\n        <div class="song-column" style="flex: 1; min-width: 0; font-size: ${tamañoAplicado};">`;
+    let htmlPaginaActual = `\n      <!-- COLUMNA / PÁGINA -->\n      <div class="song-page" style="font-size: ${tamañoAplicado};">`;
 
     lineas.forEach(linea => {
       const lineaLimpia = linea.trim();
       if (!lineaLimpia) return;
 
-      let lineaHTML = '\n          <div class="song-line">';
+      let lineaHTML = '\n        <div class="song-line">\n          ';
       const regex = /\[(.*?)\]([^\s\[]*)/g;
       let lastIndex = 0;
       let match;
@@ -415,27 +414,27 @@ function parsearTextoACancioneroHTML(texto, fontSize) {
       }
 
       lineaHTML += lineaLimpia.substring(lastIndex);
-      lineaHTML += '</div>';
-      htmlColumnaActual += lineaHTML;
+      lineaHTML += '\n        </div>';
+      htmlPaginaActual += lineaHTML;
     });
 
-    htmlColumnaActual += '\n        </div>';
-    htmlColumnas += htmlColumnaActual;
+    htmlPaginaActual += '\n      </div>';
+    htmlPaginas += htmlPaginaActual;
   });
 
-  return `<div class="song-columns-wrapper" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">${htmlColumnas}\n      </div>`;
+  return `<div class="song-chords-container multi-page cols-${totalCols}">${htmlPaginas}\n    </div>`;
 }
 
-// Convierte HTML (.syl / .c) de vuelta a [Acorde] y [SALTO] para editar
+// Convierte HTML de vuelta a [Acorde] y [SALTO] para edición
 function desparsearHTMLaTexto(cancionContainer) {
   let textoFinal = '';
-  const columnas = cancionContainer.querySelectorAll('.song-column');
+  const paginas = cancionContainer.querySelectorAll('.song-page, .song-column');
 
-  if (columnas.length > 0) {
+  if (paginas.length > 0) {
     let bloquesTextos = [];
-    columnas.forEach(col => {
-      let textoColumna = '';
-      const lineas = col.querySelectorAll('.song-line');
+    paginas.forEach(pag => {
+      let textoPagina = '';
+      const lineas = pag.querySelectorAll('.song-line');
       lineas.forEach(linea => {
         let lineaTexto = '';
         linea.childNodes.forEach(node => {
@@ -454,9 +453,9 @@ function desparsearHTMLaTexto(cancionContainer) {
             lineaTexto += `[${acorde}]${silaba}`;
           }
         });
-        textoColumna += lineaTexto + '\n';
+        textoPagina += lineaTexto.trim() + '\n';
       });
-      bloquesTextos.push(textoColumna.trim());
+      bloquesTextos.push(textoPagina.trim());
     });
     textoFinal = bloquesTextos.join('\n[SALTO]\n');
   } else {
@@ -479,7 +478,7 @@ function desparsearHTMLaTexto(cancionContainer) {
           lineaTexto += `[${acorde}]${silaba}`;
         }
       });
-      textoFinal += lineaTexto + '\n';
+      textoFinal += lineaTexto.trim() + '\n';
     });
     textoFinal = textoFinal.trim();
   }
@@ -531,14 +530,25 @@ function cargarCancionParaEditar() {
     document.getElementById('adminIntro').value = introEl ? introEl.textContent.trim() : '';
 
     const chordsContainer = cancionAcc.querySelector('.song-chords-container');
-    
-    // Extrae el tamaño de fuente en línea si está definido previamente
-    const primeraCol = chordsContainer.querySelector('.song-column');
-    if (primeraCol && primeraCol.style.fontSize) {
-      document.getElementById('adminFontSize').value = primeraCol.style.fontSize;
+    const primeraPag = chordsContainer ? chordsContainer.querySelector('.song-page, .song-column') : null;
+    if (primeraPag && primeraPag.style.fontSize) {
+      document.getElementById('adminFontSize').value = primeraPag.style.fontSize;
     }
 
-    document.getElementById('adminLyrics').value = desparsearHTMLaTexto(chordsContainer);
+    if (chordsContainer) {
+      document.getElementById('adminLyrics').value = desparsearHTMLaTexto(chordsContainer);
+    }
+
+    const historyEl = cancionAcc.querySelector('.history-text');
+    if (historyEl) {
+      const ps = Array.from(historyEl.querySelectorAll('p')).map(p => p.textContent).join('\n\n');
+      document.getElementById('adminHistory').value = ps;
+      const imgEl = historyEl.querySelector('img');
+      document.getElementById('adminHistoryImg').value = imgEl ? imgEl.getAttribute('src') : '';
+    } else {
+      if (document.getElementById('adminHistory')) document.getElementById('adminHistory').value = '';
+      if (document.getElementById('adminHistoryImg')) document.getElementById('adminHistoryImg').value = '';
+    }
 
     actualizarVistaPrevia();
   }
@@ -592,10 +602,18 @@ function actualizarVistaPrevia() {
   const badge = document.getElementById('adminBadge').value || 'Ritmo';
   const intro = document.getElementById('adminIntro').value;
   const letraMarcada = document.getElementById('adminLyrics').value;
+  const historyText = document.getElementById('adminHistory') ? document.getElementById('adminHistory').value : '';
+  const historyImg = document.getElementById('adminHistoryImg') ? document.getElementById('adminHistoryImg').value : '';
 
   const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
 
   const contenidoCancionHTML = parsearTextoACancioneroHTML(letraMarcada, fontSize);
+
+  let htmlReseña = '';
+  if (historyText.trim() || historyImg.trim()) {
+    const parrafos = historyText.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('\n      ');
+    htmlReseña = `\n    <!-- RESEÑA HISTÓRICA -->\n    <div class="history-text">\n      ${parrafos}${historyImg.trim() ? `\n      <div class="history-img-container">\n        <img src="${historyImg}" alt="Reseña Histórica ${titulo}">\n      </div>` : ''}\n    </div>`;
+  }
 
   container.innerHTML = `
     <details class="song-accordion" open>
@@ -604,16 +622,16 @@ function actualizarVistaPrevia() {
         <span class="badge">${badge}</span>
       </summary>
       <div class="song-body">
-        <div class="song-chords-container">
-          ${intro ? `<div class="intro-text" style="margin-bottom: 1rem;">${intro}</div>` : ''}
-          ${contenidoCancionHTML}
-        </div>
+        ${intro ? `<div class="intro-text">${intro}</div>` : ''}
+        <div class="page-indicator-info"> Desliza para pasar página </div>
+        ${contenidoCancionHTML}
+        ${htmlReseña}
       </div>
     </details>
   `;
 }
 
-// Genera y descarga el archivo HTML perfectamente estructurado
+// Genera y descarga el archivo HTML con la estructura completa tipo Clavelitos
 function guardarNuevaCancion(event) {
   event.preventDefault();
 
@@ -621,10 +639,18 @@ function guardarNuevaCancion(event) {
   const badge = document.getElementById('adminBadge').value.trim() || 'Tuna';
   const intro = document.getElementById('adminIntro').value.trim();
   const letraMarcada = document.getElementById('adminLyrics').value;
+  const historyText = document.getElementById('adminHistory') ? document.getElementById('adminHistory').value.trim() : '';
+  const historyImg = document.getElementById('adminHistoryImg') ? document.getElementById('adminHistoryImg').value.trim() : '';
 
   const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
 
   const contenidoCancionHTML = parsearTextoACancioneroHTML(letraMarcada, fontSize);
+
+  let htmlReseña = '';
+  if (historyText || historyImg) {
+    const parrafos = historyText.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('\n      ');
+    htmlReseña = `\n\n    <!-- RESEÑA HISTÓRICA -->\n    <div class="history-text">\n      ${parrafos}${historyImg ? `\n\n      <div class="history-img-container">\n        <img src="${historyImg}" alt="Reseña Histórica ${titulo}">\n      </div>` : ''}\n    </div>`;
+  }
 
   const codigoHTML = `<!-- CANCIÓN: ${titulo.toUpperCase()} -->
 <details class="song-accordion">
@@ -633,9 +659,11 @@ function guardarNuevaCancion(event) {
     <span class="badge">${badge}</span>
   </summary>
   <div class="song-body">
-    <div class="song-chords-container">
-      ${intro ? `<div class="intro-text" style="margin-bottom: 1rem;">${intro}</div>\n      ` : ''}${contenidoCancionHTML}
-    </div>
+    ${intro ? `<!-- INTRO -->\n    <div class="intro-text">\n      ${intro}\n    </div>\n\n    ` : ''}<!-- Mensaje guía para móviles -->
+    <div class="page-indicator-info"> Desliza para pasar página </div>
+
+    <!-- Contenedor exclusivo para las columnas de estrofas -->
+    ${contenidoCancionHTML}${htmlReseña}
   </div>
 </details>\n\n`;
 
@@ -647,7 +675,7 @@ function guardarNuevaCancion(event) {
   enlace.click();
   document.body.removeChild(enlace);
 
-  alert('¡Código HTML estructurado y descargado!');
+  alert('¡Código HTML estructurado y descargado con éxito!');
 }
 
 // Cargar cambios guardados al abrir la página
