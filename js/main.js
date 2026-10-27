@@ -377,70 +377,110 @@ function solicitarAccesoAdmin() {
   }
 }
 
-// Convierte texto con [Acorde]sílaba a HTML (.syl / .c)
-function parsearTextoACancioneroHTML(texto) {
-  const lineas = texto.split('\n');
-  let htmlResultante = '';
+// Convierte texto con [Acorde]sílaba y marcas [SALTO] a HTML en columnas Flexbox
+function parsearTextoACancioneroHTML(texto, fontSize) {
+  const bloquesColumnas = texto.split('[SALTO]');
+  let htmlColumnas = '';
 
-  lineas.forEach(linea => {
-    if (!linea.trim()) return;
+  bloquesColumnas.forEach((bloque) => {
+    const lineas = bloque.split('\n');
+    let htmlColumnaActual = `<div class="song-column" style="flex: 1; min-width: 0; font-size: ${fontSize};">`;
 
-    let lineaHTML = '<div class="song-line">';
-    const regex = /\[(.*?)\]([^\s\[]*)/g;
-    let lastIndex = 0;
-    let match;
+    lineas.forEach(linea => {
+      if (!linea.trim()) return;
 
-    while ((match = regex.exec(linea)) !== null) {
-      const textoPrevio = linea.substring(lastIndex, match.index);
-      lineaHTML += textoPrevio;
+      let lineaHTML = '<div class="song-line">';
+      const regex = /\[(.*?)\]([^\s\[]*)/g;
+      let lastIndex = 0;
+      let match;
 
-      const acorde = match[1];
-      const silaba = match[2];
+      while ((match = regex.exec(linea)) !== null) {
+        const textoPrevio = linea.substring(lastIndex, match.index);
+        lineaHTML += textoPrevio;
 
-      if (silaba.length > 0) {
-        lineaHTML += `<span class="syl"><span class="c">${acorde}</span>${silaba}</span>`;
-      } else {
-        lineaHTML += `<span class="syl"><span class="c">${acorde}</span>&nbsp;</span>`;
+        const acorde = match[1];
+        const silaba = match[2];
+
+        if (silaba.length > 0) {
+          lineaHTML += `<span class="syl"><span class="c">${acorde}</span>${silaba}</span>`;
+        } else {
+          lineaHTML += `<span class="syl"><span class="c">${acorde}</span>&nbsp;</span>`;
+        }
+
+        lastIndex = regex.lastIndex;
       }
 
-      lastIndex = regex.lastIndex;
-    }
+      lineaHTML += linea.substring(lastIndex);
+      lineaHTML += '</div>';
+      htmlColumnaActual += lineaHTML;
+    });
 
-    lineaHTML += linea.substring(lastIndex);
-    lineaHTML += '</div>';
-    htmlResultante += lineaHTML;
+    htmlColumnaActual += '</div>';
+    htmlColumnas += htmlColumnaActual;
   });
 
-  return htmlResultante;
+  return `<div class="song-columns-wrapper" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">${htmlColumnas}</div>`;
 }
 
-// Convierte HTML (.syl / .c) de vuelta a [Acorde] para cargar en el área de texto
+// Convierte HTML (.syl / .c) de vuelta a [Acorde] y [SALTO] para editar
 function desparsearHTMLaTexto(cancionContainer) {
   let textoFinal = '';
-  const lineas = cancionContainer.querySelectorAll('.song-line');
+  const columnas = cancionContainer.querySelectorAll('.song-column');
 
-  lineas.forEach(linea => {
-    let lineaTexto = '';
-    linea.childNodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        lineaTexto += node.textContent;
-      } else if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('syl')) {
-        const acordeEl = node.querySelector('.c');
-        const acorde = acordeEl ? acordeEl.textContent.trim() : '';
-        
-        let silaba = node.textContent;
-        if (acordeEl) {
-          silaba = silaba.replace(acordeEl.textContent, '');
-        }
-        if (silaba === '\u00a0') silaba = '';
+  if (columnas.length > 0) {
+    let bloquesTextos = [];
+    columnas.forEach(col => {
+      let textoColumna = '';
+      const lineas = col.querySelectorAll('.song-line');
+      lineas.forEach(linea => {
+        let lineaTexto = '';
+        linea.childNodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            lineaTexto += node.textContent;
+          } else if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('syl')) {
+            const acordeEl = node.querySelector('.c');
+            const acorde = acordeEl ? acordeEl.textContent.trim() : '';
+            
+            let silaba = node.textContent;
+            if (acordeEl) {
+              silaba = silaba.replace(acordeEl.textContent, '');
+            }
+            if (silaba === '\u00a0') silaba = '';
 
-        lineaTexto += `[${acorde}]${silaba}`;
-      }
+            lineaTexto += `[${acorde}]${silaba}`;
+          }
+        });
+        textoColumna += lineaTexto + '\n';
+      });
+      bloquesTextos.push(textoColumna.trim());
     });
-    textoFinal += lineaTexto + '\n';
-  });
+    textoFinal = bloquesTextos.join('\n[SALTO]\n');
+  } else {
+    const lineas = cancionContainer.querySelectorAll('.song-line');
+    lineas.forEach(linea => {
+      let lineaTexto = '';
+      linea.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          lineaTexto += node.textContent;
+        } else if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('syl')) {
+          const acordeEl = node.querySelector('.c');
+          const acorde = acordeEl ? acordeEl.textContent.trim() : '';
+          
+          let silaba = node.textContent;
+          if (acordeEl) {
+            silaba = silaba.replace(acordeEl.textContent, '');
+          }
+          if (silaba === '\u00a0') silaba = '';
 
-  return textoFinal.trim();
+          lineaTexto += `[${acorde}]${silaba}`;
+        }
+      });
+      textoFinal += lineaTexto + '\n';
+    });
+    textoFinal = textoFinal.trim();
+  }
+
+  return textoFinal;
 }
 
 // Llena el selector desplegable con las canciones existentes para lectura/edición
@@ -508,11 +548,27 @@ function insertarAcordeEnCursor() {
   const textoInyectado = `[${acordeNombre.trim()}]`;
   textarea.value = textoPrevio.substring(0, start) + textoInyectado + textoPrevio.substring(end);
 
-  // Reposicionar el cursor después del acorde insertado
   textarea.selectionStart = textarea.selectionEnd = start + textoInyectado.length;
   textarea.focus();
 
-  // Actualizar la vista previa inmediatamente
+  actualizarVistaPrevia();
+}
+
+// Inserta la marca de salto de columna [SALTO] en el cursor
+function insertarSaltoColumna() {
+  const textarea = document.getElementById('adminLyrics');
+  if (!textarea) return;
+
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const textoPrevio = textarea.value;
+
+  const textoInyectado = `\n[SALTO]\n`;
+  textarea.value = textoPrevio.substring(0, start) + textoInyectado + textoPrevio.substring(end);
+
+  textarea.selectionStart = textarea.selectionEnd = start + textoInyectado.length;
+  textarea.focus();
+
   actualizarVistaPrevia();
 }
 
@@ -527,10 +583,8 @@ function actualizarVistaPrevia() {
   const letraMarcada = document.getElementById('adminLyrics').value;
 
   const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
-  const columns = document.getElementById('adminColumns') ? document.getElementById('adminColumns').value : '1';
 
-  const lineasHTML = parsearTextoACancioneroHTML(letraMarcada);
-  const styleColumns = columns === '2' ? 'column-count: 2; column-gap: 1.5rem;' : '';
+  const contenidoCancionHTML = parsearTextoACancioneroHTML(letraMarcada, fontSize);
 
   container.innerHTML = `
     <details class="song-accordion" open>
@@ -539,9 +593,9 @@ function actualizarVistaPrevia() {
         <span class="badge">${badge}</span>
       </summary>
       <div class="song-body">
-        <div class="song-chords-container" style="font-size: ${fontSize}; ${styleColumns}">
-          ${intro ? `<div class="intro-text" style="column-span: all;">${intro}</div>` : ''}
-          ${lineasHTML}
+        <div class="song-chords-container">
+          ${intro ? `<div class="intro-text" style="margin-bottom: 1rem;">${intro}</div>` : ''}
+          ${contenidoCancionHTML}
         </div>
       </div>
     </details>
@@ -558,10 +612,8 @@ function guardarNuevaCancion(event) {
   const letraMarcada = document.getElementById('adminLyrics').value;
 
   const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
-  const columns = document.getElementById('adminColumns') ? document.getElementById('adminColumns').value : '1';
 
-  const lineasHTML = parsearTextoACancioneroHTML(letraMarcada);
-  const styleColumns = columns === '2' ? 'column-count: 2; column-gap: 1.5rem;' : '';
+  const contenidoCancionHTML = parsearTextoACancioneroHTML(letraMarcada, fontSize);
 
   const codigoHTML = `<!-- CANCIÓN: ${titulo.toUpperCase()} -->
 <details class="song-accordion">
@@ -570,9 +622,9 @@ function guardarNuevaCancion(event) {
     <span class="badge">${badge}</span>
   </summary>
   <div class="song-body">
-    <div class="song-chords-container" style="font-size: ${fontSize}; ${styleColumns}">
-      ${intro ? `<div class="intro-text" style="column-span: all;">${intro}</div>` : ''}
-      ${lineasHTML}
+    <div class="song-chords-container">
+      ${intro ? `<div class="intro-text" style="margin-bottom: 1rem;">${intro}</div>` : ''}
+      ${contenidoCancionHTML}
     </div>
   </div>
 </details>\n\n`;
