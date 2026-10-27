@@ -377,25 +377,26 @@ function solicitarAccesoAdmin() {
   }
 }
 
-// Convierte texto con [Acorde]sílaba y marcas [SALTO] a HTML en columnas Flexbox
+// Convierte texto con [Acorde]sílaba y marcas [SALTO] a HTML en columnas Flexbox limpio e indentado
 function parsearTextoACancioneroHTML(texto, fontSize) {
   const bloquesColumnas = texto.split('[SALTO]');
   let htmlColumnas = '';
 
   bloquesColumnas.forEach((bloque) => {
     const lineas = bloque.split('\n');
-    let htmlColumnaActual = `<div class="song-column" style="flex: 1; min-width: 0; font-size: ${fontSize};">`;
+    let htmlColumnaActual = `\n        <div class="song-column" style="flex: 1; min-width: 0; font-size: ${fontSize};">`;
 
     lineas.forEach(linea => {
-      if (!linea.trim()) return;
+      const lineaLimpia = linea.trim();
+      if (!lineaLimpia) return;
 
-      let lineaHTML = '<div class="song-line">';
+      let lineaHTML = '\n          <div class="song-line">';
       const regex = /\[(.*?)\]([^\s\[]*)/g;
       let lastIndex = 0;
       let match;
 
-      while ((match = regex.exec(linea)) !== null) {
-        const textoPrevio = linea.substring(lastIndex, match.index);
+      while ((match = regex.exec(lineaLimpia)) !== null) {
+        const textoPrevio = lineaLimpia.substring(lastIndex, match.index);
         lineaHTML += textoPrevio;
 
         const acorde = match[1];
@@ -410,16 +411,16 @@ function parsearTextoACancioneroHTML(texto, fontSize) {
         lastIndex = regex.lastIndex;
       }
 
-      lineaHTML += linea.substring(lastIndex);
+      lineaHTML += lineaLimpia.substring(lastIndex);
       lineaHTML += '</div>';
       htmlColumnaActual += lineaHTML;
     });
 
-    htmlColumnaActual += '</div>';
+    htmlColumnaActual += '\n        </div>';
     htmlColumnas += htmlColumnaActual;
   });
 
-  return `<div class="song-columns-wrapper" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">${htmlColumnas}</div>`;
+  return `<div class="song-columns-wrapper" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">${htmlColumnas}\n      </div>`;
 }
 
 // Convierte HTML (.syl / .c) de vuelta a [Acorde] y [SALTO] para editar
@@ -602,13 +603,13 @@ function actualizarVistaPrevia() {
   `;
 }
 
-// Genera y descarga el archivo HTML sin modificar el cancionero ni guardar en LocalStorage
+// Genera y descarga el archivo HTML perfectamente estructurado
 function guardarNuevaCancion(event) {
   event.preventDefault();
 
-  const titulo = document.getElementById('adminTitle').value;
-  const badge = document.getElementById('adminBadge').value || 'Tuna';
-  const intro = document.getElementById('adminIntro').value;
+  const titulo = document.getElementById('adminTitle').value.trim();
+  const badge = document.getElementById('adminBadge').value.trim() || 'Tuna';
+  const intro = document.getElementById('adminIntro').value.trim();
   const letraMarcada = document.getElementById('adminLyrics').value;
 
   const fontSize = document.getElementById('adminFontSize') ? document.getElementById('adminFontSize').value : '0.88rem';
@@ -623,8 +624,7 @@ function guardarNuevaCancion(event) {
   </summary>
   <div class="song-body">
     <div class="song-chords-container">
-      ${intro ? `<div class="intro-text" style="margin-bottom: 1rem;">${intro}</div>` : ''}
-      ${contenidoCancionHTML}
+      ${intro ? `<div class="intro-text" style="margin-bottom: 1rem;">${intro}</div>\n      ` : ''}${contenidoCancionHTML}
     </div>
   </div>
 </details>\n\n`;
@@ -637,7 +637,7 @@ function guardarNuevaCancion(event) {
   enlace.click();
   document.body.removeChild(enlace);
 
-  alert('¡Código HTML generado y descargado!');
+  alert('¡Código HTML estructurado y descargado!');
 }
 
 // Cargar cambios guardados al abrir la página
