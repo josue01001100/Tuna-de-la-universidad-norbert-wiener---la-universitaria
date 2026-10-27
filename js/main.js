@@ -381,10 +381,13 @@ function solicitarAccesoAdmin() {
 function parsearTextoACancioneroHTML(texto, fontSize) {
   const bloquesColumnas = texto.split('[SALTO]');
   let htmlColumnas = '';
+  
+  // Tamaño por defecto si está vacío
+  const tamañoAplicado = fontSize && fontSize.trim() !== '' ? fontSize.trim() : '0.88rem';
 
   bloquesColumnas.forEach((bloque) => {
     const lineas = bloque.split('\n');
-    let htmlColumnaActual = `\n        <div class="song-column" style="flex: 1; min-width: 0; font-size: ${fontSize};">`;
+    let htmlColumnaActual = `\n        <div class="song-column" style="flex: 1; min-width: 0; font-size: ${tamañoAplicado};">`;
 
     lineas.forEach(linea => {
       const lineaLimpia = linea.trim();
@@ -528,6 +531,13 @@ function cargarCancionParaEditar() {
     document.getElementById('adminIntro').value = introEl ? introEl.textContent.trim() : '';
 
     const chordsContainer = cancionAcc.querySelector('.song-chords-container');
+    
+    // Extrae el tamaño de fuente en línea si está definido previamente
+    const primeraCol = chordsContainer.querySelector('.song-column');
+    if (primeraCol && primeraCol.style.fontSize) {
+      document.getElementById('adminFontSize').value = primeraCol.style.fontSize;
+    }
+
     document.getElementById('adminLyrics').value = desparsearHTMLaTexto(chordsContainer);
 
     actualizarVistaPrevia();
