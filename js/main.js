@@ -678,6 +678,41 @@ function guardarNuevaCancion(event) {
   alert('¡Código HTML estructurado y descargado con éxito!');
 }
 
+// Función para renderizar o actualizar canciones guardadas en localStorage (Soluciona el error de la consola)
+function renderizarOActualizarCancion(cancion) {
+  const songListContainer = document.querySelector('.song-list');
+  if (!songListContainer) return;
+
+  let acc = document.querySelector(`details.song-accordion[data-id="${cancion.id}"]`);
+  if (!acc) {
+    acc = document.createElement('details');
+    acc.className = 'song-accordion';
+    acc.dataset.id = cancion.id;
+    songListContainer.prepend(acc);
+  }
+
+  const contenidoCancionHTML = parsearTextoACancioneroHTML(cancion.letra, cancion.fontSize);
+
+  let htmlReseña = '';
+  if (cancion.historyText || cancion.historyImg) {
+    const parrafos = cancion.historyText.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('\n      ');
+    htmlReseña = `\n    <!-- RESEÑA HISTÓRICA -->\n    <div class="history-text">\n      ${parrafos}${cancion.historyImg ? `\n      <div class="history-img-container">\n        <img src="${cancion.historyImg}" alt="Reseña Histórica ${cancion.titulo}">\n      </div>` : ''}\n    </div>`;
+  }
+
+  acc.innerHTML = `
+    <summary class="song-title">
+      <span>${cancion.titulo}</span>
+      <span class="badge">${cancion.badge}</span>
+    </summary>
+    <div class="song-body">
+      ${cancion.intro ? `<div class="intro-text">${cancion.intro}</div>` : ''}
+      <div class="page-indicator-info"> Desliza para pasar página </div>
+      ${contenidoCancionHTML}
+      ${htmlReseña}
+    </div>
+  `;
+}
+
 // Cargar cambios guardados al abrir la página
 function cargarCancionesAlIniciar() {
   poblarSelectorCanciones();
@@ -696,9 +731,13 @@ function cargarCancionesAlIniciar() {
 
 // Inicialización centralizada de la aplicación
 document.addEventListener('DOMContentLoaded', () => {
-  renderROACards();
+  if (typeof renderROACards === 'function') {
+    renderROACards();
+  }
   cargarCancionesAlIniciar();
-  loadQuiz();
+  if (typeof loadQuiz === 'function') {
+    loadQuiz();
+  }
 });
 
 // ==========================================
@@ -711,11 +750,47 @@ let trasteSeleccionadoGlobal = 1;
 
 // Inicializar el diapasón interactivo cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-  // Inicializamos el diapasón del creador si existe el contenedor en la página
   if (document.getElementById('interactiveFretboard')) {
     dibujarDiapasonInteractivo(1);
   }
 });
+
+function inicializarCreadorAcordes() {
+  const container = document.getElementById('interactiveFretboard');
+  if (container && container.innerHTML.trim() === "") {
+    dibujarDiapasonInteractivo(trasteSeleccionadoGlobal);
+  }
+}
+
+// Función switchTab integrada con la inicialización del Admin
+function switchTab(tabId) {
+    const allTabs = document.querySelectorAll('.tab-content');
+    allTabs.forEach(tab => tab.classList.remove('active'));
+    
+    const allButtons = document.querySelectorAll('.nav-btn');
+    allButtons.forEach(btn => btn.classList.remove('active'));
+
+    const selectedTab = document.getElementById(tabId);
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+    }
+
+    const navBtnToActivate = document.querySelector(`.nav-btn[onclick*="${tabId}"]`);
+    if (navBtnToActivate) {
+        navBtnToActivate.classList.add('active');
+    }
+
+    if (typeof renderROACards === 'function') {
+        renderROACards();
+    }
+    
+    // Inicializar el creador si entran a admin
+    if (tabId === 'admin') {
+        inicializarCreadorAcordes();
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 function actualizarTrasteInicial() {
   const input = document.getElementById('builderStartFret');
