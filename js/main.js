@@ -803,12 +803,11 @@ function actualizarTrasteInicial() {
   dibujarDiapasonInteractivo(val);
 }
 
-// Dibuja la cuadrícula SVG de 6 cuerdas y 4 trastes con tamaño fijo y perfectamente centrado
+// Dibuja la cuadrícula SVG con grosores de cuerda progresivos (Cuerda 1 delgada a Cuerda 6 gruesa)
 function dibujarDiapasonInteractivo(startFret) {
   const container = document.getElementById('interactiveFretboard');
   if (!container) return;
 
-  // Forzamos un contenedor interno con dimensiones fijas para evitar aplastamientos
   let svgHTML = `<svg viewBox="0 0 140 160" style="width: 140px; height: 160px; display: block; margin: 0 auto;" class="fretboard-svg">`;
   
   if (startFret > 1) {
@@ -823,11 +822,13 @@ function dibujarDiapasonInteractivo(startFret) {
     svgHTML += `<line x1="30" y1="${y}" x2="110" y2="${y}" stroke="#888" stroke-width="1.5"/>`;
   }
 
-  // Líneas verticales (Cuerdas 1 a 6)
+  // Líneas verticales (Cuerdas 1 a 6) con grosor progresivo
   const xCuerdas = [110, 94, 78, 62, 46, 30];
   xCuerdas.forEach((x, index) => {
     let numCuerda = index + 1; 
-    svgHTML += `<line x1="${x}" y1="30" x2="${x}" y2="130" stroke="#ccc" stroke-width="1"/>`;
+    let grosorCuerda = 0.6 + (index * 0.32);
+    
+    svgHTML += `<line x1="${x}" y1="30" x2="${x}" y2="130" stroke="#ccc" stroke-width="${grosorCuerda}"/>`;
     
     for (let f = 1; f <= 4; f++) {
       let yCentro = 30 + ((f - 1) * 25) + 12.5;
@@ -929,9 +930,9 @@ function eliminarAcordeDeBiblioteca(nombre) {
   actualizarListaVisualAcordes();
 }
 
-// Convierte los puntos seleccionados en código SVG limpio con coordenadas sincronizadas
+// Convierte los puntos seleccionados en código SVG limpio con grosores progresivos
 function generarSVGPersonalizado(startFret, puntos) {
-  let svg = `<svg viewBox="0 0 140 160" class="w-32 h-36">`;
+  let svg = `<svg viewBox="0 0 140 160" style="width: 120px; height: 135px; display: block; margin: 0 auto;" class="w-32 h-36">`;
 
   if (startFret > 1) {
     svg += `<text x="12" y="45" font-size="10" fill="#d4af37" font-weight="bold">${startFret}fr</text>`;
@@ -946,13 +947,13 @@ function generarSVGPersonalizado(startFret, puntos) {
     svg += `<line x1="30" y1="${y}" x2="110" y2="${y}" stroke="#888" stroke-width="1.5"/>`;
   }
 
-  // Líneas verticales (Cuerdas 1 a 6)
+  // Líneas verticales (Cuerdas 1 a 6) con grosor progresivo
   const xCuerdas = [110, 94, 78, 62, 46, 30];
-  xCuerdas.forEach((x) => {
-    svg += `<line x1="${x}" y1="30" x2="${x}" y2="130" stroke="#ccc" stroke-width="1"/>`;
+  xCuerdas.forEach((x, index) => {
+    let grosorCuerda = 0.6 + (index * 0.32);
+    svg += `<line x1="${x}" y1="30" x2="${x}" y2="130" stroke="#ccc" stroke-width="${grosorCuerda}"/>`;
   });
 
-  // Mapeo sincronizado con el diapasón interactivo principal
   const mapX = { 1: 110, 2: 94, 3: 78, 4: 62, 5: 46, 6: 30 };
 
   puntos.forEach(p => {
