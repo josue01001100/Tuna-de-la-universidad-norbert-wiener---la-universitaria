@@ -803,12 +803,13 @@ function actualizarTrasteInicial() {
   dibujarDiapasonInteractivo(val);
 }
 
-// Dibuja la cuadrícula SVG de 6 cuerdas y 4 trastes con número de traste ajustable
+// Dibuja la cuadrícula SVG de 6 cuerdas y 4 trastes con tamaño fijo y perfectamente centrado
 function dibujarDiapasonInteractivo(startFret) {
   const container = document.getElementById('interactiveFretboard');
   if (!container) return;
 
-  let svgHTML = `<svg viewBox="0 0 140 160" class="fretboard-svg w-40 h-48">`;
+  // Forzamos un contenedor interno con dimensiones fijas para evitar aplastamientos
+  let svgHTML = `<svg viewBox="0 0 140 160" style="width: 140px; height: 160px; display: block; margin: 0 auto;" class="fretboard-svg">`;
   
   if (startFret > 1) {
     svgHTML += `<text x="12" y="45" font-size="10" fill="#d4af37" font-weight="bold">${startFret}fr</text>`;
