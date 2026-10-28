@@ -705,3 +705,36 @@ body {
     background: rgba(0, 0, 0, 0.4);
   }
 }
+
+/* ==========================================
+   ESTILOS PARA EL CREADOR MASIVO DE ACORDES
+   ========================================== */
+.fretboard-svg circle {
+  transition: all 0.15s ease;
+}
+
+.fretboard-svg circle:hover {
+  fill: var(--gold-hover) !important;
+  r: 8px;
+}
+
+.chord-chip {
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid var(--gold-accent);
+  color: var(--gold-accent);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chord-chip button {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
