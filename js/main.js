@@ -719,6 +719,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function actualizarTrasteInicial() {
   const input = document.getElementById('builderStartFret');
+  if (!input) return;
   let val = parseInt(input.value) || 1;
   if (val < 1) val = 1;
   trasteSeleccionadoGlobal = val;
