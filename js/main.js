@@ -700,3 +700,214 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarCancionesAlIniciar();
   loadQuiz();
 });
+
+// ==========================================
+// CREADOR MASIVO DE BIBLIOTECA DE ACORDES SVG
+// ==========================================
+
+let bibliotecaAcordesAdmin = {};
+let puntosActualesBuilder = []; // [{string: 1, fret: 1, finger: '1'}, ...]
+let trasteSeleccionadoGlobal = 1;
+
+// Inicializar el diapasón interactivo cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializamos el diapasón del creador si existe el contenedor en la página
+  if (document.getElementById('interactiveFretboard')) {
+    dibujarDiapasonInteractivo(1);
+  }
+});
+
+function actualizarTrasteInicial() {
+  const input = document.getElementById('builderStartFret');
+  let val = parseInt(input.value) || 1;
+  if (val < 1) val = 1;
+  trasteSeleccionadoGlobal = val;
+  const label = document.getElementById('labelStartFret');
+  if (label) label.textContent = val;
+  dibujarDiapasonInteractivo(val);
+}
+
+// Dibuja la cuadrícula SVG de 6 cuerdas y 4 trastes con número de traste ajustable
+function dibujarDiapasonInteractivo(startFret) {
+  const container = document.getElementById('interactiveFretboard');
+  if (!container) return;
+
+  let svgHTML = `<svg viewBox="0 0 140 160" class="fretboard-svg w-40 h-48">`;
+  
+  if (startFret > 1) {
+    svgHTML += `<text x="12" y="45" font-size="10" fill="#d4af37" font-weight="bold">${startFret}fr</text>`;
+  } else {
+    svgHTML += `<line x1="30" y1="30" x2="110" y2="30" stroke="#d4af37" stroke-width="5"/>`;
+  }
+
+  // Líneas horizontales (Trastes 1 al 4)
+  for (let i = 0; i <= 4; i++) {
+    let y = 30 + (i * 25);
+    svgHTML += `<line x1="30" y1="${y}" x2="110" y2="${y}" stroke="#888" stroke-width="1.5"/>`;
+  }
+
+  // Líneas verticales (Cuerdas 1 a 6)
+  const xCuerdas = [110, 94, 78, 62, 46, 30];
+  xCuerdas.forEach((x, index) => {
+    let numCuerda = index + 1; 
+    svgHTML += `<line x1="${x}" y1="30" x2="${x}" y2="130" stroke="#ccc" stroke-width="1"/>`;
+    
+    for (let f = 1; f <= 4; f++) {
+      let yCentro = 30 + ((f - 1) * 25) + 12.5;
+      let puntoExistente = puntosActualesBuilder.find(p => p.string === numCuerda && p.fret === f);
+      
+      if (puntoExistente) {
+        svgHTML += `<circle cx="${x}" cy="${yCentro}" r="7" fill="#d4af37" data-string="${numCuerda}" data-fret="${f}" onclick="manejarClicPunto(${numCuerda}, ${f})" style="cursor: pointer;" />`;
+        svgHTML += `<text x="${x}" y="${yCentro + 3}" font-size="8" text-anchor="middle" fill="#000" font-weight="bold" pointer-events="none">${puntoExistente.finger}</text>`;
+      } else {
+        svgHTML += `<circle cx="${x}" cy="${yCentro}" r="6" fill="rgba(255,255,255,0.08)" data-string="${numCuerda}" data-fret="${f}" onclick="manejarClicPunto(${numCuerda}, ${f})" style="cursor: pointer;" />`;
+      }
+    }
+  });
+
+  svgHTML += `</svg>`;
+  container.innerHTML = svgHTML;
+}
+
+// Asigna o cambia el dedo al hacer clic en una casilla
+function manejarClicPunto(cuerda, traste) {
+  let index = puntosActualesBuilder.findIndex(p => p.string === cuerda && p.fret === traste);
+  
+  if (index !== -1) {
+    puntosActualesBuilder.splice(index, 1);
+  } else {
+    let dedo = prompt("¿Qué dedo usas en esta posición? (1: Índice, 2: Medio, 3: Anular, 4: Meñique):", "1");
+    if (dedo && ['1','2','3','4'].includes(dedo.trim())) {
+      puntosActualesBuilder.push({
+        string: cuerda,
+        fret: traste,
+        finger: dedo.trim()
+      });
+    }
+  }
+  dibujarDiapasonInteractivo(trasteSeleccionadoGlobal);
+}
+
+function limpiarDiapasonBuilder() {
+  puntosActualesBuilder = [];
+  dibujarDiapasonInteractivo(trasteSeleccionadoGlobal);
+}
+
+// Guarda el acorde actual en la memoria de la sesión
+function agregarAcordeALaLista() {
+  const nombreInput = document.getElementById('builderChordName');
+  const descInput = document.getElementById('builderDescription');
+  const startFretInput = document.getElementById('builderStartFret');
+
+  if (!nombreInput) return;
+
+  const nombre = nombreInput.value.trim();
+  const desc = descInput ? descInput.value.trim() : '';
+  const startFret = parseInt(startFretInput.value) || 1;
+
+  if (!nombre) {
+    alert("Por favor, ingresa un nombre para el acorde (ej. Am, C, F#m).");
+    return;
+  }
+
+  let svgGenerado = generarSVGPersonalizado(startFret, puntosActualesBuilder);
+
+  bibliotecaAcordesAdmin[nombre] = {
+    nombre: `${nombre}`,
+    startFret: startFret,
+    svg: svgGenerado,
+    desc: desc || `Posición para ${nombre}`
+  };
+
+  actualizarListaVisualAcordes();
+  alert(`¡Acorde "${nombre}" guardado con éxito en la biblioteca!`);
+  
+  nombreInput.value = '';
+  if (descInput) descInput.value = '';
+  limpiarDiapasonBuilder();
+}
+
+function actualizarListaVisualAcordes() {
+  const listaContainer = document.getElementById('listaAcordesCreados');
+  const counter = document.getElementById('counterAcordes');
+  if (!listaContainer || !counter) return;
+  
+  const keys = Object.keys(bibliotecaAcordesAdmin);
+  counter.textContent = keys.length;
+
+  if (keys.length === 0) {
+    listaContainer.innerHTML = `<span style="color: #777; font-size: 0.85rem; font-style: italic;">Aún no has guardado ningún acorde.</span>`;
+    return;
+  }
+
+  let html = '';
+  keys.forEach(k => {
+    html += `<span class="chord-chip" style="background: rgba(212, 175, 55, 0.2); border: 1px solid #d4af37; color: #d4af37; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">🎵 ${k} <button onclick="eliminarAcordeDeBiblioteca('${k}')" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-weight:bold;" title="Eliminar">&times;</button></span>`;
+  });
+  listaContainer.innerHTML = html;
+}
+
+function eliminarAcordeDeBiblioteca(nombre) {
+  delete bibliotecaAcordesAdmin[nombre];
+  actualizarListaVisualAcordes();
+}
+
+// Convierte los puntos seleccionados en código SVG limpio
+function generarSVGPersonalizado(startFret, puntos) {
+  let svg = `<svg viewBox="0 0 100 120" class="w-32 h-36">
+      <rect x="20" y="20" width="60" height="80" fill="#2d1b42" stroke="#d4af37" stroke-width="2" rx="2"/>`;
+
+  if (startFret > 1) {
+    svg += `<text x="8" y="38" font-size="9" fill="#d4af37" font-weight="bold">${startFret}fr</text>`;
+    svg += `<line x1="20" y1="20" x2="80" y2="20" stroke="#888" stroke-width="1.5"/>`;
+  } else {
+    svg += `<line x1="20" y1="20" x2="80" y2="20" stroke="#d4af37" stroke-width="4"/>`;
+  }
+
+  svg += `
+      <line x1="20" y1="40" x2="80" y2="40" stroke="#888" stroke-width="1.5"/>
+      <line x1="20" y1="60" x2="80" y2="60" stroke="#888" stroke-width="1.5"/>
+      <line x1="20" y1="80" x2="80" y2="80" stroke="#888" stroke-width="1.5"/>
+      <line x1="20" y1="20" x2="20" y2="100" stroke="#ccc" stroke-width="1"/>
+      <line x1="32" y1="20" x2="32" y2="100" stroke="#ccc" stroke-width="1"/>
+      <line x1="44" y1="20" x2="44" y2="100" stroke="#ccc" stroke-width="1"/>
+      <line x1="56" y1="20" x2="56" y2="100" stroke="#ccc" stroke-width="1"/>
+      <line x1="68" y1="20" x2="68" y2="100" stroke="#ccc" stroke-width="1"/>
+      <line x1="80" y1="20" x2="80" y2="100" stroke="#ccc" stroke-width="1"/>`;
+
+  const mapX = { 1: 80, 2: 68, 3: 56, 4: 44, 5: 32, 6: 20 };
+  const mapY = { 1: 30, 2: 50, 3: 70, 4: 90 };
+
+  puntos.forEach(p => {
+    let cx = mapX[p.string];
+    let cy = mapY[p.fret];
+    if (cx && cy) {
+      svg += `<circle cx="${cx}" cy="${cy}" r="5" fill="#d4af37" /><text x="${cx}" y="${cy + 3}" font-size="7" text-anchor="middle" fill="#000" font-weight="bold">${p.finger}</text>`;
+    }
+  });
+
+  svg += `</svg>`;
+  return svg;
+}
+
+// Descarga un archivo con todo el diccionario empaquetado en JS
+function exportarBibliotecaCompletaJS() {
+  const keys = Object.keys(bibliotecaAcordesAdmin);
+  if (keys.length === 0) {
+    alert("Primero debes crear y guardar al menos un acorde.");
+    return;
+  }
+
+  let contenidoArchivo = `// DICCIONARIO COMPLETO DE ACORDES - TUNA UNIVERSITARIA\n`;
+  contenidoArchivo += `const diagramasAcordesSVG = ${JSON.stringify(bibliotecaAcordesAdmin, null, 2)};\n`;
+
+  const blob = new Blob([contenidoArchivo], { type: 'text/javascript;charset=utf-8' });
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(blob);
+  enlace.download = `diagramasAcordesSVG.js`;
+  document.body.appendChild(enlace);
+  enlace.click();
+  document.body.removeChild(enlace);
+
+  alert('¡Biblioteca de acordes empaquetada y descargada con éxito!');
+}
