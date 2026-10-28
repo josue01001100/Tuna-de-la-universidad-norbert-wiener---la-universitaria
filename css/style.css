@@ -707,7 +707,7 @@ body {
 }
 
 /* ==========================================
-   ESTILOS PARA EL CREADOR MASIVO DE ACORDES
+   ESTILOS DEL CREADOR MASIVO DE ACORDES SVG
    ========================================== */
 .fretboard-svg circle {
   transition: all 0.15s ease;
