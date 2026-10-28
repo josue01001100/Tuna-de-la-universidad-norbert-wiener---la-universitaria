@@ -69,7 +69,14 @@ function switchTab(tabId) {
         navBtnToActivate.classList.add('active');
     }
 
-    renderROACards();
+    if (typeof renderROACards === 'function') {
+        renderROACards();
+    }
+    
+    // Inicializar el creador si entran a admin
+    if (tabId === 'admin') {
+        inicializarCreadorAcordes();
+    }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -236,7 +243,6 @@ function generateQuestions() {
 
   // 3. Preguntas dinámicas del ROA
   roaData.forEach(tuno => {
-    // Mote por Nombre
     let qMote = getWrongOptions(tuno.mote, 'mote');
     questions.push({
       question: `¿Cuál es el Mote/Apodo de ${tuno.nombre}?`,
@@ -244,7 +250,6 @@ function generateQuestions() {
       correct: qMote.correctIdx
     });
 
-    // Nombre por Mote
     let qNom = getWrongOptions(tuno.nombre, 'nombre');
     questions.push({
       question: `¿Quién es el Tuno conocido como "${tuno.mote}"?`,
@@ -252,7 +257,6 @@ function generateQuestions() {
       correct: qNom.correctIdx
     });
 
-    // Profesión por Mote
     if (tuno.profesion !== "-") {
       let qProf = getWrongOptions(tuno.profesion, 'profesion');
       questions.push({
@@ -262,7 +266,6 @@ function generateQuestions() {
       });
     }
 
-    // Año de Ascenso
     let qAnio = getWrongOptions(tuno.anio, 'anio');
     questions.push({
       question: `¿En qué año fue el ascenso de ${tuno.mote}?`,
@@ -270,7 +273,6 @@ function generateQuestions() {
       correct: qAnio.correctIdx
     });
 
-    // Padrino
     if (tuno.padrino !== "-") {
       let qPad = getWrongOptions(tuno.padrino, 'padrino');
       questions.push({
@@ -280,7 +282,6 @@ function generateQuestions() {
       });
     }
 
-    // Testigo
     if (tuno.testigo !== "-") {
       let qTest = getWrongOptions(tuno.testigo, 'testigo');
       questions.push({
@@ -290,7 +291,6 @@ function generateQuestions() {
       });
     }
 
-    // Número ROA
     let optsROA = [
       `ROA N°${tuno.num}`,
       `ROA N°${(tuno.num % 22) + 1}`,
@@ -678,7 +678,7 @@ function guardarNuevaCancion(event) {
   alert('¡Código HTML estructurado y descargado con éxito!');
 }
 
-// Función para renderizar o actualizar canciones guardadas en localStorage (Soluciona el error de la consola)
+// Función para renderizar o actualizar canciones guardadas en localStorage
 function renderizarOActualizarCancion(cancion) {
   const songListContainer = document.querySelector('.song-list');
   if (!songListContainer) return;
@@ -928,37 +928,37 @@ function eliminarAcordeDeBiblioteca(nombre) {
   actualizarListaVisualAcordes();
 }
 
-// Convierte los puntos seleccionados en código SVG limpio
+// Convierte los puntos seleccionados en código SVG limpio con coordenadas sincronizadas
 function generarSVGPersonalizado(startFret, puntos) {
-  let svg = `<svg viewBox="0 0 100 120" class="w-32 h-36">
-      <rect x="20" y="20" width="60" height="80" fill="#2d1b42" stroke="#d4af37" stroke-width="2" rx="2"/>`;
+  let svg = `<svg viewBox="0 0 140 160" class="w-32 h-36">`;
 
   if (startFret > 1) {
-    svg += `<text x="8" y="38" font-size="9" fill="#d4af37" font-weight="bold">${startFret}fr</text>`;
-    svg += `<line x1="20" y1="20" x2="80" y2="20" stroke="#888" stroke-width="1.5"/>`;
+    svg += `<text x="12" y="45" font-size="10" fill="#d4af37" font-weight="bold">${startFret}fr</text>`;
+    svg += `<line x1="30" y1="30" x2="110" y2="30" stroke="#888" stroke-width="1.5"/>`;
   } else {
-    svg += `<line x1="20" y1="20" x2="80" y2="20" stroke="#d4af37" stroke-width="4"/>`;
+    svg += `<line x1="30" y1="30" x2="110" y2="30" stroke="#d4af37" stroke-width="5"/>`;
   }
 
-  svg += `
-      <line x1="20" y1="40" x2="80" y2="40" stroke="#888" stroke-width="1.5"/>
-      <line x1="20" y1="60" x2="80" y2="60" stroke="#888" stroke-width="1.5"/>
-      <line x1="20" y1="80" x2="80" y2="80" stroke="#888" stroke-width="1.5"/>
-      <line x1="20" y1="20" x2="20" y2="100" stroke="#ccc" stroke-width="1"/>
-      <line x1="32" y1="20" x2="32" y2="100" stroke="#ccc" stroke-width="1"/>
-      <line x1="44" y1="20" x2="44" y2="100" stroke="#ccc" stroke-width="1"/>
-      <line x1="56" y1="20" x2="56" y2="100" stroke="#ccc" stroke-width="1"/>
-      <line x1="68" y1="20" x2="68" y2="100" stroke="#ccc" stroke-width="1"/>
-      <line x1="80" y1="20" x2="80" y2="100" stroke="#ccc" stroke-width="1"/>`;
+  // Líneas horizontales (Trastes 1 al 4)
+  for (let i = 0; i <= 4; i++) {
+    let y = 30 + (i * 25);
+    svg += `<line x1="30" y1="${y}" x2="110" y2="${y}" stroke="#888" stroke-width="1.5"/>`;
+  }
 
-  const mapX = { 1: 80, 2: 68, 3: 56, 4: 44, 5: 32, 6: 20 };
-  const mapY = { 1: 30, 2: 50, 3: 70, 4: 90 };
+  // Líneas verticales (Cuerdas 1 a 6)
+  const xCuerdas = [110, 94, 78, 62, 46, 30];
+  xCuerdas.forEach((x) => {
+    svg += `<line x1="${x}" y1="30" x2="${x}" y2="130" stroke="#ccc" stroke-width="1"/>`;
+  });
+
+  // Mapeo sincronizado con el diapasón interactivo principal
+  const mapX = { 1: 110, 2: 94, 3: 78, 4: 62, 5: 46, 6: 30 };
 
   puntos.forEach(p => {
     let cx = mapX[p.string];
-    let cy = mapY[p.fret];
-    if (cx && cy) {
-      svg += `<circle cx="${cx}" cy="${cy}" r="5" fill="#d4af37" /><text x="${cx}" y="${cy + 3}" font-size="7" text-anchor="middle" fill="#000" font-weight="bold">${p.finger}</text>`;
+    let cy = 30 + ((p.fret - 1) * 25) + 12.5;
+    if (cx !== undefined && !isNaN(cy)) {
+      svg += `<circle cx="${cx}" cy="${cy}" r="7" fill="#d4af37" /><text x="${cx}" y="${cy + 3}" font-size="8" text-anchor="middle" fill="#000" font-weight="bold">${p.finger}</text>`;
     }
   });
 
