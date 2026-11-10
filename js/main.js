@@ -963,7 +963,48 @@ function exportarBibliotecaCompletaJS() {
   alert('¡Biblioteca de acordes empaquetada y descargada con éxito!');
 }
 
-// Exponer funciones globales para los eventos onclick del HTML
+// ==========================================
+// MODAL INTERACTIVO PARA MOSTRAR ACORDES AL HACER CLIC
+// ==========================================
+function mostrarAcordeModal(nombreAcorde) {
+  const modal = document.getElementById('chordModal');
+  const title = document.getElementById('modalChordTitle');
+  const content = document.getElementById('modalChordContent');
+  const desc = document.getElementById('modalChordDesc');
+
+  if (!modal) return;
+
+  title.textContent = `Acorde: ${nombreAcorde}`;
+  
+  if (typeof diagramasAcordesSVG !== 'undefined' && diagramasAcordesSVG[nombreAcorde]) {
+    const acordeData = diagramasAcordesSVG[nombreAcorde];
+    content.innerHTML = acordeData.svg || '<p style="color:#ff6b6b;">Diagrama no disponible</p>';
+    desc.textContent = acordeData.desc || `Posición para ${nombreAcorde}`;
+  } else {
+    content.innerHTML = `<p style="color:#e5c158; font-size:1.1rem; padding:20px;">🎵 ${nombreAcorde}</p>`;
+    desc.textContent = "Aún no has registrado el gráfico SVG de este acorde en tu diccionario.";
+  }
+
+  modal.style.display = 'flex';
+}
+
+function cerrarModalAcorde() {
+  const modal = document.getElementById('chordModal');
+  if (modal) modal.style.display = 'none';
+}
+
+// Escuchar clics en cualquier acorde (.c) dentro del cancionero
+document.addEventListener('click', function(event) {
+  const acordeSpan = event.target.closest('.c');
+  if (acordeSpan) {
+    const nombreAcorde = acordeSpan.textContent.trim();
+    if (nombreAcorde) {
+      mostrarAcordeModal(nombreAcorde);
+    }
+  }
+});
+
+// Exponer funciones globales para los eventos onclick del HTML y módulos
 window.switchTab = switchTab;
 window.filterSongs = filterSongs;
 window.solicitarAccesoAdmin = solicitarAccesoAdmin;
@@ -979,3 +1020,4 @@ window.limpiarDiapasonBuilder = limpiarDiapasonBuilder;
 window.agregarAcordeALaLista = agregarAcordeALaLista;
 window.eliminarAcordeDeBiblioteca = eliminarAcordeDeBiblioteca;
 window.exportarBibliotecaCompletaJS = exportarBibliotecaCompletaJS;
+window.cerrarModalAcorde = cerrarModalAcorde; // <-- Asegúrate de incluir esta línea
