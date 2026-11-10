@@ -763,15 +763,7 @@ function inicializarCreadorAcordes() {
     dibujarDiapasonInteractivo(trasteSeleccionadoGlobal);
   }
 }
-    
-    // Inicializar el creador si entran a admin
-    if (tabId === 'admin') {
-        inicializarCreadorAcordes();
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
+ 
 function actualizarTrasteInicial() {
   const input = document.getElementById('builderStartFret');
   if (!input) return;
