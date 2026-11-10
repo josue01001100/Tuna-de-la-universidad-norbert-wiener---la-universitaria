@@ -79,7 +79,7 @@ function switchTab(tabId) {
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+} 
 
 // Filtro para el Cancionero
 function filterSongs() {
