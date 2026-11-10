@@ -976,13 +976,14 @@ function mostrarAcordeModal(nombreAcorde) {
 
   title.textContent = `Acorde: ${nombreAcorde}`;
   
-  if (typeof diagramasAcordesSVG !== 'undefined' && diagramasAcordesSVG[nombreAcorde]) {
+  // Verificamos directamente el objeto importado diagramasAcordesSVG
+  if (diagramasAcordesSVG && diagramasAcordesSVG[nombreAcorde]) {
     const acordeData = diagramasAcordesSVG[nombreAcorde];
     content.innerHTML = acordeData.svg || '<p style="color:#ff6b6b;">Diagrama no disponible</p>';
     desc.textContent = acordeData.desc || `Posición para ${nombreAcorde}`;
   } else {
     content.innerHTML = `<p style="color:#e5c158; font-size:1.1rem; padding:20px;">🎵 ${nombreAcorde}</p>`;
-    desc.textContent = "Aún no has registrado el gráfico SVG de este acorde en tu diccionario.";
+    desc.textContent = "Aún no has registrado el gráfico SVG de este acorde en tu diccionario acordes.js.";
   }
 
   modal.style.display = 'flex';
