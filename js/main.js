@@ -408,9 +408,9 @@ function parsearTextoACancioneroHTML(texto, fontSize) {
         const silaba = match[2];
 
         if (silaba.length > 0) {
-          lineaHTML += `<span class="syl"><span class="c">${acorde}</span>${silaba}</span>`;
+          lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>${silaba}</span>`;
         } else {
-          lineaHTML += `<span class="syl"><span class="c">${acorde}</span>&nbsp;</span>`;
+          lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>&nbsp;</span>`;
         }
 
         lastIndex = regex.lastIndex;
@@ -1034,6 +1034,7 @@ window.limpiarDiapasonBuilder = limpiarDiapasonBuilder;
 window.agregarAcordeALaLista = agregarAcordeALaLista;
 window.eliminarAcordeDeBiblioteca = eliminarAcordeDeBiblioteca;
 window.exportarBibliotecaCompletaJS = exportarBibliotecaCompletaJS;
+window.mostrarAcordeModal = mostrarAcordeModal;
 window.cerrarModalAcorde = cerrarModalAcorde; 
 
 window.cerrarModalAcorde = function() {
