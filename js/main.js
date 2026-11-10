@@ -381,6 +381,7 @@ function solicitarAccesoAdmin() {
 
 // Convierte texto con [Acorde] y [SALTO] a la estructura idéntica a Clavelitos (.song-page y .cols-N)
 function parsearTextoACancioneroHTML(texto, fontSize) {
+  if (!texto) texto = '';
   const bloquesColumnas = texto.split('[SALTO]');
   const totalCols = bloquesColumnas.length;
   let htmlPaginas = '';
