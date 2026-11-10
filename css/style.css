@@ -287,7 +287,9 @@ body {
   font-weight: bold;
   color: #ffc107;
   font-size: 0.8em;
-  pointer-events: none;
+  cursor: pointer !important;      /* Añadido para mostrar la manita */
+  pointer-events: auto !important; /* Añadido para permitir hacer clic */
+  z-index: 10;                     /* Asegura que esté al frente */
 }
 
 .intro-text {
