@@ -763,28 +763,6 @@ function inicializarCreadorAcordes() {
     dibujarDiapasonInteractivo(trasteSeleccionadoGlobal);
   }
 }
-
-// Función switchTab integrada con la inicialización del Admin
-function switchTab(tabId) {
-    const allTabs = document.querySelectorAll('.tab-content');
-    allTabs.forEach(tab => tab.classList.remove('active'));
-    
-    const allButtons = document.querySelectorAll('.nav-btn');
-    allButtons.forEach(btn => btn.classList.remove('active'));
-
-    const selectedTab = document.getElementById(tabId);
-    if (selectedTab) {
-        selectedTab.classList.add('active');
-    }
-
-    const navBtnToActivate = document.querySelector(`.nav-btn[onclick*="${tabId}"]`);
-    if (navBtnToActivate) {
-        navBtnToActivate.classList.add('active');
-    }
-
-    if (typeof renderROACards === 'function') {
-        renderROACards();
-    }
     
     // Inicializar el creador si entran a admin
     if (tabId === 'admin') {
