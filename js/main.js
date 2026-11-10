@@ -1,3 +1,5 @@
+// js/main.js (LÍNEA 1)
+import { diagramasAcordesSVG } from './acordes.js';
 // Datos Generales
 const datosFundacion = {
   fecha: "15 de marzo del 2015",
