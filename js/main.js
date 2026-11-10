@@ -999,6 +999,19 @@ document.addEventListener('click', function(event) {
   const acordeSpan = event.target.closest('.c');
   if (acordeSpan) {
     const nombreAcorde = acordeSpan.textContent.trim();
+    console.log("¡Hiciste clic en el acorde:", nombreAcorde); // <-- Rastreo 1
+    
+    if (typeof diagramasAcordesSVG !== 'undefined') {
+      console.log("El diccionario de acordes está disponible:", diagramasAcordesSVG); // <-- Rastreo 2
+      if (diagramasAcordesSVG[nombreAcorde]) {
+        console.log("¡Acorde encontrado en el diccionario!"); // <-- Rastreo 3
+      } else {
+        console.log("AVISO: El acorde '" + nombreAcorde + "' NO está en el diccionario de acordes.js"); // <-- Rastreo 4
+      }
+    } else {
+      console.error("ERROR: diagramasAcordesSVG no está definido.");
+    }
+    
     if (nombreAcorde) {
       mostrarAcordeModal(nombreAcorde);
     }
