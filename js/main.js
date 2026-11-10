@@ -962,3 +962,20 @@ function exportarBibliotecaCompletaJS() {
 
   alert('¡Biblioteca de acordes empaquetada y descargada con éxito!');
 }
+
+// Exponer funciones globales para los eventos onclick del HTML
+window.switchTab = switchTab;
+window.filterSongs = filterSongs;
+window.solicitarAccesoAdmin = solicitarAccesoAdmin;
+window.cargarCancionParaEditar = cargarCancionParaEditar;
+window.actualizarVistaPrevia = actualizarVistaPrevia;
+window.insertarAcordeEnCursor = insertarAcordeEnCursor;
+window.insertarSaltoColumna = insertarSaltoColumna;
+window.guardarNuevaCancion = guardarNuevaCancion;
+window.filterROACards = filterROACards;
+window.actualizarTrasteInicial = actualizarTrasteInicial;
+window.manejarClicPunto = manejarClicPunto;
+window.limpiarDiapasonBuilder = limpiarDiapasonBuilder;
+window.agregarAcordeALaLista = agregarAcordeALaLista;
+window.eliminarAcordeDeBiblioteca = eliminarAcordeDeBiblioteca;
+window.exportarBibliotecaCompletaJS = exportarBibliotecaCompletaJS;
