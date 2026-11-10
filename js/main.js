@@ -668,7 +668,7 @@ function guardarNuevaCancion(event) {
     <!-- Contenedor exclusivo para las columnas de estrofas -->
     ${contenidoCancionHTML}${htmlReseña}
   </div>
-</details>\n\n`;
+</details\n\n`;
 
   const blob = new Blob([codigoHTML], { type: 'text/html;charset=utf-8' });
   const enlace = document.createElement('a');
