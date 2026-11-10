@@ -40,7 +40,9 @@
       font-size: 0.85em;
       line-height: 1em;
       white-space: nowrap;
-      cursor: pointer;
+      cursor: pointer !important;
+      pointer-events: auto !important;
+      z-index: 10;
     }
     .intro-text {
       color: #aaa;
@@ -317,124 +319,124 @@
                 <!-- COLUMNA / PÁGINA 1 -->
                 <div class="song-page">
                   <div class="song-line">
-                    Mo<span class="syl"><span class="c">Am</span>ci</span>ta <span class="syl"><span class="c">E7</span>da</span>me el cla<span class="syl"><span class="c">Am</span>vel</span>,
+                    Mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>ci</span>ta <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>da</span>me el cla<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>vel</span>,
                   </div>
                   <div class="song-line">
-                    Dame el clavel <span class="syl"><span class="c">F</span>de</span> tu <span class="syl"><span class="c">E</span>bo</span>ca,
+                    Dame el clavel <span class="syl"><span class="c" onclick="mostrarAcordeModal('F')">F</span>de</span> tu <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>bo</span>ca,
                   </div>
                   <div class="song-line">
                     Que pá eso no hay que tener
                   </div>
                   <div class="song-line">
-                    Mucha vergüenza ni <span class="syl"><span class="c">Am</span>po</span>ca.
+                    Mucha vergüenza ni <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>po</span>ca.
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">G7</span>Yo</span> te daré el casca<span class="syl"><span class="c">C</span>bel</span>,
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('G7')">G7</span>Yo</span> te daré el casca<span class="syl"><span class="c" onclick="mostrarAcordeModal('C')">C</span>bel</span>,
                   </div>
                   <div class="song-line">
-                    Te lo <span class="syl"><span class="c">G7</span>pro</span>meto mo<span class="syl"><span class="c">C</span>ci</span>ta,
+                    Te lo <span class="syl"><span class="c" onclick="mostrarAcordeModal('G7')">G7</span>pro</span>meto mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('C')">C</span>ci</span>ta,
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E</span>Si</span> tu me das esa <span class="syl"><span class="c">Am</span>miel</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>Si</span> tu me das esa <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>miel</span>
                   </div>
                   <div class="song-line">
-                    Que lle<span class="syl"><span class="c">Dm</span>vas</span> <span class="syl"><span class="c">E7</span>en</span> la boqui<span class="syl"><span class="c">A</span>ta</span>.
+                    Que lle<span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>vas</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>en</span> la boqui<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>ta</span>.
                   </div>
                 </div>
 
                 <!-- COLUMNA / PÁGINA 2 -->
                 <div class="song-page">
                   <div class="song-line">
-                    Clave<span class="syl"><span class="c">A</span>li</span>tos, clavelitos,
+                    Clave<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>li</span>tos, clavelitos,
                   </div>
                   <div class="song-line">
-                    Clavelitos de mi cora<span class="syl"><span class="c">E</span>zón</span>.
+                    Clavelitos de mi cora<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>zón</span>.
                   </div>
                   <div class="song-line">
                     Hoy te traigo clavelitos
                   </div>
                   <div class="song-line">
-                    Colorados igual que un fre<span class="syl"><span class="c">A</span>són</span>.
+                    Colorados igual que un fre<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>són</span>.
                   </div>
                   <div class="song-line">
                     Si algún día clavelitos
                   </div>
                   <div class="song-line">
-                    No lo<span class="syl"><span class="c">A7</span>gra</span>ra poderte tra<span class="syl"><span class="c">D</span>er</span>,
+                    No lo<span class="syl"><span class="c" onclick="mostrarAcordeModal('A7')">A7</span>gra</span>ra poderte tra<span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>er</span>,
                   </div>
                   <div class="song-line">
-                    No te creas que ya no te <span class="syl"><span class="c">A</span>qui</span>ero <span class="syl"><span class="c">F#</span></span>,
+                    No te creas que ya no te <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>qui</span>ero <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span></span>,
                   </div>
                   <div class="song-line">
-                    Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span> <span class="syl"><span class="c">A7</span></span>
+                    Es que <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>no</span> te los <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>pu</span>de co<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>ger</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('A7')">A7</span></span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">D</span>No</span> te creas que ya no te <span class="syl"><span class="c">A</span>qui</span>ero <span class="syl"><span class="c">F#</span></span>,
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>No</span> te creas que ya no te <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>qui</span>ero <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span></span>,
                   </div>
                   <div class="song-line">
-                    Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">E7</span></span> - <span class="syl"><span class="c">A</span></span>
+                    Es que <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>no</span> te los <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>pu</span>de co<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>ger</span>. <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span></span> - <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span></span>
                   </div>
                 </div>
 
                 <!-- COLUMNA / PÁGINA 3 -->
                 <div class="song-page">
                   <div class="song-line">
-                    La <span class="syl"><span class="c">Am</span>tar</span>de <span class="syl"><span class="c">E7</span>que</span> a media <span class="syl"><span class="c">Am</span>luz</span>
+                    La <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>tar</span>de <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>que</span> a media <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>luz</span>
                   </div>
                   <div class="song-line">
-                    Vi tu boqui<span class="syl"><span class="c">F</span>ta</span> de <span class="syl"><span class="c">E</span>gui</span>nda,
+                    Vi tu boqui<span class="syl"><span class="c" onclick="mostrarAcordeModal('F')">F</span>ta</span> de <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>gui</span>nda,
                   </div>
                   <div class="song-line">
                     te juro que en el perú
                   </div>
                   <div class="song-line">
-                    yo no he visto otra más <span class="syl"><span class="c">Am</span>lin</span>da.
+                    yo no he visto otra más <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>lin</span>da.
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">G7</span>Y</span> luego al ver el cla<span class="syl"><span class="c">C</span>vel</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('G7')">G7</span>Y</span> luego al ver el cla<span class="syl"><span class="c" onclick="mostrarAcordeModal('C')">C</span>vel</span>
                   </div>
                   <div class="song-line">
-                    Que lle<span class="syl"><span class="c">G7</span>va</span>bas en el pe<span class="syl"><span class="c">C</span>lo</span>,
+                    Que lle<span class="syl"><span class="c" onclick="mostrarAcordeModal('G7')">G7</span>va</span>bas en el pe<span class="syl"><span class="c" onclick="mostrarAcordeModal('C')">C</span>lo</span>,
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E</span>Mi</span>rándolo creí <span class="syl"><span class="c">Am</span>ver</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>Mi</span>rándolo creí <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>ver</span>
                   </div>
                   <div class="song-line">
-                    Un pe<span class="syl"><span class="c">Dm</span>da</span><span class="syl"><span class="c">E7</span>ci</span>to de <span class="syl"><span class="c">A</span>cie</span>lo.
+                    Un pe<span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>da</span><span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>ci</span>to de <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>cie</span>lo.
                   </div>
                 </div>
 
                 <!-- COLUMNA / PÁGINA 4 -->
                 <div class="song-page">
                   <div class="song-line">
-                    Clave<span class="syl"><span class="c">A</span>li</span>tos, clavelitos,
+                    Clave<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>li</span>tos, clavelitos,
                   </div>
                   <div class="song-line">
-                    Clavelitos de mi cora<span class="syl"><span class="c">E</span>zón</span>.
+                    Clavelitos de mi cora<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>zón</span>.
                   </div>
                   <div class="song-line">
                     Hoy te traigo clavelitos
                   </div>
                   <div class="song-line">
-                    Colorados igual que un fre<span class="syl"><span class="c">A</span>són</span>.
+                    Colorados igual que un fre<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>són</span>.
                   </div>
                   <div class="song-line">
                     Si algún día clavelitos
                   </div>
                   <div class="song-line">
-                    No lo<span class="syl"><span class="c">A7</span>gra</span>ra poderte tra<span class="syl"><span class="c">D</span>er</span>,
+                    No lo<span class="syl"><span class="c" onclick="mostrarAcordeModal('A7')">A7</span>gra</span>ra poderte tra<span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>er</span>,
                   </div>
                   <div class="song-line">
-                    No te creas que ya no te <span class="syl"><span class="c">A</span>qui</span>ero <span class="syl"><span class="c">F#</span></span>,
+                    No te creas que ya no te <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>qui</span>ero <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span></span>,
                   </div>
                   <div class="song-line">
-                    Es que <span class="syl"><span class="c">Bm</span>no</span> te los <span class="syl"><span class="c">E</span>pu</span>de co<span class="syl"><span class="c">A</span>ger</span>. <span class="syl"><span class="c">A7</span></span>
+                    Es que <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>no</span> te los <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>pu</span>de co<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>ger</span>. <span class="syl"><span class="c" onclick="mostrarAcordeModal('A7')">A7</span></span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">D</span>No</span> te creas que ya no te <span class="syl"><span class="c">A</span>qui</span>ero <span class="syl"><span class="c">F#</span></span>,
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>No</span> te creas que ya no te <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>qui</span>ero <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span></span>,
                   </div>
                   <div class="song-line">
-                    Es que <span class="syl"><span class="c">Bm</span>no</span> me <span class="syl"><span class="c">E</span>de</span>jo mi mu<span class="syl"><span class="c">A</span>jer</span>. <span class="syl"><span class="c">E7</span></span> - <span class="syl"><span class="c">A</span></span>
+                    Es que <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>no</span> me <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>de</span>jo mi mu<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>jer</span>. <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span></span> - <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span></span>
                   </div>
                 </div>
 
@@ -473,70 +475,70 @@
                 <!-- COLUMNA / PÁGINA 1 -->
                 <div class="song-page" style="font-size: 0.7rem;">
                   <div class="song-line">
-                    <span class="syl"><span class="c">Em</span>Buscando</span> hacer fortuna como emi<span class="syl"><span class="c">Am</span>grante</span> se <span class="syl"><span class="c">B7</span>fue</span> a otras <span class="syl"><span class="c">Em</span>tierras</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>Buscando</span> hacer fortuna como emi<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>grante</span> se <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>fue</span> a otras <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>tierras</span>
                   </div>
                   <div class="song-line">
-                    y entre las mozas una quedó llo<span class="syl"><span class="c">Am</span>rando</span> por <span class="syl"><span class="c">B7</span>su</span> que<span class="syl"><span class="c">Em</span>rer,</span>
+                    y entre las mozas una quedó llo<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>rando</span> por <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>su</span> que<span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>rer,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E7</span>vuéltete</span> al case<span class="syl"><span class="c">Am</span>río</span> <span class="syl"><span class="c">F#</span>no</span> llores más mu<span class="syl"><span class="c">B7</span>jer</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>vuéltete</span> al case<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>río</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>no</span> llores más mu<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>jer</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E7</span>que</span> dentro de unos <span class="syl"><span class="c">Am</span>años</span> <span class="syl"><span class="c">D7</span>muy</span> rico he de vol<span class="syl"><span class="c">G</span>ver</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>que</span> dentro de unos <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>años</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('D7')">D7</span>muy</span> rico he de vol<span class="syl"><span class="c" onclick="mostrarAcordeModal('G')">G</span>ver</span>
                   </div>
                   <div class="song-line">
-                    y si me es<span class="syl"><span class="c">Am</span>peras,</span> lo que tú <span class="syl"><span class="c">Em</span>quieras</span> de <span class="syl"><span class="c">B7</span>mí</span> consegui<span class="syl"><span class="c">Em</span>rás</span> -<span class="syl"><span class="c">E7</span>,</span>
+                    y si me es<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>peras,</span> lo que tú <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>quieras</span> de <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>mí</span> consegui<span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>rás</span> -<span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>,</span>
                   </div>
                   <div class="song-line">
-                    Maitetxu <span class="syl"><span class="c">Am</span>mía,</span> Maitetxu <span class="syl"><span class="c">Em</span>mía</span> <span class="syl"><span class="c">B7</span>calla</span> y no llores <span class="syl"><span class="c">E</span>más,</span>
+                    Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>mía,</span> Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>mía</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>calla</span> y no llores <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>más,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E</span>yo</span> volveré a que<span class="syl"><span class="c">F#m</span>rerte</span> con toda el <span class="syl"><span class="c">G#m</span>alma</span> Maitetxu <span class="syl"><span class="c">F#m</span>mía,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>yo</span> volveré a que<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>rerte</span> con toda el <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>alma</span> Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>mía,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">F#m</span>y</span> volveré a can<span class="syl"><span class="c">C</span>tar</span> <span class="syl"><span class="c">F#</span>sortxicos</span> al pa<span class="syl"><span class="c">B7</span>sar,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>y</span> volveré a can<span class="syl"><span class="c" onclick="mostrarAcordeModal('C')">C</span>tar</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>sortxicos</span> al pa<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>sar,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E</span>y</span> volveré a de<span class="syl"><span class="c">F#m</span>cirte</span> las mismas <span class="syl"><span class="c">G#m</span>cosas</span> que te de<span class="syl"><span class="c">F#m</span>cía,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>y</span> volveré a de<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>cirte</span> las mismas <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>cosas</span> que te de<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>cía,</span>
                   </div>
                   <div class="song-line">
-                    por oro cruzo el <span class="syl"><span class="c">Am</span>mar</span> y debes <span class="syl"><span class="c">B7</span>esperar,</span>
+                    por oro cruzo el <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>mar</span> y debes <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>esperar,</span>
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 2 -->
                 <div class="song-page" style="font-size: 0.7rem;">
                   <div class="song-line">
-                    <span class="syl"><span class="c">Em</span>Luchó</span> por el dinero y al verse <span class="syl"><span class="c">Am</span>rico</span> vol<span class="syl"><span class="c">B7</span>ví</span> por <span class="syl"><span class="c">Em</span>ella,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>Luchó</span> por el dinero y al verse <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>rico</span> vol<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>ví</span> por <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>ella,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Em</span>saltó</span> a tierra el primero porque so<span class="syl"><span class="c">Am</span>ñaba</span> con <span class="syl"><span class="c">B7</span>su</span> que<span class="syl"><span class="c">Em</span>rer,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>saltó</span> a tierra el primero porque so<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>ñaba</span> con <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>su</span> que<span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>rer,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E7</span>ya</span> llego al case<span class="syl"><span class="c">Am</span>río,</span> <span class="syl"><span class="c">F#</span>voy</span> a volverla a <span class="syl"><span class="c">B7</span>ver,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>ya</span> llego al case<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>río,</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>voy</span> a volverla a <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>ver,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E7</span>no</span> sale a reci<span class="syl"><span class="c">Am</span>birme,</span> <span class="syl"><span class="c">D7</span>qué</span> es lo que pudo <span class="syl"><span class="c">G</span>ser,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>no</span> sale a reci<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>birme,</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('D7')">D7</span>qué</span> es lo que pudo <span class="syl"><span class="c" onclick="mostrarAcordeModal('G')">G</span>ser,</span>
                   </div>
                   <div class="song-line">
-                    murió llo<span class="syl"><span class="c">Am</span>rando</span> y suspir<span class="syl"><span class="c">Em</span>ando,</span> mi a<span class="syl"><span class="c">B7</span>mor</span> en dónde es<span class="syl"><span class="c">Em</span>tás</span> -<span class="syl"><span class="c">E7</span>,</span>
+                    murió llo<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>rando</span> y suspir<span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>ando,</span> mi a<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>mor</span> en dónde es<span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>tás</span> -<span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>,</span>
                   </div>
                   <div class="song-line">
-                    Maitetxu <span class="syl"><span class="c">Am</span>mía,</span> Maitetxu <span class="syl"><span class="c">Em</span>mía</span> <span class="syl"><span class="c">B7</span>ya</span> no he de verte <span class="syl"><span class="c">E</span>más,</span>
+                    Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>mía,</span> Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>mía</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>ya</span> no he de verte <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>más,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E</span>no</span> volveré a que<span class="syl"><span class="c">F#m</span>rerte</span> con toda el <span class="syl"><span class="c">G#m</span>alma</span> Maitetxu <span class="syl"><span class="c">F#m</span>mía,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>no</span> volveré a que<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>rerte</span> con toda el <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>alma</span> Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>mía,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">F#m</span>ni</span> volveré a can<span class="syl"><span class="c">C</span>tar</span> <span class="syl"><span class="c">F#</span>sortxicos</span> al pa<span class="syl"><span class="c">B7</span>sar,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>ni</span> volveré a can<span class="syl"><span class="c" onclick="mostrarAcordeModal('C')">C</span>tar</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>sortxicos</span> al pa<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>sar,</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">E</span>ni</span> volveré a de<span class="syl"><span class="c">F#m</span>cirte</span> las mismas <span class="syl"><span class="c">G#m</span>cosas</span> que te de<span class="syl"><span class="c">F#m</span>cía,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>ni</span> volveré a de<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>cirte</span> las mismas <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>cosas</span> que te de<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>cía,</span>
                   </div>
                   <div class="song-line">
-                    el oro conse<span class="syl"><span class="c">Am</span>guí</span> pero el a<span class="syl"><span class="c">B7</span>mor</span> per<span class="syl"><span class="c">D</span>dí,</span>
+                    el oro conse<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>guí</span> pero el a<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>mor</span> per<span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>dí,</span>
                   </div>
                   <div class="song-line">
-                    Maitetxu <span class="syl"><span class="c">Am</span>mía,</span> Maitetxu <span class="syl"><span class="c">Em</span>mía,</span> no he de vivir sin ti.
+                    Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>mía,</span> Maitetxu <span class="syl"><span class="c" onclick="mostrarAcordeModal('Em')">Em</span>mía,</span> no he de vivir sin ti.
                   </div>
                 </div>
               </div>
@@ -574,46 +576,46 @@
                 <!-- COLUMNA / PÁGINA -->
                 <div class="song-page" style="font-size: 0.7rem;">
                   <div class="song-line">
-                    La <span class="syl"><span class="c">A</span>Tuna</span> está al pie de tu bal<span class="syl"><span class="c">E</span>cón</span>
+                    La <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>Tuna</span> está al pie de tu bal<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>cón</span>
                   </div>
                   <div class="song-line">
-                    A<span class="syl"><span class="c">Bm</span>sóma</span><span class="syl"><span class="c">E</span>te</span> y es<span class="syl"><span class="c">Bm</span>cucha</span> <span class="syl"><span class="c">E</span>mi</span> can<span class="syl"><span class="c">A</span>ción</span>
+                    A<span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>sóma</span><span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>te</span> y es<span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>cucha</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>mi</span> can<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>ción</span>
                   </div>
                   <div class="song-line">
-                    Ya es<span class="syl"><span class="c">A</span>toy</span> aquí can<span class="syl"><span class="c">A7</span>tando</span> para <span class="syl"><span class="c">D</span>tí</span>
+                    Ya es<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>toy</span> aquí can<span class="syl"><span class="c" onclick="mostrarAcordeModal('A7')">A7</span>tando</span> para <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>tí</span>
                   </div>
                   <div class="song-line">
-                    Porque te <span class="syl"><span class="c">D</span>quiero</span> <span class="syl"><span class="c">Dm</span>___</span> porque te a<span class="syl"><span class="c">A</span>doro</span> <span class="syl"><span class="c">F#</span>___</span>
+                    Porque te <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>quiero</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>___</span> porque te a<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>doro</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>___</span>
                   </div>
                   <div class="song-line">
-                    Tú eres mi <span class="syl"><span class="c">Bm</span>vida</span> <span class="syl"><span class="c">E</span>y</span> mi te<span class="syl"><span class="c">A</span>soro</span>
+                    Tú eres mi <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>vida</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>y</span> mi te<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>soro</span>
                   </div>
                   <div class="song-line">
-                    Porque te <span class="syl"><span class="c">D</span>quiero</span> <span class="syl"><span class="c">Dm</span>___</span> porque te a<span class="syl"><span class="c">A</span>doro</span> <span class="syl"><span class="c">F#</span>___</span>
+                    Porque te <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>quiero</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>___</span> porque te a<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>doro</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>___</span>
                   </div>
                   <div class="song-line">
-                    tu eres mi A<span class="syl"><span class="c">Bm</span>malia</span> <span class="syl"><span class="c">E</span>sin</span> tí me <span class="syl"><span class="c">A</span>muero.</span> <span class="syl"><span class="c">E</span>&nbsp;</span> - <span class="syl"><span class="c">A</span>&nbsp;</span>
+                    tu eres mi A<span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>malia</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>sin</span> tí me <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>muero.</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>&nbsp;</span> - <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>&nbsp;</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">F#m</span>Oye</span> las <span class="syl"><span class="c">Bm7</span>coplas</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>Oye</span> las <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm7')">Bm7</span>coplas</span>
                   </div>
                   <div class="song-line">
-                    Que <span class="syl"><span class="c">G#7</span>te</span> hablan de a<span class="syl"><span class="c">C#7</span>mor.</span>
+                    Que <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#7')">G#7</span>te</span> hablan de a<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>mor.</span>
                   </div>
                   <div class="song-line">
-                    Ya es<span class="syl"><span class="c">A</span>toy</span> aquí can<span class="syl"><span class="c">A7</span>tando</span> para <span class="syl"><span class="c">D</span>tí</span>
+                    Ya es<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>toy</span> aquí can<span class="syl"><span class="c" onclick="mostrarAcordeModal('A7')">A7</span>tando</span> para <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>tí</span>
                   </div>
                   <div class="song-line">
-                    Porque te <span class="syl"><span class="c">D</span>quiero</span> <span class="syl"><span class="c">Dm</span>___</span> porque te a<span class="syl"><span class="c">A</span>doro</span> <span class="syl"><span class="c">F#</span>___</span>
+                    Porque te <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>quiero</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>___</span> porque te a<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>doro</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>___</span>
                   </div>
                   <div class="song-line">
-                    Tú eres mi <span class="syl"><span class="c">Bm</span>vida</span> <span class="syl"><span class="c">E</span>y</span> mi te<span class="syl"><span class="c">A</span>soro</span>
+                    Tú eres mi <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>vida</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>y</span> mi te<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>soro</span>
                   </div>
                   <div class="song-line">
-                    Porque te <span class="syl"><span class="c">D</span>quiero</span> <span class="syl"><span class="c">Dm</span>___</span> porque te a<span class="syl"><span class="c">A</span>doro</span> <span class="syl"><span class="c">F#</span>___</span>
+                    Porque te <span class="syl"><span class="c" onclick="mostrarAcordeModal('D')">D</span>quiero</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>___</span> porque te a<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>doro</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>___</span>
                   </div>
                   <div class="song-line">
-                    tu eres mi A<span class="syl"><span class="c">Bm</span>malia</span> <span class="syl"><span class="c">E</span>sin</span> tí me <span class="syl"><span class="c">A</span>muero.</span> <span class="syl"><span class="c">E</span>&nbsp;</span> - <span class="syl"><span class="c">A</span>&nbsp;</span>
+                    tu eres mi A<span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>malia</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>sin</span> tí me <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>muero.</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>&nbsp;</span> - <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>&nbsp;</span>
                   </div>
                 </div>
               </div>
@@ -635,88 +637,88 @@
                 <!-- COLUMNA / PÁGINA 1 -->
                 <div class="song-page" style="font-size: 0.85rem;">
                   <div class="song-line">
-                    Porque ha per<span class="syl"><span class="c">F</span>dido</span> una <span class="syl"><span class="c">E</span>perla</span>
+                    Porque ha per<span class="syl"><span class="c" onclick="mostrarAcordeModal('F')">F</span>dido</span> una <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>perla</span>
                   </div>
                   <div class="song-line">
-                    Llora una concha en el <span class="syl"><span class="c">Am</span>mar</span>
+                    Llora una concha en el <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>mar</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Dm</span>......</span> Porque el sol no ha sa<span class="syl"><span class="c">Am</span>lido</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>......</span> Porque el sol no ha sa<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>lido</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>......</span> Está triste el pavo <span class="syl"><span class="c">E</span>real</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>......</span> Está triste el pavo <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>real</span>
                   </div>
                   <div class="song-line">
-                    Porque pa<span class="syl"><span class="c">F</span>saron</span> las <span class="syl"><span class="c">E</span>horas</span>
+                    Porque pa<span class="syl"><span class="c" onclick="mostrarAcordeModal('F')">F</span>saron</span> las <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>horas</span>
                   </div>
                   <div class="song-line">
-                    Y la barca no lle<span class="syl"><span class="c">Am</span>gó</span>
+                    Y la barca no lle<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>gó</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Dm</span>......</span> Está llorando en el <span class="syl"><span class="c">Am</span>puerto</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>......</span> Está llorando en el <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>puerto</span>
                   </div>
                   <div class="song-line">
-                    La novi<span class="syl"><span class="c">B7</span>a</span> del <span class="syl"><span class="c">E</span>pesca</span><span class="syl"><span class="c">A</span>dor</span>
+                    La novi<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>a</span> del <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>pesca</span><span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>dor</span>
                   </div>
                   <div class="song-line">
-                    Por to<span class="syl"><span class="c">C#m</span>do</span> lo <span class="syl"><span class="c">Cm</span>que</span> más <span class="syl"><span class="c">Bm</span>quieras</span> <span class="syl"><span class="c">E</span>......</span> dime que <span class="syl"><span class="c">A</span>sí</span>
+                    Por to<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#m')">C#m</span>do</span> lo <span class="syl"><span class="c" onclick="mostrarAcordeModal('Cm')">Cm</span>que</span> más <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>quieras</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>......</span> dime que <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>sí</span>
                   </div>
                   <div class="song-line">
-                    Por tu madrecita <span class="syl"><span class="c">Bm</span>buena</span> <span class="syl"><span class="c">E</span>......</span> dime que <span class="syl"><span class="c">A</span>sí</span>
+                    Por tu madrecita <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>buena</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>......</span> dime que <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>sí</span>
                   </div>
                   <div class="song-line">
-                    Que me <span class="syl"><span class="c">C#m</span>vas</span> a <span class="syl"><span class="c">Cm</span>querer</span> <span class="syl"><span class="c">Bm</span>tanto</span> <span class="syl"><span class="c">E</span>......</span> dime que <span class="syl"><span class="c">A</span>sí</span>
+                    Que me <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#m')">C#m</span>vas</span> a <span class="syl"><span class="c" onclick="mostrarAcordeModal('Cm')">Cm</span>querer</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>tanto</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>......</span> dime que <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>sí</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Dm</span>......</span> Que me vas a querer <span class="syl"><span class="c">Am</span>tanto</span> como <span class="syl"><span class="c">B7</span>yo</span> te <span class="syl"><span class="c">E</span>quiero</span> a <span class="syl"><span class="c">Am</span>tí</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>......</span> Que me vas a querer <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>tanto</span> como <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>yo</span> te <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>quiero</span> a <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>tí</span>
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 2 -->
                 <div class="song-page" style="font-size: 0.85rem;">
                   <div class="song-line">
-                    Mañana <span class="syl"><span class="c">F</span>cuando</span> te a<span class="syl"><span class="c">E</span>lejes</span>
+                    Mañana <span class="syl"><span class="c" onclick="mostrarAcordeModal('F')">F</span>cuando</span> te a<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>lejes</span>
                   </div>
                   <div class="song-line">
-                    morena de mi ilu<span class="syl"><span class="c">Am</span>sión</span>
+                    morena de mi ilu<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>sión</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Dm</span>......</span> Que voy a hacer si con<span class="syl"><span class="c">Am</span>tigo</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>......</span> Que voy a hacer si con<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>tigo</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>......</span> Te llevas mi cora<span class="syl"><span class="c">E</span>zón</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>......</span> Te llevas mi cora<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>zón</span>
                   </div>
                   <div class="song-line">
-                    Si una con<span class="syl"><span class="c">F</span>cha</span> está llo<span class="syl"><span class="c">E</span>rando</span>
+                    Si una con<span class="syl"><span class="c" onclick="mostrarAcordeModal('F')">F</span>cha</span> está llo<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>rando</span>
                   </div>
                   <div class="song-line">
-                    Porque una perla perdi<span class="syl"><span class="c">Am</span>ó</span>
+                    Porque una perla perdi<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>ó</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Dm</span>......</span> Que harán mis ojos ma<span class="syl"><span class="c">Am</span>ñana</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>......</span> Que harán mis ojos ma<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>ñana</span>
                   </div>
                   <div class="song-line">
-                    Cuando <span class="syl"><span class="c">B7</span>te</span> di<span class="syl"><span class="c">E</span>gan</span> a<span class="syl"><span class="c">A</span>diós</span>
+                    Cuando <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>te</span> di<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>gan</span> a<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>diós</span>
                   </div>
                   <div class="song-line">
-                    Por to<span class="syl"><span class="c">C#m</span>do</span> lo <span class="syl"><span class="c">Cm</span>que</span> más <span class="syl"><span class="c">Bm</span>quieras</span> <span class="syl"><span class="c">E</span>......</span> dime que <span class="syl"><span class="c">A</span>sí</span>
+                    Por to<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#m')">C#m</span>do</span> lo <span class="syl"><span class="c" onclick="mostrarAcordeModal('Cm')">Cm</span>que</span> más <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>quieras</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>......</span> dime que <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>sí</span>
                   </div>
                   <div class="song-line">
-                    Por tu madrecita <span class="syl"><span class="c">Bm</span>buena</span> <span class="syl"><span class="c">E</span>......</span> dime que <span class="syl"><span class="c">A</span>sí</span>
+                    Por tu madrecita <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>buena</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>......</span> dime que <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>sí</span>
                   </div>
                   <div class="song-line">
-                    Que me <span class="syl"><span class="c">C#m</span>vas</span> a <span class="syl"><span class="c">Cm</span>querer</span> <span class="syl"><span class="c">Bm</span>tanto</span> <span class="syl"><span class="c">E</span>......</span> dime que <span class="syl"><span class="c">A</span>sí</span>
+                    Que me <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#m')">C#m</span>vas</span> a <span class="syl"><span class="c" onclick="mostrarAcordeModal('Cm')">Cm</span>querer</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('Bm')">Bm</span>tanto</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>......</span> dime que <span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>sí</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Dm</span>......</span> Que me vas a querer <span class="syl"><span class="c">Am</span>tanto</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>......</span> Que me vas a querer <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>tanto</span>
                   </div>
                   <div class="song-line">
-                    como <span class="syl"><span class="c">B7</span>yo</span> te <span class="syl"><span class="c">E</span>quiero</span> a <span class="syl"><span class="c">Am</span>tí</span>
+                    como <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>yo</span> te <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>quiero</span> a <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>tí</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">Dm</span>......</span> Que me vas a querer <span class="syl"><span class="c">Am</span>tanto</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm')">Dm</span>......</span> Que me vas a querer <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>tanto</span>
                   </div>
                   <div class="song-line">
-                    como <span class="syl"><span class="c">F</span>yo</span> te <span class="syl"><span class="c">E</span>quiero</span> a <span class="syl"><span class="c">Dm7</span>tí</span>   ___<span class="syl"><span class="c">Em7</span>...</span>   ___<span class="syl"><span class="c">A</span>...</span>
+                    como <span class="syl"><span class="c" onclick="mostrarAcordeModal('F')">F</span>yo</span> te <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>quiero</span> a <span class="syl"><span class="c" onclick="mostrarAcordeModal('Dm7')">Dm7</span>tí</span>   ___<span class="syl"><span class="c" onclick="mostrarAcordeModal('Em7')">Em7</span>...</span>   ___<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>...</span>
                   </div>
                 </div>
               </div>
@@ -743,139 +745,139 @@
                 <!-- COLUMNA / PÁGINA 1 -->
                 <div class="song-page" style="font-size: 1rem;">
                   <div class="song-line">
-                    <span class="syl"><span class="c">E</span>Una</span> veredita a<span class="syl"><span class="c">F#m</span>legre</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>Una</span> veredita a<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>legre</span>
                   </div>
                   <div class="song-line">
-                    con <span class="syl"><span class="c">B7</span>luz</span> de luna o de <span class="syl"><span class="c">E</span>sol</span>
+                    con <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>luz</span> de luna o de <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>sol</span>
                   </div>
                   <div class="song-line">
-                    Tendi<span class="syl"><span class="c">C#7</span>da</span> como una <span class="syl"><span class="c">F#m</span>cinta</span>
+                    Tendi<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>da</span> como una <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>cinta</span>
                   </div>
                   <div class="song-line">
-                    con sus <span class="syl"><span class="c">B7</span>lados</span> de arre<span class="syl"><span class="c">E</span>bol</span>
+                    con sus <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>lados</span> de arre<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>bol</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">C#7</span>Arrebol</span> de los ge<span class="syl"><span class="c">F#m</span>ranios</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>Arrebol</span> de los ge<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>ranios</span>
                   </div>
                   <div class="song-line">
-                    y <span class="syl"><span class="c">B7</span>sonrisas</span> con ru<span class="syl"><span class="c">E</span>bor</span>
+                    y <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>sonrisas</span> con ru<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>bor</span>
                   </div>
                   <div class="song-line">
-                    Arre<span class="syl"><span class="c">C#7</span>bol</span> de los cla<span class="syl"><span class="c">F#m</span>veles</span>
+                    Arre<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>bol</span> de los cla<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>veles</span>
                   </div>
                   <div class="song-line">
-                    y las <span class="syl"><span class="c">B7</span>mejillas</span> en <span class="syl"><span class="c">E</span>flor</span>
+                    y las <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>mejillas</span> en <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>flor</span>
                   </div>
                   <div class="song-line">
-                    Perfu<span class="syl"><span class="c">C#7</span>mada</span> de mag<span class="syl"><span class="c">F#m</span>nolia</span>
+                    Perfu<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>mada</span> de mag<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>nolia</span>
                   </div>
                   <div class="song-line">
-                    ro<span class="syl"><span class="c">B7</span>ciada</span> de maña<span class="syl"><span class="c">E</span>nita</span>
+                    ro<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>ciada</span> de maña<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>nita</span>
                   </div>
                   <div class="song-line">
-                    La ve<span class="syl"><span class="c">C#7</span>redita</span> son<span class="syl"><span class="c">F#m</span>ríe</span>
+                    La ve<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>redita</span> son<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>ríe</span>
                   </div>
                   <div class="song-line">
-                    cuando <span class="syl"><span class="c">B7</span>tu</span> piel aca<span class="syl"><span class="c">E</span>ricia</span>
+                    cuando <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>tu</span> piel aca<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>ricia</span>
                   </div>
                   <div class="song-line">
-                    Y la <span class="syl"><span class="c">C#7</span>cuculí</span> se <span class="syl"><span class="c">F#m</span>ríe</span>
+                    Y la <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>cuculí</span> se <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>ríe</span>
                   </div>
                   <div class="song-line">
-                    y <span class="syl"><span class="c">B7</span>la</span> ventana se a<span class="syl"><span class="c">E</span>gita</span>
+                    y <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>la</span> ventana se a<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>gita</span>
                   </div>
                   <div class="song-line">
-                    Cuando <span class="syl"><span class="c">C#7</span>por</span> esa ve<span class="syl"><span class="c">F#m</span>reda</span>
+                    Cuando <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>por</span> esa ve<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>reda</span>
                   </div>
                   <div class="song-line">
-                    tu fi<span class="syl"><span class="c">B7</span>na</span> estampa pasea <span class="syl"><span class="c">E</span>-</span>
+                    tu fi<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>na</span> estampa pasea <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>-</span>
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 2 -->
                 <div class="song-page" style="font-size: 1rem;">
                   <div class="song-line">
-                    Fina es<span class="syl"><span class="c">F#m</span>tampa,</span> <span class="syl"><span class="c">B7</span>caba</span><span class="syl"><span class="c">E</span>llero</span>
+                    Fina es<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>tampa,</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>caba</span><span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>llero</span>
                   </div>
                   <div class="song-line">
-                    Caba<span class="syl"><span class="c">C#7</span>llero</span> de fina es<span class="syl"><span class="c">F#m</span>tampa</span>
+                    Caba<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>llero</span> de fina es<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>tampa</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>Un</span> lu<span class="syl"><span class="c">E</span>cero</span> que son<span class="syl"><span class="c">C#7</span>riera</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>Un</span> lu<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>cero</span> que son<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>riera</span>
                   </div>
                   <div class="song-line">
-                    bajo un som<span class="syl"><span class="c">F#m</span>brero</span>
+                    bajo un som<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>brero</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>No</span> son<span class="syl"><span class="c">E</span>riera</span> más her<span class="syl"><span class="c">C#7</span>moso</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>No</span> son<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>riera</span> más her<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>moso</span>
                   </div>
                   <div class="song-line">
-                    Ni más lu<span class="syl"><span class="c">F#m</span>ciera</span> <span class="syl"><span class="c">B7</span>caba</span><span class="syl"><span class="c">E</span>llero</span>
+                    Ni más lu<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>ciera</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>caba</span><span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>llero</span>
                   </div>
                   <div class="song-line">
-                    Y en tu an<span class="syl"><span class="c">C#7</span>dar,</span> andar, re<span class="syl"><span class="c">F#m</span>luce</span>
+                    Y en tu an<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>dar,</span> andar, re<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>luce</span>
                   </div>
                   <div class="song-line">
-                    la ace<span class="syl"><span class="c">B7</span>ra</span> al andar, an<span class="syl"><span class="c">E</span>dar</span> x2
+                    la ace<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>ra</span> al andar, an<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>dar</span> x2
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 3 -->
                 <div class="song-page" style="font-size: 1rem;">
                   <div class="song-line">
-                    Si me alejo de <span class="syl"><span class="c">E</span>ti</span>
+                    Si me alejo de <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>ti</span>
                   </div>
                   <div class="song-line">
-                    Es porque he compren<span class="syl"><span class="c">B7</span>dido</span>
+                    Es porque he compren<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>dido</span>
                   </div>
                   <div class="song-line">
                     Que soy la nube gris
                   </div>
                   <div class="song-line">
-                    Que nubla tu ca<span class="syl"><span class="c">E</span>mino</span>
+                    Que nubla tu ca<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>mino</span>
                   </div>
                   <div class="song-line">
-                    Me voy para de<span class="syl"><span class="c">E7</span>jar</span>
+                    Me voy para de<span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>jar</span>
                   </div>
                   <div class="song-line">
-                    Que cambie tu des<span class="syl"><span class="c">A</span>tino</span> <span class="syl"><span class="c">Am</span>-</span>
+                    Que cambie tu des<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>tino</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>-</span>
                   </div>
                   <div class="song-line">
-                    Que seas muy fe<span class="syl"><span class="c">E</span>liz</span>
+                    Que seas muy fe<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>liz</span>
                   </div>
                   <div class="song-line">
-                    Mien<span class="syl"><span class="c">C#7</span>tras</span> yo <span class="syl"><span class="c">F#m</span>busco</span> ol<span class="syl"><span class="c">B7</span>vido</span> <span class="syl"><span class="c">E</span>-</span> x2
+                    Mien<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>tras</span> yo <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>busco</span> ol<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>vido</span> <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>-</span> x2
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 4 -->
                 <div class="song-page" style="font-size: 1rem;">
                   <div class="song-line">
-                    Y otra <span class="syl"><span class="c">B7</span>vez</span> volveré a ser
+                    Y otra <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>vez</span> volveré a ser
                   </div>
                   <div class="song-line">
-                    El e<span class="syl"><span class="c">E</span>rrante</span> trovador
+                    El e<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>rrante</span> trovador
                   </div>
                   <div class="song-line">
-                    Que va en <span class="syl"><span class="c">B7</span>busca</span> de un amor
+                    Que va en <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>busca</span> de un amor
                   </div>
                   <div class="song-line">
-                    Del a<span class="syl"><span class="c">E</span>mor</span> de una mujer
+                    Del a<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>mor</span> de una mujer
                   </div>
                   <div class="song-line">
-                    Se per<span class="syl"><span class="c">E7</span>dió</span> el celaje azul
+                    Se per<span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>dió</span> el celaje azul
                   </div>
                   <div class="song-line">
-                    Donde bri<span class="syl"><span class="c">A</span>llaba</span> la ilu<span class="syl"><span class="c">Am</span>sión</span>
+                    Donde bri<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>llaba</span> la ilu<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>sión</span>
                   </div>
                   <div class="song-line">
-                    Vuelve <span class="syl"><span class="c">E</span>la</span> de<span class="syl"><span class="c">C#7</span>sola</span><span class="syl"><span class="c">F#m</span>ción</span>
+                    Vuelve <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>la</span> de<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>sola</span><span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>ción</span>
                   </div>
                   <div class="song-line">
-                    Vi<span class="syl"><span class="c">B7</span>vo</span> sin luz <span class="syl"><span class="c">E</span>-</span> x2
+                    Vi<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>vo</span> sin luz <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>-</span> x2
                   </div>
                   <div class="song-line">
-                    Vuelve <span class="syl"><span class="c">E</span>la</span> de<span class="syl"><span class="c">C#7</span>sola</span><span class="syl"><span class="c">F#m</span>ción</span>
+                    Vuelve <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>la</span> de<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>sola</span><span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>ción</span>
                   </div>
                   <div class="song-line">
-                    Vi<span class="syl"><span class="c">B7</span>vo</span> sin luz <span class="syl"><span class="c">E</span>-</span> x2
+                    Vi<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>vo</span> sin luz <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>-</span> x2
                   </div>
                 </div>
               </div>
@@ -897,106 +899,106 @@
                 <!-- COLUMNA / PÁGINA 1 -->
                 <div class="song-page" style="font-size: 0.7rem;">
                   <div class="song-line">
-                    Te quiero... <span class="syl"><span class="c">Eadd9</span>-,</span>
+                    Te quiero... <span class="syl"><span class="c" onclick="mostrarAcordeModal('Eadd9')">Eadd9</span>-,</span>
                   </div>
                   <div class="song-line">
-                    dijiste... <span class="syl"><span class="c">Eadd9</span>-,</span>
+                    dijiste... <span class="syl"><span class="c" onclick="mostrarAcordeModal('Eadd9')">Eadd9</span>-,</span>
                   </div>
                   <div class="song-line">
-                    to<span class="syl"><span class="c">C#m9</span>mando</span> mis <span class="syl"><span class="c">G#m7</span>manos</span>
+                    to<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#m9')">C#m9</span>mando</span> mis <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m7')">G#m7</span>manos</span>
                   </div>
                   <div class="song-line">
-                    entre tus mani<span class="syl"><span class="c">C#7</span>tas</span>
+                    entre tus mani<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>tas</span>
                   </div>
                   <div class="song-line">
-                    de blanco mar<span class="syl"><span class="c">F#m</span>fil</span> ---<span class="syl"><span class="c">G#</span>-,</span>
+                    de blanco mar<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>fil</span> ---<span class="syl"><span class="c" onclick="mostrarAcordeModal('G#')">G#</span>-,</span>
                   </div>
                   <div class="song-line">
-                    y sentí en mi <span class="syl"><span class="c">C#m9</span>pecho</span>
+                    y sentí en mi <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#m9')">C#m9</span>pecho</span>
                   </div>
                   <div class="song-line">
-                    -<span class="syl"><span class="c">F#</span>-</span> un fuerte la<span class="syl"><span class="c">B</span>tido;</span>
+                    -<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>-</span> un fuerte la<span class="syl"><span class="c" onclick="mostrarAcordeModal('B')">B</span>tido;</span>
                   </div>
                   <div class="song-line">
-                    -<span class="syl"><span class="c">G#</span>-</span> despues un sus<span class="syl"><span class="c">C#m9</span>piro</span>
+                    -<span class="syl"><span class="c" onclick="mostrarAcordeModal('G#')">G#</span>-</span> despues un sus<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#m9')">C#m9</span>piro</span>
                   </div>
                   <div class="song-line">
-                    y luego el chas<span class="syl"><span class="c">F#</span>quido</span>
+                    y luego el chas<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>quido</span>
                   </div>
                   <div class="song-line">
-                    de un beso fe<span class="syl"><span class="c">B7</span>bril.</span>
+                    de un beso fe<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>bril.</span>
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 2 -->
                 <div class="song-page" style="font-size: 0.7rem;">
                   <div class="song-line">
-                    Muñequita <span class="syl"><span class="c">E</span>linda</span> de cabellos de oro
+                    Muñequita <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>linda</span> de cabellos de oro
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">C#7</span>de</span> dientes de <span class="syl"><span class="c">F#m</span>perlas,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>de</span> dientes de <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>perlas,</span>
                   </div>
                   <div class="song-line">
-                    -<span class="syl"><span class="c">B7</span>-</span> labios de ru<span class="syl"><span class="c">E</span>bí.</span>
+                    -<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>-</span> labios de ru<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>bí.</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>Dime</span> si me <span class="syl"><span class="c">E</span>quieres</span> como yo te quiero;
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>Dime</span> si me <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>quieres</span> como yo te quiero;
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">C#7</span>si</span> de mí te a<span class="syl"><span class="c">F#m</span>cuerdas</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>si</span> de mí te a<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>cuerdas</span>
                   </div>
                   <div class="song-line">
-                    -<span class="syl"><span class="c">B7</span>-como</span> yo de <span class="syl"><span class="c">E</span>tí.</span>
+                    -<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>-como</span> yo de <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>tí.</span>
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 3 -->
                 <div class="song-page" style="font-size: 0.7rem;">
                   <div class="song-line">
-                    <span class="syl"><span class="c">E7</span>Y</span> a veces es<span class="syl"><span class="c">A</span>cucho</span> -<span class="syl"><span class="c">Amaj9/E</span>-</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('E7')">E7</span>Y</span> a veces es<span class="syl"><span class="c" onclick="mostrarAcordeModal('A')">A</span>cucho</span> -<span class="syl"><span class="c" onclick="mostrarAcordeModal('Amaj9/E')">Amaj9/E</span>-</span>
                   </div>
                   <div class="song-line">
-                    un e<span class="syl"><span class="c">Emaj7sus2</span>co</span> ........di<span class="syl"><span class="c">G#m</span>vino</span> ------...<span class="syl"><span class="c">G#m - Gm</span>&nbsp;</span>
+                    un e<span class="syl"><span class="c" onclick="mostrarAcordeModal('Emaj7sus2')">Emaj7sus2</span>co</span> ........di<span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>vino</span> ------...<span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m - Gm')">G#m - Gm</span>&nbsp;</span>
                   </div>
                   <div class="song-line">
-                    -<span class="syl"><span class="c">C#7</span>-que,</span> envuelto en la <span class="syl"><span class="c">F#m</span>brisa</span> -<span class="syl"><span class="c">F#</span>-</span>
+                    -<span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>-que,</span> envuelto en la <span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>brisa</span> -<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#')">F#</span>-</span>
                   </div>
                   <div class="song-line">
-                    parece de<span class="syl"><span class="c">B7</span>cir:</span>
+                    parece de<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>cir:</span>
                   </div>
                   <div class="song-line">
-                    Si te quiero <span class="syl"><span class="c">E</span>mucho,</span>
+                    Si te quiero <span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>mucho,</span>
                   </div>
                   <div class="song-line">
                     mucho, mucho, mucho;
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">C#7</span>tanto</span> como en<span class="syl"><span class="c">F#m</span>tonces,</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('C#7')">C#7</span>tanto</span> como en<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>tonces,</span>
                   </div>
                   <div class="song-line">
-                    -<span class="syl"><span class="c">B7</span>-</span> siempre hasta mo<span class="syl"><span class="c">E</span>rir.</span>
+                    -<span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>-</span> siempre hasta mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>rir.</span>
                   </div>
                 </div>
                 <!-- COLUMNA / PÁGINA 4 -->
                 <div class="song-page" style="font-size: 0.7rem;">
                   <div class="song-line">
-                    <span class="syl"><span class="c">G#m</span>Has</span> - <span class="syl"><span class="c">Gm</span>ta-</span> mo<span class="syl"><span class="c">F#m</span>rir</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>Has</span> - <span class="syl"><span class="c" onclick="mostrarAcordeModal('Gm')">Gm</span>ta-</span> mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>rir</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>siempre</span> hasta mo<span class="syl"><span class="c">E</span>rir</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>siempre</span> hasta mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>rir</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">G#m</span>Has</span> - <span class="syl"><span class="c">Gm</span>ta-</span> mo<span class="syl"><span class="c">F#m</span>rir</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>Has</span> - <span class="syl"><span class="c" onclick="mostrarAcordeModal('Gm')">Gm</span>ta-</span> mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>rir</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>siempre</span> hasta mo<span class="syl"><span class="c">E</span>rir</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>siempre</span> hasta mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>rir</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">G#m</span>Has</span> - <span class="syl"><span class="c">Gm</span>ta-</span> mo<span class="syl"><span class="c">F#m</span>rir</span>
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('G#m')">G#m</span>Has</span> - <span class="syl"><span class="c" onclick="mostrarAcordeModal('Gm')">Gm</span>ta-</span> mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('F#m')">F#m</span>rir</span>
                   </div>
                   <div class="song-line">
-                    <span class="syl"><span class="c">B7</span>siempre</span> hasta...
+                    <span class="syl"><span class="c" onclick="mostrarAcordeModal('B7')">B7</span>siempre</span> hasta...
                   </div>
                   <div class="song-line">
-                    mo<span class="syl"><span class="c">E</span>rir,</span> mo<span class="syl"><span class="c">Am</span>rir,</span> mo<span class="syl"><span class="c">E</span>rir</span>
+                    mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>rir,</span> mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('Am')">Am</span>rir,</span> mo<span class="syl"><span class="c" onclick="mostrarAcordeModal('E')">E</span>rir</span>
                   </div>
                 </div>
               </div>
