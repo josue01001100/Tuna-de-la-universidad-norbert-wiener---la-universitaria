@@ -1020,4 +1020,9 @@ window.limpiarDiapasonBuilder = limpiarDiapasonBuilder;
 window.agregarAcordeALaLista = agregarAcordeALaLista;
 window.eliminarAcordeDeBiblioteca = eliminarAcordeDeBiblioteca;
 window.exportarBibliotecaCompletaJS = exportarBibliotecaCompletaJS;
-window.cerrarModalAcorde = cerrarModalAcorde; // <-- Asegúrate de incluir esta línea
+window.cerrarModalAcorde = cerrarModalAcorde; 
+
+window.cerrarModalAcorde = function() {
+  const modal = document.getElementById('chordModal');
+  if (modal) modal.style.display = 'none';
+};
