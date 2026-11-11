@@ -396,7 +396,7 @@ function parsearTextoACancioneroHTML(texto, fontSize) {
       if (!lineaLimpia) return;
 
       let lineaHTML = '\n        <div class="song-line">\n          ';
-      const regex = /([^\s\[]*)?\[(.*?)\]([^\s\[]*)/g;
+      const regex = /\[(.*?)\]([^\s\[]*)/g;
       let lastIndex = 0;
       let match;
 
