@@ -405,10 +405,15 @@ function parsearTextoACancioneroHTML(texto, fontSize) {
         lineaHTML += textoPrevio;
 
         const acorde = match[1];
-        const silaba = match[2];
+        let silabaCompleta = match[2];
 
-        if (silaba.length > 0) {
-          lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>${silaba}</span>`;
+        // Dividimos automáticamente para que el acorde quede sobre la sílaba inicial (ej. "tan")
+        // y el resto de la palabra ("do") quede a continuación sin afectar el diseño.
+        if (silabaCompleta.length > 0) {
+          const primeraSilaba = silabaCompleta.substring(0, 3); 
+          const restoPalabra = silabaCompleta.substring(3);
+
+          lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>${primeraSilaba}</span>${restoPalabra}`;
         } else {
           lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>&nbsp;</span>`;
         }
