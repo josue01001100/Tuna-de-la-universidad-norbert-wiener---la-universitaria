@@ -143,7 +143,8 @@ body {
 
 /* Amplía el contenedor en PC para acomodar 4 columnas si el cancionero está activo */
 @media (min-width: 992px) {
-  .content-wrapper:has(#cancionero.active) {
+  .content-wrapper:has(#cancionero.active),
+  .content-wrapper:has(#admin.active) {
     max-width: 1200px;
   }
 }
