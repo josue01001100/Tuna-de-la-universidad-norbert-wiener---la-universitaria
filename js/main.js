@@ -382,8 +382,15 @@ function solicitarAccesoAdmin() {
 // Convierte texto con [Acorde] y [SALTO] a la estructura idéntica a Clavelitos (.song-page y .cols-N)
 function parsearTextoACancioneroHTML(texto, fontSize) {
   if (!texto) texto = '';
+  
+  // Obtener el número de columnas seleccionado en el admin (por defecto 1 si no existe)
+  const selectCols = document.getElementById('adminColumns');
+  const columnasForzadas = selectCols ? parseInt(selectCols.value) || 1 : 1;
+
   const bloquesColumnas = texto.split('[SALTO]');
-  const totalCols = bloquesColumnas.length;
+  // Usar el máximo entre las columnas definidas por saltos y las seleccionadas en el admin
+  const totalCols = Math.max(bloquesColumnas.length, columnasForzadas);
+  
   let htmlPaginas = '';
   const tamañoAplicado = fontSize && fontSize.trim() !== '' ? fontSize.trim() : '0.88rem';
 
@@ -407,12 +414,9 @@ function parsearTextoACancioneroHTML(texto, fontSize) {
         const acorde = match[1];
         let silabaCompleta = match[2];
 
-        // Dividimos automáticamente para que el acorde quede sobre la sílaba inicial (ej. "tan")
-        // y el resto de la palabra ("do") quede a continuación sin afectar el diseño.
         if (silabaCompleta.length > 0) {
           const primeraSilaba = silabaCompleta.substring(0, 3); 
           const restoPalabra = silabaCompleta.substring(3);
-
           lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>${primeraSilaba}</span>${restoPalabra}`;
         } else {
           lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>&nbsp;</span>`;
