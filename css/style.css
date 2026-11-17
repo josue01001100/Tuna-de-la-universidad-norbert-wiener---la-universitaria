@@ -305,7 +305,9 @@ body {
 .song-chords-container.multi-page {
   display: flex;
   gap: 1.2rem;
-  overflow-x: visible;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 .song-chords-container.multi-page .song-page {
@@ -315,6 +317,7 @@ body {
   padding: 8px 12px;
   border-radius: 6px;
   border-left: 2px solid rgba(212, 175, 55, 0.3);
+  box-sizing: border-box;
 }
 
 /* Regla específica para forzar 4 columnas en PC si lleva la clase .cols-4 */
