@@ -383,34 +383,25 @@ function solicitarAccesoAdmin() {
 function parsearTextoACancioneroHTML(texto, fontSize) {
   if (!texto) texto = '';
   
-  // Obtener el número de columnas seleccionado en el admin (por defecto 1 si no existe)
-  const selectCols = document.getElementById('adminColumns');
-  const columnasForzadas = selectCols ? parseInt(selectCols.value) || 1 : 1;
-
   const bloquesColumnas = texto.split('[SALTO]');
-  // Usar el máximo entre las columnas definidas por saltos y las seleccionadas en el admin
-  const totalCols = Math.max(bloquesColumnas.length, columnasForzadas);
-  
   let htmlPaginas = '';
   const tamañoAplicado = fontSize && fontSize.trim() !== '' ? fontSize.trim() : '0.88rem';
 
   bloquesColumnas.forEach((bloque) => {
     const lineas = bloque.split('\n');
-    let htmlPaginaActual = `\n      <!-- COLUMNA / PÁGINA -->\n      <div class="song-page" style="font-size: ${tamañoAplicado};">`;
+    let htmlPaginaActual = `<div class="song-page" style="font-size: ${tamañoAplicado};">`;
 
     lineas.forEach(linea => {
       const lineaLimpia = linea.trim();
       if (!lineaLimpia) return;
 
-      let lineaHTML = '\n        <div class="song-line">\n          ';
+      let lineaHTML = '<div class="song-line">';
       const regex = /\[(.*?)\]([^\s\[]*)/g;
       let lastIndex = 0;
       let match;
 
       while ((match = regex.exec(lineaLimpia)) !== null) {
-        const textoPrevio = lineaLimpia.substring(lastIndex, match.index);
-        lineaHTML += textoPrevio;
-
+        lineaHTML += lineaLimpia.substring(lastIndex, match.index);
         const acorde = match[1];
         let silabaCompleta = match[2];
 
@@ -421,20 +412,19 @@ function parsearTextoACancioneroHTML(texto, fontSize) {
         } else {
           lineaHTML += `<span class="syl"><span class="c" onclick="mostrarAcordeModal('${acorde}')">${acorde}</span>&nbsp;</span>`;
         }
-
         lastIndex = regex.lastIndex;
       }
 
       lineaHTML += lineaLimpia.substring(lastIndex);
-      lineaHTML += '\n        </div>';
+      lineaHTML += '</div>';
       htmlPaginaActual += lineaHTML;
     });
 
-    htmlPaginaActual += '\n      </div>';
+    htmlPaginaActual += '</div>';
     htmlPaginas += htmlPaginaActual;
   });
 
-  return `<div class="song-chords-container multi-page cols-${totalCols}">${htmlPaginas}\n    </div>`;
+  return `<div class="song-chords-container multi-page">${htmlPaginas}</div>`;
 }
 
 // Convierte HTML de vuelta a [Acorde] y [SALTO] para edición
