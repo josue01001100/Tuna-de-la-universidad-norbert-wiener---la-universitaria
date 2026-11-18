@@ -1,74 +1,110 @@
 [
   {
     "titulo": "Amalia",
-    "archivo": "amalia-codigo.html"
+    "archivo": "amalia-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   },
   {
     "titulo": "Barrio Brujo",
-    "archivo": "barrio-brujo-codigo.html"
+    "archivo": "barrio-brujo-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   },
   {
     "titulo": "Callejón de un solo caño",
-    "archivo": "callejón-de-un-solo-caño-codigo.html"
+    "archivo": "callejón-de-un-solo-caño-codigo.html",
+    "tipo": "vals criollo",
+    "compas": "3/4"
   },
   {
     "titulo": "Clavelitos",
-    "archivo": "clavelitos-codigo.html"
+    "archivo": "clavelitos-codigo.html",
+    "tipo": "vals",
+    "compas": "3/4"
   },
   {
     "titulo": "Elsa",
-    "archivo": "elsa-codigo.html"
+    "archivo": "elsa-codigo.html",
+    "tipo": "bolero",
+    "compas": "4/4"
   },
   {
     "titulo": "Isa de Luciano",
-    "archivo": "isa-de-luciano-codigo.html"
+    "archivo": "isa-de-luciano-codigo.html",
+    "tipo": "Isa",
+    "compas": "3/4"
   },
   {
     "titulo": "La copla del rondador",
-    "archivo": "la-copla-del-rondador-codigo.html"
+    "archivo": "la-copla-del-rondador-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   },
   {
     "titulo": "La morena de mi copla",
-    "archivo": "la-morena-de-mi-copla-codigo.html"
+    "archivo": "la-morena-de-mi-copla-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   },
   {
     "titulo": "La novia del pescador",
-    "archivo": "la-novia-del-pescador-codigo.html"
+    "archivo": "la-novia-del-pescador-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   },
   {
     "titulo": "Locura mía",
-    "archivo": "locura-mia-codigo.html"
+    "archivo": "locura-mia-codigo.html",
+    "tipo": "Bolero",
+    "compas": "4/4"
   },
   {
     "titulo": "Maitetxu mía",
-    "archivo": "maitetxu-mía-codigo.html"
+    "archivo": "maitetxu-mía-codigo.html",
+    "tipo": "zortziko",
+    "compas": "3/4"
   },
   {
     "titulo": "Mix criollos",
-    "archivo": "mix-criollos-2-codigo.html"
+    "archivo": "mix-criollos-2-codigo.html",
+    "tipo": "vals criollo",
+    "compas": "3/4"
   },
   {
     "titulo": "Morenita verde luna",
-    "archivo": "morenita-verde-luna-codigo.html"
+    "archivo": "morenita-verde-luna-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   },
   {
     "titulo": "Muñequita linda",
-    "archivo": "muñequita-linda-codigo.html"
+    "archivo": "muñequita-linda-codigo.html",
+    "tipo": "bolero",
+    "compas": "4/4"
   },
   {
     "titulo": "Ronda del rabal",
-    "archivo": "ronda-del-rabal-codigo.html"
+    "archivo": "ronda-del-rabal-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   },
   {
     "titulo": "Rondalla",
-    "archivo": "rondalla-codigo.html"
+    "archivo": "rondalla-codigo.html",
+    "tipo": "vals",
+    "compas": "3/4"
   },
   {
     "titulo": "Sortilegio",
-    "archivo": "sortilegio-codigo.html"
+    "archivo": "sortilegio-codigo.html",
+    "tipo": "Bolero",
+    "compas": "4/4"
   },
   {
     "titulo": "Tuna compostelana",
-    "archivo": "tuna-compostelana-codigo.html"
+    "archivo": "tuna-compostelana-codigo.html",
+    "tipo": "pasodoble",
+    "compas": "2/4"
   }
 ]
