@@ -795,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderROACards();
   }
   cargarCancionesAlIniciar();
-  cargarIndiceCanciones(); // <--- Agrégalo aquí
+  cargarIndiceCanciones(); // <--- Agrega esta línea aquí
   if (typeof loadQuiz === 'function') {
     loadQuiz();
   }
@@ -1080,6 +1080,7 @@ document.addEventListener('click', function(event) {
 window.switchTab = switchTab;
 window.filterSongs = filterSongs;
 window.cargarCancion = cargarCancion;
+window.cargarIndiceCanciones = cargarIndiceCanciones;
 window.solicitarAccesoAdmin = solicitarAccesoAdmin;
 window.cargarCancionParaEditar = cargarCancionParaEditar;
 window.actualizarVistaPrevia = actualizarVistaPrevia;
