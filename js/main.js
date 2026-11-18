@@ -125,7 +125,7 @@ async function cargarIndiceCanciones() {
           transition: all 0.3s ease;
         " onmouseover="this.style.background='linear-gradient(135deg, rgba(45, 30, 55, 0.95), rgba(60, 40, 75, 0.9))'; this.style.borderColor='#d4af37'; this.style.color='#fff';" 
            onmouseout="this.style.background='linear-gradient(135deg, rgba(20, 15, 25, 0.95), rgba(35, 25, 45, 0.9))'; this.style.borderColor='rgba(212, 175, 55, 0.4)'; this.style.color='#e5c158';">
-          <span style="letter-spacing: 0.5px;">📜 ${song.titulo}</span>
+          <span style="letter-spacing: 0.5px;"> ${song.titulo}</span>
         </button>`;
     });
     
