@@ -94,18 +94,58 @@ function filterSongs() {
     song.style.display = title.includes(filter) ? 'block' : 'none';
   });
 }
-// Función para cargar una canción dinámicamente desde la carpeta canciones/
+// 1. Cargar la lista desde el indice.json al iniciar la página
+async function cargarIndiceCanciones() {
+  const container = document.getElementById('contenedor-cancionero');
+  if (!container) return;
+
+  try {
+    const respuesta = await fetch('canciones/indice.json');
+    if (!respuesta.ok) throw new Error("No se pudo cargar el índice de canciones.");
+    
+    const listaCanciones = await respuesta.json();
+    
+    // Generar la lista visual de botones para cada canción
+    let htmlLista = '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">';
+    
+    listaCanciones.forEach(song => {
+      htmlLista += `
+        <button onclick="cargarCancion('${song.archivo}')" class="gold-btn" style="text-align: left; padding: 12px 15px; font-size: 1rem; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; color: #fff; border-radius: 6px; cursor: pointer; transition: 0.2s;">
+          🎵 ${song.titulo}
+        </button>`;
+    });
+    
+    htmlLista += '</div>';
+    container.innerHTML = htmlLista;
+
+  } catch (error) {
+    console.error("Error:", error);
+    container.innerHTML = '<p style="color: #ff6b6b;">Error al cargar las canciones.</p>';
+  }
+}
+
+// 2. Cargar una canción individual y agregar un botón para volver atrás
 async function cargarCancion(nombreArchivo) {
+  const container = document.getElementById('contenedor-cancionero');
+  if (!container) return;
+
   try {
     const respuesta = await fetch(`canciones/${nombreArchivo}`);
-    if (!respuesta.ok) throw new Error("No se pudo cargar la canción.");
+    if (!respuesta.ok) throw new Error("No se pudo cargar el archivo de la canción.");
     
     const contenidoHtml = await respuesta.text();
     
-    // Inserta el contenido dentro del contenedor de canciones en tu index.html
-    document.getElementById('contenedor-cancionero').innerHTML = contenidoHtml;
+    // Mostramos la canción y un botón superior para regresar al índice
+    container.innerHTML = `
+      <button onclick="cargarIndiceCanciones()" style="margin-bottom: 15px; padding: 8px 15px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+        ⬅ Volver a la lista de canciones
+      </button>
+      ${contenidoHtml}
+    `;
     
-  } catch (error) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch(error) {
     console.error("Error al cargar la canción:", error);
   }
 }
