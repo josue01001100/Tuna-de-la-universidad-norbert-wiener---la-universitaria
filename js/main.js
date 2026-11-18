@@ -614,7 +614,14 @@ function actualizarVistaPrevia() {
   let htmlReseña = '';
   if (historyText.trim() || historyImg.trim()) {
     const parrafos = historyText.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('\n      ');
-    htmlReseña = `\n    <!-- RESEÑA HISTÓRICA -->\n    <div class="history-text">\n      ${parrafos}${historyImg.trim() ? `\n      <div class="history-img-container">\n        <img src="${historyImg}" alt="Reseña Histórica ${titulo}">\n      </div>` : ''}\n    </div>`;
+    htmlReseña = `
+    <!-- RESEÑA HISTÓRICA -->
+    <div class="history-text">
+      ${parrafos}${historyImg.trim() ? `
+      <div class="history-img-container">
+        <img src="${historyImg}" alt="Reseña Histórica ${titulo}">
+      </div>` : ''}
+    </div>`;
   }
 
   container.innerHTML = `
