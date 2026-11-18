@@ -105,13 +105,27 @@ async function cargarIndiceCanciones() {
     
     const listaCanciones = await respuesta.json();
     
-    // Generar la lista visual de botones para cada canción
-    let htmlLista = '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">';
+    // Generar la lista con un estilo clásico, formal y toques de época
+    let htmlLista = '<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">';
     
     listaCanciones.forEach(song => {
       htmlLista += `
-        <button onclick="cargarCancion('${song.archivo}')" class="gold-btn" style="text-align: left; padding: 12px 15px; font-size: 1rem; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; color: #fff; border-radius: 6px; cursor: pointer; transition: 0.2s;">
-          🎵 ${song.titulo}
+        <button onclick="cargarCancion('${song.archivo}')" class="song-index-btn" style="
+          text-align: left; 
+          padding: 14px 20px; 
+          font-size: 1.05rem; 
+          font-family: 'Cinzel', serif, Georgia; 
+          background: linear-gradient(135deg, rgba(20, 15, 25, 0.95), rgba(35, 25, 45, 0.9)); 
+          border: 1px solid rgba(212, 175, 55, 0.4); 
+          border-left: 3px solid #d4af37;
+          color: #e5c158; 
+          border-radius: 4px; 
+          cursor: pointer; 
+          box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6), 0 2px 5px rgba(0,0,0,0.4);
+          transition: all 0.3s ease;
+        " onmouseover="this.style.background='linear-gradient(135deg, rgba(45, 30, 55, 0.95), rgba(60, 40, 75, 0.9))'; this.style.borderColor='#d4af37'; this.style.color='#fff';" 
+           onmouseout="this.style.background='linear-gradient(135deg, rgba(20, 15, 25, 0.95), rgba(35, 25, 45, 0.9))'; this.style.borderColor='rgba(212, 175, 55, 0.4)'; this.style.color='#e5c158';">
+          <span style="letter-spacing: 0.5px;">📜 ${song.titulo}</span>
         </button>`;
     });
     
@@ -120,7 +134,7 @@ async function cargarIndiceCanciones() {
 
   } catch (error) {
     console.error("Error:", error);
-    container.innerHTML = '<p style="color: #ff6b6b;">Error al cargar las canciones.</p>';
+    container.innerHTML = '<p style="color: #ff6b6b; text-align: center; font-family: Cinzel, serif;">Error al cargar las canciones del cancionero.</p>';
   }
 }
 
