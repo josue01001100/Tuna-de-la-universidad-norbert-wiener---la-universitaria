@@ -94,7 +94,21 @@ function filterSongs() {
     song.style.display = title.includes(filter) ? 'block' : 'none';
   });
 }
-
+// Función para cargar una canción dinámicamente desde la carpeta canciones/
+async function cargarCancion(nombreArchivo) {
+  try {
+    const respuesta = await fetch(`canciones/${nombreArchivo}`);
+    if (!respuesta.ok) throw new Error("No se pudo cargar la canción.");
+    
+    const contenidoHtml = await respuesta.text();
+    
+    // Inserta el contenido dentro del contenedor de canciones en tu index.html
+    document.getElementById('contenedor-cancionero').innerHTML = contenidoHtml;
+    
+  } catch (error) {
+    console.error("Error al cargar la canción:", error);
+  }
+}
 // Renderizar Tarjetas ROA
 function renderROACards() {
   const container = document.getElementById('roaCardsContainer');
@@ -1024,6 +1038,7 @@ document.addEventListener('click', function(event) {
 // Exponer funciones globales para los eventos onclick del HTML y módulos
 window.switchTab = switchTab;
 window.filterSongs = filterSongs;
+window.cargarCancion = cargarCancion;
 window.solicitarAccesoAdmin = solicitarAccesoAdmin;
 window.cargarCancionParaEditar = cargarCancionParaEditar;
 window.actualizarVistaPrevia = actualizarVistaPrevia;
