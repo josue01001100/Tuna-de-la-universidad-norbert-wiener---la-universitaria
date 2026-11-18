@@ -84,22 +84,23 @@ function switchTab(tabId) {
 } 
 
 // Filtro para el Cancionero Dinámico
+// Filtro inteligente para el Cancionero (Busca por título, género o compás)
 function filterSongs() {
   const input = document.getElementById('songSearch');
   if (!input) return;
   const filter = input.value.toLowerCase().trim();
   
-  // Selecciona los botones de las canciones generados en el índice
   const botonesCanciones = document.querySelectorAll('#contenedor-cancionero .song-index-btn');
   
   if (botonesCanciones.length > 0) {
-    // Si estamos en la vista del índice, filtra los botones de la lista
     botonesCanciones.forEach(btn => {
-      const textoBoton = btn.textContent.toLowerCase();
-      btn.style.display = textoBoton.includes(filter) ? 'flex' : 'none';
+      // Lee el atributo oculto con toda la metadata de búsqueda
+      const datosBusqueda = btn.getAttribute('data-search') || '';
+      // Si el filtro coincide con el título, tipo o compás, lo muestra; si no, lo oculta
+      btn.style.display = datosBusqueda.includes(filter) ? 'flex' : 'none';
     });
   } else {
-    // Si ya se abrió una canción individual, filtra los bloques o acordeones si los hubiera
+    // Soporte por si se está filtrando dentro de una canción abierta
     const songs = document.querySelectorAll('.song-accordion');
     songs.forEach(song => {
       const title = song.querySelector('.song-title').textContent.toLowerCase();
@@ -107,7 +108,7 @@ function filterSongs() {
     });
   }
 }
-// 1. Cargar la lista desde el indice.json al iniciar la página
+// 1. Cargar la lista desde el indice.json incluyendo género y compás
 async function cargarIndiceCanciones() {
   const container = document.getElementById('contenedor-cancionero');
   if (!container) return;
@@ -118,12 +119,17 @@ async function cargarIndiceCanciones() {
     
     const listaCanciones = await respuesta.json();
     
-    // Generar la lista con un estilo clásico, formal y toques de época
     let htmlLista = '<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">';
     
     listaCanciones.forEach(song => {
+      // Guardamos el título, tipo y compás en minúsculas en atributos data- para facilitar la búsqueda total
+      const textoBusqueda = `${song.titulo} ${song.tipo || ''} ${song.compas || ''}`.toLowerCase();
+      
       htmlLista += `
-        <button onclick="cargarCancion('${song.archivo}')" class="song-index-btn" style="
+        <button onclick="cargarCancion('${song.archivo}')" class="song-index-btn" data-search="${textoBusqueda}" style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           text-align: left; 
           padding: 14px 20px; 
           font-size: 1.05rem; 
@@ -138,7 +144,9 @@ async function cargarIndiceCanciones() {
           transition: all 0.3s ease;
         " onmouseover="this.style.background='linear-gradient(135deg, rgba(45, 30, 55, 0.95), rgba(60, 40, 75, 0.9))'; this.style.borderColor='#d4af37'; this.style.color='#fff';" 
            onmouseout="this.style.background='linear-gradient(135deg, rgba(20, 15, 25, 0.95), rgba(35, 25, 45, 0.9))'; this.style.borderColor='rgba(212, 175, 55, 0.4)'; this.style.color='#e5c158';">
-          <span style="letter-spacing: 0.5px;"> ${song.titulo}</span>
+          
+          <span> ${song.titulo}</span>
+          ${song.tipo ? `<span style="font-size: 0.8rem; opacity: 0.8; background: rgba(212, 175, 55, 0.15); padding: 3px 8px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3);">${song.tipo} ${song.compas ? '(' + song.compas + ')' : ''}</span>` : ''}
         </button>`;
     });
     
