@@ -83,16 +83,29 @@ function switchTab(tabId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 } 
 
-// Filtro para el Cancionero
+// Filtro para el Cancionero Dinámico
 function filterSongs() {
   const input = document.getElementById('songSearch');
   if (!input) return;
-  const filter = input.value.toLowerCase();
-  const songs = document.querySelectorAll('.song-accordion');
-  songs.forEach(song => {
-    const title = song.querySelector('.song-title').textContent.toLowerCase();
-    song.style.display = title.includes(filter) ? 'block' : 'none';
-  });
+  const filter = input.value.toLowerCase().trim();
+  
+  // Selecciona los botones de las canciones generados en el índice
+  const botonesCanciones = document.querySelectorAll('#contenedor-cancionero .song-index-btn');
+  
+  if (botonesCanciones.length > 0) {
+    // Si estamos en la vista del índice, filtra los botones de la lista
+    botonesCanciones.forEach(btn => {
+      const textoBoton = btn.textContent.toLowerCase();
+      btn.style.display = textoBoton.includes(filter) ? 'flex' : 'none';
+    });
+  } else {
+    // Si ya se abrió una canción individual, filtra los bloques o acordeones si los hubiera
+    const songs = document.querySelectorAll('.song-accordion');
+    songs.forEach(song => {
+      const title = song.querySelector('.song-title').textContent.toLowerCase();
+      song.style.display = title.includes(filter) ? 'block' : 'none';
+    });
+  }
 }
 // 1. Cargar la lista desde el indice.json al iniciar la página
 async function cargarIndiceCanciones() {
