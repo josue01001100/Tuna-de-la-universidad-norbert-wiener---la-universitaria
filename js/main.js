@@ -795,6 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderROACards();
   }
   cargarCancionesAlIniciar();
+  cargarIndiceCanciones(); // <--- Agrégalo aquí
   if (typeof loadQuiz === 'function') {
     loadQuiz();
   }
