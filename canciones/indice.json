@@ -1,1 +1,74 @@
-
+[
+  {
+    "titulo": "Amalia",
+    "archivo": "amalia-codigo.html"
+  },
+  {
+    "titulo": "Barrio Brujo",
+    "archivo": "barrio-brujo-codigo.html"
+  },
+  {
+    "titulo": "Callejón de un solo caño",
+    "archivo": "callejón-de-un-solo-caño-codigo.html"
+  },
+  {
+    "titulo": "Clavelitos",
+    "archivo": "clavelitos-codigo.html"
+  },
+  {
+    "titulo": "Elsa",
+    "archivo": "elsa-codigo.html"
+  },
+  {
+    "titulo": "Isa de Luciano",
+    "archivo": "isa-de-luciano-codigo.html"
+  },
+  {
+    "titulo": "La copla del rondador",
+    "archivo": "la-copla-del-rondador-codigo.html"
+  },
+  {
+    "titulo": "La morena de mi copla",
+    "archivo": "la-morena-de-mi-copla-codigo.html"
+  },
+  {
+    "titulo": "La novia del pescador",
+    "archivo": "la-novia-del-pescador-codigo.html"
+  },
+  {
+    "titulo": "Locura mía",
+    "archivo": "locura-mia-codigo.html"
+  },
+  {
+    "titulo": "Maitetxu mía",
+    "archivo": "maitetxu-mía-codigo.html"
+  },
+  {
+    "titulo": "Mix criollos",
+    "archivo": "mix-criollos-2-codigo.html"
+  },
+  {
+    "titulo": "Morenita verde luna",
+    "archivo": "morenita-verde-luna-codigo.html"
+  },
+  {
+    "titulo": "Muñequita linda",
+    "archivo": "muñequita-linda-codigo.html"
+  },
+  {
+    "titulo": "Ronda del rabal",
+    "archivo": "ronda-del-rabal-codigo.html"
+  },
+  {
+    "titulo": "Rondalla",
+    "archivo": "rondalla-codigo.html"
+  },
+  {
+    "titulo": "Sortilegio",
+    "archivo": "sortilegio-codigo.html"
+  },
+  {
+    "titulo": "Tuna compostelana",
+    "archivo": "tuna-compostelana-codigo.html"
+  }
+]
