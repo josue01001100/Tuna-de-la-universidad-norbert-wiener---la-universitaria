@@ -625,21 +625,18 @@ function actualizarVistaPrevia() {
   }
 
   container.innerHTML = `
-    <details class="song-accordion" open>
-      <summary class="song-title">
+    <div style="padding: 5px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; color: var(--gold-accent); font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 10px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 8px;">
         <span>${titulo}</span>
-        <span class="badge">${badge}</span>
-      </summary>
-      <div class="song-body">
-        ${intro ? `<div class="intro-text">${intro}</div>` : ''}
-        <div class="page-indicator-info"> Desliza para pasar página </div>
-        ${contenidoCancionHTML}
-        ${htmlReseña}
+        <span class="badge" style="background-color: var(--gold-accent); color: #000; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.85rem; font-weight: bold;">${badge}</span>
       </div>
-    </details>
+      ${intro ? `<div class="intro-text">${intro}</div>` : ''}
+      <div class="page-indicator-info"> Desliza para pasar página </div>
+      ${contenidoCancionHTML}
+      ${htmlReseña}
+    </div>
   `;
 }
-
 // Genera y descarga el archivo HTML con la estructura completa tipo Clavelitos
 function guardarNuevaCancion(event) {
   event.preventDefault();
